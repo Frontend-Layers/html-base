@@ -9,3 +9,13 @@
   justify-content: center;
   align-items: center;
 }
+
+// Link Hover
+@mixin hover ($color, $text-decoration) {
+  &:focus,
+  &:active,
+  &:hover {
+    color: $color;
+    text-decoration: $text-decoration;
+  }
+}
