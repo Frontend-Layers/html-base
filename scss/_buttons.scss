@@ -2,3 +2,7 @@
  * Buttons
  */
 
+.btn {
+
+  @include unselectable;
+}
