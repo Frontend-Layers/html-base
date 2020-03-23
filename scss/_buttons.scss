@@ -3,6 +3,6 @@
  */
 
 .btn {
-
+  white-space: nowrap;
   @include unselectable;
 }
