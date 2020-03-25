@@ -12,10 +12,16 @@
 
 // Link Hover
 @mixin hover ($color, $text-decoration) {
+
   &:focus,
   &:active,
   &:hover {
-    color: $color;
-    text-decoration: $text-decoration;
+    @if $color {
+      color: $color;
+    }
+
+    @if $text-decoration {
+      text-decoration: $text-decoration;
+    }
   }
 }
