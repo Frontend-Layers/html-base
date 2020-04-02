@@ -12,7 +12,7 @@
 
 // Link Hover
 @mixin hover ($color, $text-decoration) {
-
+  &:visited,
   &:focus,
   &:active,
   &:hover {
@@ -25,3 +25,4 @@
     }
   }
 }
+
