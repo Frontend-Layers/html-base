@@ -6,4 +6,4 @@
 
 ## Inspiration
 
-- https://developers.google.com/web/fundamentals/performance/why-performance-matters
+- Google Web Fundamentals (https://developers.google.com/web/fundamentals/performance/why-performance-matters)
