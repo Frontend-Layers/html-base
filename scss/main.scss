@@ -1,22 +1,28 @@
 /**
  * Main CSS
  */
+
+// Fonts
 @import 'fonts';
 
-@import 'variables';
+// Base
 @import 'reset';
+@import 'variables';
 @import 'mixins';
 @import 'typography';
 @import 'grid';
-@import 'icons';
 
+// Components
+@import 'icons';
 @import 'buttons';
 @import 'lists';
 
+// Layout
 @import 'nav';
 @import 'header';
 @import 'footer';
 
+// Pages
 @import 'sections';
 @import 'responsive';
 @import 'animation';
