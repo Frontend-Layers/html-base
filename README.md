@@ -1,6 +1,17 @@
-HTML layer with JS bundler
+HTML layer with JS bundler.
 
-## Mixins
+## Features
+
+- SCSS
+- Local Server
+- Gulp
+
+## JS Development
+
+- Babel
+- Rollup
+
+## SCSS Mixins
 
 - unselectable
 - flex-center
