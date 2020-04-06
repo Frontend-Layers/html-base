@@ -1,0 +1,1 @@
+{"version":3,"file":"app.js","sources":["../../javascript/app.js"],"sourcesContent":["/**\n * Methods\n */\nimport method from './module';\n\ndocument.addEventListener('DOMContentLoaded', function () {\n  method();\n});"],"names":["document","addEventListener"],"mappings":";;;EAAA;;;EAKAA,QAAQ,CAACC,gBAAT,CAA0B,kBAA1B,EAA8C,YAAY;EAEzD,CAFD;;;;"}
