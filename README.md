@@ -1,4 +1,4 @@
-Source HTML layer
+HTML layer with JS bundler
 
 ## Mixins
 
