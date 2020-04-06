@@ -2,9 +2,8 @@ HTML layer with JS bundler.
 
 ## Features
 
-- SCSS
-- Local Server
-- Gulp
+- Styles Rest based on https://github.com/andreymatin/scss-reset
+- Predefined Gulp config for local server, JS and SCSS development
 
 ## JS Development
 
