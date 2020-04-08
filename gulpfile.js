@@ -165,5 +165,4 @@
   }
 
   exports.default = parallel(roll, styles, scripts, images, html, openServer, openBrowser, watcher);
-  exports.build = series(styles, scripts, images, html, bumper);
 })();
