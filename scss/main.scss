@@ -2,13 +2,15 @@
  * Main CSS
  */
 
-// Fonts
+// Font Files
 @import 'fonts';
 
-// Base
-@import 'reset';
+// Abstracts
 @import 'variables';
+@import 'reset';
 @import 'mixins';
+
+// Base
 @import 'typography';
 @import 'grid';
 
