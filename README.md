@@ -1,14 +1,15 @@
-HTML layer with JS bundler.
+HTML layer with JS bundler for classical templates development.
 
 ## Features
 
 - Styles Reset based on https://github.com/andreymatin/scss-reset
 - Predefined Gulp config for local server, JS and SCSS development
 
-## JS Development
+### JavaScript
 
 - Babel
 - Rollup
+- ES6+, IE11 support
 
 ## SCSS Mixins
 
