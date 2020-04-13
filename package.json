@@ -21,7 +21,7 @@
   "repository": "https://github.com/andreymatin/html-initial-bundle.git",
   "author": "Andrey Matin",
   "license": "MIT",
-  "browserlist": [
+  "browserslist": [
     "> 1%"
   ]
 }
