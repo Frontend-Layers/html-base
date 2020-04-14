@@ -1,7 +1,7 @@
 /**
  * Module
  */
-const module = function () {
+const module = () => {
   return 0;
 }
 
