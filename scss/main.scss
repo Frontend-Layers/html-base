@@ -2,9 +2,6 @@
  * Main CSS
  */
 
-// Font Files
-@import 'fonts';
-
 // Abstracts
 @import 'variables';
 @import 'reset';
@@ -14,18 +11,33 @@
 @import 'typography';
 @import 'grid';
 
-// Components
+// Elements
 @import 'icons';
 @import 'buttons';
 @import 'lists';
+
+// Components
+// @import 'component-dropdown';
+// @import 'component-selectbox';
 
 // Layout
 @import 'nav';
 @import 'header';
 @import 'footer';
 
-// Pages
+// Layout/ Sections
 @import 'sections';
-@import 'responsive';
-@import 'animation';
+
+// Layout/ Sections
+// @import 'pages';
+
+// Responsive Breakpoints etc.
+// @import 'media';
+
+// Animation
+// @import 'animation';
+
+
+// Font Files
+@import 'fonts';
 
