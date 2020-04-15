@@ -16,6 +16,7 @@ HTML layer with JS bundler for classical templates development.
 - unselectable
 - flex-center
 - hover
+- imposter
 
 ## Inspiration
 
