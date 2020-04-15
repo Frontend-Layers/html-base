@@ -5,5 +5,8 @@
       "extensionName": ".css",
       "savePath": "/styles/"
     }
-  ]
+  ],
+  "emmet.preferences": {
+    "filter.commentAfter": "<!-- /[#ID][.CLASS] -->"
+  }
 }
