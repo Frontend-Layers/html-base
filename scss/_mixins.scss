@@ -26,3 +26,14 @@
   }
 }
 
+// Imposter. The imposter creates a container where all child elements are positioned in the center of it.
+@mixin imposter($offset) {
+  width: 100vw;
+  height: 100vh;
+
+  @if $offset {
+    height: calc(100vh - #{$offset});
+  }
+
+  @include flex-center();
+}
