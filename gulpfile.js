@@ -50,7 +50,7 @@
       sass: './scss/**/*.scss',
       js: './javascript/**/*.js',
       jsBuild: './build/javascript/**/*.js',
-      img: './images/**/*.png',
+      img: './images/**/*',
       html: './*.html',
       fonts: './fonts/**/*'
     },
@@ -69,7 +69,8 @@
     dest: {
       css: './styles/',
       styles: './build/styles/',
-      fonts: './build/fonts/'
+      fonts: './build/fonts/',
+      img: './build/images/'
     }
   };
 
@@ -157,6 +158,7 @@
    */
   const images = () => {
     return src(cfg.src.img)
+    .pipe(dest(cfg.dest.img))
       .pipe(connect.reload());
   };
 
