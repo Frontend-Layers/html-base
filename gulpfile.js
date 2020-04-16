@@ -16,6 +16,9 @@
 
   // Styles
   const sass = require('gulp-sass');
+  const postcss = require('gulp-postcss');
+  const autoprefixer = require('autoprefixer');
+  const cssnano = require('cssnano');
 
   // Server
   const connect = require('gulp-connect');
@@ -43,12 +46,13 @@
    */
   const cfg = {
     src: {
-      css: './styles/',
+      css: './styles/*.css',
       sass: './scss/**/*.scss',
       js: './javascript/**/*.js',
       jsBuild: './build/javascript/**/*.js',
       img: './images/**/*.png',
       html: './*.html',
+      fonts: './fonts/**/*'
     },
     server: {
       host: '0.0.0.0',
@@ -61,8 +65,13 @@
       input: './javascript/app.js',
       output: './build/javascript/app.js',
       format: 'iife'
+    },
+    dest: {
+      css: './styles/',
+      styles: './build/styles/',
+      fonts: './build/fonts/'
     }
-  }
+  };
 
 
   /**
@@ -82,7 +91,7 @@
         sourcemap: true
       });
     });
-  }
+  };
 
 
 
@@ -93,7 +102,7 @@
     return src('./package.json')
       .pipe(bump())
       .pipe(dest('./'));
-  }
+  };
 
 
   /**
@@ -110,11 +119,27 @@
       }))
       .on('error', notify.onError())
       .pipe(sourcemaps.write('./'))
-      .pipe(dest(cfg.src.css))
+      .pipe(dest(cfg.dest.css))
       .pipe(connect.reload());
-  }
+  };
 
 
+  /**
+   * PostCSS, Autoprefixer
+   */
+  const css = () => {
+    var plugins = [
+      autoprefixer()
+    ];
+    return src(cfg.src.css)
+      .pipe(sourcemaps.init())
+      .pipe(plumber())
+      .pipe(postcss(plugins))
+      .on('error', notify.onError())
+      .pipe(sourcemaps.write('./'))
+      .pipe(dest(cfg.dest.styles))
+      .pipe(connect.reload());
+  };
 
 
   /**
@@ -123,7 +148,7 @@
   const scripts = () => {
     return src(cfg.src.jsBuild)
       .pipe(connect.reload());
-  }
+  };
 
 
 
@@ -133,7 +158,18 @@
   const images = () => {
     return src(cfg.src.img)
       .pipe(connect.reload());
-  }
+  };
+
+
+
+  /**
+   * Fonts
+   */
+  const fonts = () => {
+    return src(cfg.src.fonts)
+      .pipe(dest(cfg.dest.fonts))
+      .pipe(connect.reload());
+  };
 
 
   /**
@@ -142,7 +178,7 @@
   const html = () => {
     return src(cfg.src.html)
       .pipe(connect.reload())
-  }
+  };
 
   /**
    * Create Local Web Server
@@ -154,7 +190,7 @@
       port: cfg.server.port,
       livereload: true
     });
-  }
+  };
 
   /**
    * Open Default Browser
@@ -165,18 +201,20 @@
       .pipe(open({
         uri: cfg.server.uri
       }));
-  }
+  };
 
   /**
    * Watcher
    */
   const watcher = () => {
+    watch(cfg.src.fonts, fonts);
+    watch(cfg.dest.css, css);
     watch(cfg.src.sass, styles);
     watch(cfg.src.jsBuild, scripts);
     watch(cfg.src.img, images);
     watch(cfg.src.html, html);
     watch(cfg.src.js, roll);
-  }
+  };
 
 
   /**
@@ -187,10 +225,10 @@
       .pipe(plumber())
       .pipe(htmlValidator())
       .on('error', notify.onError());
-  }
+  };
 
   // Development Tasks
-  exports.default = parallel(roll, styles, scripts, images, html, openServer, openBrowser, watcher);
+  exports.default = parallel(roll, styles, css, scripts, images, html, fonts, openServer, openBrowser, watcher);
 
   // Test Tasks
   exports.test = parallel(validateHtml);
