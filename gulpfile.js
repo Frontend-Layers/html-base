@@ -178,6 +178,16 @@
     watch(cfg.src.html, html);
     watch(cfg.src.js, roll);
   }
+
+  /**
+   * Tests
+   */
+  const validateHtml = () => {
+    return src(cfg.src.html)
+      .pipe(plumber())
+      .pipe(htmlValidator())
+      .on('error', notify.onError());
+  }
   
   // Development Tasks
   exports.default = parallel(roll, styles, scripts, images, html, openServer, openBrowser, watcher);
