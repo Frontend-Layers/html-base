@@ -13,15 +13,30 @@
   /**
    * Modules
    */
+  // Styles
   const sass = require('gulp-sass');
+
+  // Server
   const connect = require('gulp-connect');
   const open = require('gulp-open');
+
+  // Notification
   const plumber = require('gulp-plumber');
   const notify = require('gulp-notify');
+
+  // Source Maps
   const sourcemaps = require('gulp-sourcemaps');
+
+  // Versions
   const bump = require('gulp-bump');
+
+  // JS Modules
   const rollup = require('rollup').rollup;
   const babel = require('rollup-plugin-babel');
+
+  // HTML Test
+  const htmlValidator = require('gulp-w3c-html-validator');
+
 
 
   /**
@@ -163,6 +178,12 @@
     watch(cfg.src.html, html);
     watch(cfg.src.js, roll);
   }
-
+  
+  // Development Tasks
   exports.default = parallel(roll, styles, scripts, images, html, openServer, openBrowser, watcher);
+  
+  // Test Tasks
+  exports.test = parallel(validateHtml);
+})();
+  
 })();
