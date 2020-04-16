@@ -13,6 +13,7 @@
   /**
    * Modules
    */
+
   // Styles
   const sass = require('gulp-sass');
 
@@ -36,8 +37,6 @@
 
   // HTML Test
   const htmlValidator = require('gulp-w3c-html-validator');
-
-
 
   /**
    * Config
@@ -69,7 +68,7 @@
   /**
    * JS Bundler
    */
-  function roll() {
+  const roll = () => {
     return rollup({
       input: cfg.roll.input,
       plugins: [
@@ -90,7 +89,7 @@
   /**
    * Patching
    */
-  function bumper() {
+  const bumper = () => {
     return src('./package.json')
       .pipe(bump())
       .pipe(dest('./'));
@@ -100,7 +99,7 @@
   /**
    * Styles
    */
-  function styles() {
+  const styles = () => {
     return src(cfg.src.sass)
       .pipe(sourcemaps.init())
       .pipe(plumber())
@@ -121,7 +120,7 @@
   /**
    * Scripts
    */
-  function scripts() {
+  const scripts = () => {
     return src(cfg.src.jsBuild)
       .pipe(connect.reload());
   }
@@ -131,7 +130,7 @@
   /**
    * Images
    */
-  function images() {
+  const images = () => {
     return src(cfg.src.img)
       .pipe(connect.reload());
   }
@@ -140,7 +139,7 @@
   /**
    * HTML
    */
-  function html() {
+  const html = () => {
     return src(cfg.src.html)
       .pipe(connect.reload())
   }
@@ -148,7 +147,7 @@
   /**
    * Create Local Web Server
    */
-  function openServer() {
+  const openServer = () => {
     connect.server({
       host: cfg.server.host,
       root: cfg.server.root,
@@ -160,7 +159,7 @@
   /**
    * Open Default Browser
    */
-  function openBrowser() {
+  const openBrowser = () => {
     return src(cfg.server.src)
       .pipe(plumber())
       .pipe(open({
@@ -171,13 +170,14 @@
   /**
    * Watcher
    */
-  function watcher() {
+  const watcher = () => {
     watch(cfg.src.sass, styles);
     watch(cfg.src.jsBuild, scripts);
     watch(cfg.src.img, images);
     watch(cfg.src.html, html);
     watch(cfg.src.js, roll);
   }
+
 
   /**
    * Tests
@@ -188,12 +188,10 @@
       .pipe(htmlValidator())
       .on('error', notify.onError());
   }
-  
+
   // Development Tasks
   exports.default = parallel(roll, styles, scripts, images, html, openServer, openBrowser, watcher);
-  
+
   // Test Tasks
   exports.test = parallel(validateHtml);
-})();
-  
 })();
