@@ -11,6 +11,10 @@ HTML layer with JS bundler for classical templates development.
 - Rollup
 - ES6+, IE11 support
 
+### Tests
+
+- Automated HTML W3C Validation
+
 ## SCSS Mixins
 
 - unselectable
