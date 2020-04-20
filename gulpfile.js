@@ -18,7 +18,6 @@
   const sass = require('gulp-sass');
   const postcss = require('gulp-postcss');
   const autoprefixer = require('autoprefixer');
-  const cssnano = require('cssnano');
 
   // Server
   const connect = require('gulp-connect');
@@ -31,12 +30,18 @@
   // Source Maps
   const sourcemaps = require('gulp-sourcemaps');
 
-  // Versions
-  const bump = require('gulp-bump');
-
   // JS Modules
   const rollup = require('rollup').rollup;
   const babel = require('rollup-plugin-babel');
+
+  // Images
+  const imagemin = require('gulp-imagemin');
+  const imageminPngquant = require('imagemin-pngquant');
+  const imageminZopfli = require('imagemin-zopfli');
+  const imageminMozjpeg = require('imagemin-mozjpeg');
+  const imageminJpegRecompress = require('imagemin-jpeg-recompress');
+  const imageminGiflossy = require('imagemin-giflossy');
+  const webp = require('gulp-webp');
 
   // HTML Test
   const htmlValidator = require('gulp-w3c-html-validator');
@@ -46,11 +51,13 @@
    */
   const cfg = {
     src: {
-      css: './styles/*.css',
+      cssMain: './styles/main.css',
+      css: './styles/',
       sass: './scss/**/*.scss',
       js: './javascript/**/*.js',
       jsBuild: './build/javascript/**/*.js',
       img: './images/**/*',
+      webp: './images/**/*.{png,jpg,jpeg}',
       html: './*.html',
       fonts: './fonts/**/*'
     },
@@ -59,27 +66,27 @@
       root: './',
       port: 5500,
       src: './index.html',
-      uri: 'http://localhost:5500/',
+      uri: 'http://localhost:5500/'
     },
     roll: {
       input: './javascript/app.js',
       output: './build/javascript/app.js',
       format: 'iife'
     },
-    dest: {
-      css: './styles/',
-      styles: './build/styles/',
-      fonts: './build/fonts/',
-      img: './build/images/'
-    }
+    build: {
+      css: './build/styles/',
+      js: './build/javascript/',
+      img: './build/images/',
+      fonts: './build/fonts/'
+    },
   };
 
 
   /**
    * JS Bundler
    */
-  const roll = () => {
-    return rollup({
+  const roll = () =>
+    rollup({
       input: cfg.roll.input,
       plugins: [
         babel()
@@ -92,95 +99,81 @@
         sourcemap: true
       });
     });
-  };
-
-
-
-  /**
-   * Patching
-   */
-  const bumper = () => {
-    return src('./package.json')
-      .pipe(bump())
-      .pipe(dest('./'));
-  };
 
 
   /**
    * Styles
    */
-  const styles = () => {
-    return src(cfg.src.sass)
-      .pipe(sourcemaps.init())
-      .pipe(plumber())
-      .pipe(sass({
-        outputStyle: 'expanded',
-        //outputStyle: 'compressed',
-        errLogToConsole: false
-      }))
-      .on('error', notify.onError())
-      .pipe(sourcemaps.write('./'))
-      .pipe(dest(cfg.dest.css))
-      .pipe(connect.reload());
-  };
+  const styles = () =>
+    src(cfg.src.sass)
+    .pipe(sourcemaps.init())
+    .pipe(plumber())
+    .pipe(sass({
+      outputStyle: 'expanded',
+      //outputStyle: 'compressed',
+      errLogToConsole: false
+    }))
+    .on('error', notify.onError())
+    .pipe(sourcemaps.write('./'))
+    .pipe(dest(cfg.src.css))
+    .pipe(connect.reload());
+
 
 
   /**
    * PostCSS, Autoprefixer
    */
-  const css = () => {
-    var plugins = [
+  const css = () =>
+    src(cfg.src.css)
+    .pipe(sourcemaps.init())
+    .pipe(plumber())
+    .pipe(postcss([
       autoprefixer()
-    ];
-    return src(cfg.src.css)
-      .pipe(sourcemaps.init())
-      .pipe(plumber())
-      .pipe(postcss(plugins))
-      .on('error', notify.onError())
-      .pipe(sourcemaps.write('./'))
-      .pipe(dest(cfg.dest.styles))
-      .pipe(connect.reload());
-  };
+    ]))
+    .on('error', notify.onError())
+    .pipe(sourcemaps.write('./'))
+    .pipe(dest(cfg.build.css))
+    .pipe(connect.reload());
 
 
   /**
    * Scripts
    */
-  const scripts = () => {
-    return src(cfg.src.jsBuild)
-      .pipe(connect.reload());
-  };
+  const scripts = () =>
+    src(cfg.src.jsBuild)
+    .pipe(connect.reload());
+
 
 
 
   /**
    * Images
    */
-  const images = () => {
-    return src(cfg.src.img)
-    .pipe(dest(cfg.dest.img))
-      .pipe(connect.reload());
-  };
+  const images = () =>
+    src(cfg.src.img)
+    .pipe(dest(cfg.build.img))
+    .pipe(connect.reload());
+
 
 
 
   /**
    * Fonts
    */
-  const fonts = () => {
-    return src(cfg.src.fonts)
-      .pipe(dest(cfg.dest.fonts))
-      .pipe(connect.reload());
-  };
+  const fonts = () =>
+    src(cfg.src.fonts)
+    .pipe(dest(cfg.build.fonts))
+    .pipe(connect.reload());
+
 
 
   /**
    * HTML
    */
-  const html = () => {
-    return src(cfg.src.html)
-      .pipe(connect.reload())
-  };
+  const html = () =>
+    src(cfg.src.html)
+    .pipe(connect.reload())
+
 
   /**
    * Create Local Web Server
@@ -197,20 +190,20 @@
   /**
    * Open Default Browser
    */
-  const openBrowser = () => {
-    return src(cfg.server.src)
-      .pipe(plumber())
-      .pipe(open({
-        uri: cfg.server.uri
-      }));
-  };
+  const openBrowser = () =>
+    src(cfg.server.src)
+    .pipe(plumber())
+    .pipe(open({
+      uri: cfg.server.uri
+    }));
+
 
   /**
    * Watcher
    */
   const watcher = () => {
     watch(cfg.src.fonts, fonts);
-    watch(cfg.dest.css, css);
+    watch(cfg.build.css, css);
     watch(cfg.src.sass, styles);
     watch(cfg.src.jsBuild, scripts);
     watch(cfg.src.img, images);
@@ -220,17 +213,73 @@
 
 
   /**
+   * Images
+   */
+
+  // Images Minify
+  const imgCompress = () =>
+    src(cfg.src.img)
+    .pipe(imagemin([
+      imageminPngquant({
+        speed: 1,
+        quality: [0.95, 1]
+      }),
+      imageminZopfli({
+        more: true
+      }),
+      imageminGiflossy({
+        optimizationLevel: 3,
+        optimize: 3, //keep-empty: Preserve empty transparent frames
+        lossy: 2
+      }),
+      imagemin.svgo({
+        plugins: [{
+          removeViewBox: false
+        }]
+      }),
+      imagemin.mozjpeg({
+        progressive: true
+      }),
+      imageminJpegRecompress({
+        loops: 6,
+        min: 40,
+        max: 85,
+        quality: 'low'
+      }),
+      imageminMozjpeg({
+        quality: 90
+      })
+    ]))
+    .pipe(dest(cfg.build.img));
+
+
+  // WEBP
+  const imgWebp = () =>
+    src(cfg.src.webp)
+    .pipe(webp())
+    .pipe(dest(cfg.build.img));
+
+
+
+  /**
    * Tests
    */
-  const validateHtml = () => {
-    return src(cfg.src.html)
-      .pipe(plumber())
-      .pipe(htmlValidator())
-      .on('error', notify.onError());
-  };
+  const validateHtml = () =>
+    src(cfg.src.html)
+    .pipe(plumber())
+    .pipe(htmlValidator())
+    .on('error', notify.onError());
+
+
+  /**
+   * Tasks
+   */
 
   // Development Tasks
-  exports.default = parallel(roll, styles, css, scripts, images, html, fonts, openServer, openBrowser, watcher);
+  exports.default = parallel(roll, series(styles, css), openServer, openBrowser, watcher);
+
+  // Image Compression
+  exports.img = series(imgCompress, imgWebp);
 
   // Test Tasks
   exports.test = parallel(validateHtml);
