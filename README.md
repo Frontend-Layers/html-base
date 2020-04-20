@@ -15,6 +15,12 @@ HTML layer with JS bundler for classical templates development.
 
 - Automated HTML W3C Validation
 
+### Images Compression
+
+- WEBP
+- SVG
+- Best practises for PNG/JPG
+
 ## SCSS Mixins
 
 - unselectable
