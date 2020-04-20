@@ -100,6 +100,10 @@
       });
     });
 
+  // Reload Browser after JS Changes
+  const scripts = () =>
+    src(cfg.src.js)
+    .pipe(connect.reload());
 
   /**
    * Styles
@@ -209,6 +213,7 @@
     watch(cfg.src.img, images);
     watch(cfg.src.html, html);
     watch(cfg.src.js, roll);
+    watch(cfg.src.js, scripts);
   };
 
 
