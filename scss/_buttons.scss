@@ -5,8 +5,9 @@
 .btn {
   text-align: center;
   white-space: nowrap;
-  
-  display: inline-block;  
+
+  display: inline-block;
 
   @include unselectable;
 }
+

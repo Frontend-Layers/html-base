@@ -7,57 +7,71 @@
   <!-- Meta Tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">  
-
-  <meta name="description" content="">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="HTML layer with JS bundler for classical templates development.">
 
   <!-- Styles -->
   <link href="./build/styles/main.css" rel="stylesheet" media="all">
 </head>
 
 <body>
-  
+
   <!-- Navigation -->
   <nav class="nav">
-    
+
     <!-- Main Menu -->
     <ul class="menu">
       <li class="menu__item">
         <a href="./index.html" class="menu__link"></a>
       </li>
     </ul>
-    
+
   </nav>
 
   <!-- Header -->
   <header class="header">
     <div class="container">
-     
+
       <!-- Logo -->
       <div class="logo">
         <a class="logo__link" href="./index.html" accesskey="1"><img src="./images/" alt=""></a>
-      </div>      
+      </div>
 
-    </div>   
+    </div>
   </header>
 
   <!-- Intro -->
   <section class="section">
     <div class="container">
-    </div>   
+
+      <!-- SVG Block -->
+      <h3>SVG Block Test</h3>
+      <img src="./build/images/html5-logo.svg" alt="" width="200" height="200">
+
+
+      <!-- Picture Block -->
+      <h3>Picture Block Test</h3>
+
+      <picture>
+        <source srcset="./build/images/test-photo.webp" type="image/webp">
+        <img src="./build/images/test-photo.jpg" alt="" width="400" height="285">
+      </picture>
+
+    </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-    </div>   
+    </div>
   </footer>
 
-  
+
   <!-- Vendor Scripts -->
-  
+
+
   <!-- Custom Scripts -->
-  <script src="./build/javascript/app.js" defer></script>
+  <script src="./build/javascript/app.js"></script>
 
 </body>
 

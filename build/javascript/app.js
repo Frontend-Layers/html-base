@@ -2,6 +2,13 @@
   'use strict';
 
   /**
+   * Module
+   */
+  var module = function module() {
+    console.log('Module');
+  };
+
+  /**
    * Load methods, helpers, polyfills etc.
    */
   /**
@@ -12,6 +19,7 @@
    */
 
   document.addEventListener('DOMContentLoaded', function () {
+    module();
   });
 
 }());

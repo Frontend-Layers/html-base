@@ -2,9 +2,7 @@
  * Module
  */
 const module = () => {
-  return 0;
+  console.log('Module');
 }
 
 export default module;
-
-
