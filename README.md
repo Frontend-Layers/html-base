@@ -1,8 +1,13 @@
 # html-initial-bundle
 
-HTML layer with JS bundler for professional templates development
-
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
+
+Layer 2. HTML layer with JS bundler for professional templates development.
+
+- Layer 1: SCSS Reset
+- Layer 2: Development phase
+- Layer 3: Stage phase (after first review/testing)
+
 
 ## Why
 
