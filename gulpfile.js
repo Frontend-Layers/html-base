@@ -30,6 +30,9 @@
   // Source Maps
   const sourcemaps = require('gulp-sourcemaps');
 
+  // Versions
+  const bump = require('gulp-bump');
+
   // JS Modules
   const rollup = require('rollup').rollup;
   const babel = require('rollup-plugin-babel');
@@ -42,6 +45,7 @@
   const imageminJpegRecompress = require('imagemin-jpeg-recompress');
   const imageminGiflossy = require('imagemin-giflossy');
   const webp = require('gulp-webp');
+  const cache = require('gulp-cache');
 
   // HTML Test
   const htmlValidator = require('gulp-w3c-html-validator');
@@ -166,7 +170,7 @@
   // Images Minify
   const images = () =>
     src(cfg.src.img)
-      .pipe(imagemin([
+      .pipe(cache(imagemin([
         imageminPngquant({
           speed: 1,
           quality: [0.95, 1]
@@ -196,14 +200,14 @@
         imageminMozjpeg({
           quality: 90
         })
-      ]))
+      ])))
       .pipe(dest(cfg.dest.img));
 
 
   // WEBP
   const imgWebp = () =>
     src(cfg.src.webp)
-      .pipe(webp())
+      .pipe(cache(webp()))
       .pipe(dest(cfg.dest.img));
 
 
@@ -259,6 +263,13 @@
     watch(cfg.src.js, series(roll, scripts));
   };
 
+  /**
+   * Patching
+   */
+  const bumper = () =>
+    src('./package.json')
+      .pipe(bump())
+      .pipe(dest('./'));
 
 
   /**
@@ -266,11 +277,15 @@
    */
 
   // Development Tasks
-  exports.default = parallel(roll, series(styles, css), series(images, imgWebp), openServer, openBrowser, watcher);
+  exports.default = parallel(roll, series(styles, css), series(images, imgWebp), fonts, openServer, openBrowser, watcher);
 
   // Images Compression
   exports.img = series(images, imgWebp);
 
   // Test Tasks
   exports.test = parallel(validateHtml);
+
+  // Build
+  exports.build = parallel(bumper);
+
 })();
