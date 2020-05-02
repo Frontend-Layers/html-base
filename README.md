@@ -11,19 +11,16 @@ Layer 2. HTML layer with JS bundler for professional templates development
 ## Why
 
 - JavaScript Applications Modeling
-- Height quality HTML templates
 - Routine tasks automation
-- Easy integration into any theme/template systems
+- Easy and rapid backend integration
 
 ## Features
 
 - Advanced CSS Reset [scss-reset](https://github.com/andreymatin/scss-reset)
-- Predefined workflow automation tasks
 - Old browsers support
 - Visual Studio Code Tweaks
 - SCSS Mixins
-
-(\*) Styles Reset implemented as NPM package ())
+- Deploy by command line
 
 ### JavaScript
 
@@ -42,6 +39,22 @@ Layer 2. HTML layer with JS bundler for professional templates development
 - Best practices for PNG/JPG
 
 
+## Installation
+
+Please download zip file from [html-initial-bundle](https://github.com/andreymatin/html-initial-bundle) repository.
+
+or
+
+```
+git clone https://github.com/andreymatin/html-initial-bundle
+```
+
+or
+
+```
+npm i -g html-npm-cli;
+gethtml init
+```
 
 ## Automation
 

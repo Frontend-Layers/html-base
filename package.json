@@ -45,5 +45,8 @@
   "license": "MIT",
   "browserslist": [
     "> 1%"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/andreymatin/html-initial-bundle/issues"
+  }  
 }

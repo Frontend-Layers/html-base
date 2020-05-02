@@ -256,8 +256,7 @@
    */
   const watcher = () => {
     watch(cfg.src.fonts, fonts);
-    watch(cfg.src.scss, styles);
-    watch(cfg.src.css, css);
+    watch(cfg.src.scss, series(styles, css));
     watch(cfg.src.img, series(images, imgWebp));
     watch(cfg.src.html, html);
     watch(cfg.src.js, series(roll, scripts));
