@@ -32,6 +32,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-stream": "^1.24.1",
+    "scss-mixins-npm": "^1.0.1",
     "scss-reset": "^1.1.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
@@ -48,5 +49,5 @@
   ],
   "bugs": {
     "url": "https://github.com/andreymatin/html-initial-bundle/issues"
-  }  
+  }
 }

@@ -16,6 +16,11 @@
 
 <body>
 
+  <!-- When JavaScript isn't available -->
+  <noscript>
+    <p>Warning: Sorry, but Page should display some content when JavaScript is enabled.</p>
+  </noscript>
+
   <!-- Navigation -->
   <nav class="nav">
 
@@ -25,7 +30,6 @@
         <a href="./index.html" class="menu__link"></a>
       </li>
     </ul>
-
   </nav>
 
   <!-- Header -->
@@ -51,7 +55,6 @@
 
       <!-- Picture Block -->
       <h3>Picture Block Test</h3>
-
       <picture>
         <source srcset="./build/images/test-photo.webp" type="image/webp">
         <img src="./build/images/test-photo.jpg" alt="" width="400" height="285">

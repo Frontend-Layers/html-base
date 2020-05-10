@@ -17,16 +17,16 @@ Layer 2. HTML layer with JS bundler for professional templates development
 ## Features
 
 - Advanced CSS Reset [scss-reset](https://github.com/andreymatin/scss-reset)
+- Basic SCSS Mixins Collection [scss-mixins](https://github.com/andreymatin/scss-mixins)
 - Old browsers support
 - Visual Studio Code Tweaks
-- SCSS Mixins
 - Deploy by command line
 
 ### JavaScript
 
 - Babel
 - Rollup
-- ES6+, IE11 support
+- ES6+, IE11 support ( > 1% )
 
 ### Tests
 
