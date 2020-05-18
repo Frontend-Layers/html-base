@@ -2,6 +2,10 @@
  * Main CSS
  */
 
+// Vendors
+// Twitter Bootstrap Grid System
+@import '../node_modules/bootstrap/scss/bootstrap-grid';
+
 // Abstracts
 @import 'variables';
 @import 'reset';
