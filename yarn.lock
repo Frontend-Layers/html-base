@@ -7742,7 +7742,7 @@ scss-mixins-npm@^1.0.4:
     gulp-sass "^4.0.2"
     gulp-sourcemaps "^2.6.5"
 
-scss-reset@^1.1.4:
+scss-reset@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/scss-reset/-/scss-reset-1.1.7.tgz#953edb713148059160b832d341e789028d8d9efb"
   integrity sha512-gIS6n44UBcXw5k/TuTF8D4fw5spMNIfRp3nbRMpQRcpPq2wVxgqS3lNOBjySuGrWXBTmHp5ibD8CpP1xmhZ4Hw==

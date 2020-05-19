@@ -124,7 +124,13 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 
 ## Resources
 
+- [The Open Graph protocol specification](https://ogp.me/)
+- https://cards-dev.twitter.com/validator
+- https://twitter.com/nanobop/status/1255002567131557888
+- https://developers.facebook.com/docs/sharing/webmasters/images/
 - https://html5boilerplate.com/
 - https://gulpjs.com/
 - https://rollupjs.org/guide/en/
 - https://unsplash.com/
+- [Fawicon Generator](https://realfavicongenerator.net/)
+- [Web Font Generator](https://transfonter.org/)
