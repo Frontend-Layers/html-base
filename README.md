@@ -1,4 +1,4 @@
-# html-initial-bundle
+# HTML Initial Bundle
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
 
@@ -10,33 +10,38 @@ Layer 2. HTML layer with JS bundler for professional templates development
 
 ## Why
 
-- JavaScript Applications Modeling
+- Rapid middleware templates prototyping
+- Modern JavaScript applications modeling
 - Routine tasks automation
-- Easy and rapid backend integration
+- Easy Backend integration
 
 ## Features
 
 - Advanced CSS Reset [scss-reset](https://github.com/andreymatin/scss-reset)
 - Basic SCSS Mixins Collection [scss-mixins](https://github.com/andreymatin/scss-mixins)
-- Old browsers support
-- Visual Studio Code Tweaks
-- Deploy by command line
+- Old browsers support ( > 1% popularity )
+- Kik-start workspace for concentrated development
+- Predefined export/import JavaScript modules
 
-### JavaScript
+#### JavaScript
 
 - Babel
 - Rollup
-- ES6+, IE11 support ( > 1% )
 
-### Tests
+#### Tests
 
 - Automated HTML5 W3C Validation
 
-### Images Compression
+#### Images Compression
 
-- WEBP
+- WEBP Convertor
 - SVG (SVGOmg compression)
 - Best practices for PNG/JPG
+
+
+## Contributing
+
+For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-initial-bundle/issues/new)
 
 
 ## Installation
@@ -106,17 +111,24 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 
 - gulp-w3c-html-validator
 
-
 ## Editor
 
 - ./.vscode/settings.json
 - ./.editorconfig
+- ./.eslintrc.json
 
 ### VSC Tweaks
 
 - liveSassCompile
 - Emmet "commentAfter"
 - Panel at the "right" (Terminal, hints etc.)
+
+## HTML Files
+
+- index.html - templates list
+- home.html - main landing page
+- product.html - product page
+- article.html - article page
 
 ## Inspiration
 
@@ -132,5 +144,25 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - https://gulpjs.com/
 - https://rollupjs.org/guide/en/
 - https://unsplash.com/
+
+## Generators
+
 - [Fawicon Generator](https://realfavicongenerator.net/)
 - [Web Font Generator](https://transfonter.org/)
+
+## HTML Tools
+
+- [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
+- [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
+- https://web.dev/measure/
+- https://www.webpagetest.org/
+
+
+## SEO Tools
+
+- [Twitter Validation Tool](https://dev.twitter.com/docs/cards/validation/validator)
+- [Facebook Debugger](https://developers.facebook.com/tools/debug)
+- [Google Structured Data Testing Tool](http://www.google.com/webmasters/tools/richsnippets)
+
+
+
