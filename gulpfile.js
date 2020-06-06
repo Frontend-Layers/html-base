@@ -97,9 +97,8 @@
         babel(),
         alias({
           entries: [
-            {
-              find: 'App', replacement: `${__dirname}/javascript/`
-            }
+            { find: 'App', replacement: `${__dirname}/javascript/` },
+            { find: 'Vendor', replacement: `${__dirname}/node_modules/` }
           ]
         })
       ]
@@ -284,7 +283,7 @@
    */
 
   // Development Tasks
-  exports.default = parallel(series(roll,scripts), series(styles, css), series(images, imgWebp), fonts, openServer, openBrowser, watcher);
+  exports.default = parallel(series(roll, scripts), series(styles, css), series(images, imgWebp), fonts, openServer, openBrowser, watcher);
 
   // Images Compression
   exports.img = series(images, imgWebp);

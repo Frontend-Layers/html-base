@@ -1,6 +1,14 @@
 (function () {
   'use strict';
 
+  /**
+   *  Check if the document is loaded completely
+   */
+  var domReady = function domReady(callback) {
+    // if already rendered
+    document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', callback) : callback();
+  };
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -63,7 +71,7 @@
    * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
    */
 
-  document.addEventListener('DOMContentLoaded', function () {
+  domReady(function () {
     component(); // Test Class
 
     var obj = new ModuleClass();

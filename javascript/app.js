@@ -1,9 +1,11 @@
 /**
  * Load methods, helpers, polyfills etc.
  */
+
+import domReady from 'Vendor/js-components-npm/src/methods/domready';
+
 import ModuleClass from 'App/module-class';
 import component from 'App/components/component';
-
 
 /**
  * The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed,
@@ -11,12 +13,10 @@ import component from 'App/components/component';
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
  */
-document.addEventListener('DOMContentLoaded', () => {
-
+domReady(() => {
   component();
 
   // Test Class
   const obj = new ModuleClass;
   obj.method();
-
 });
