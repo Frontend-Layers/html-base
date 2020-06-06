@@ -48,13 +48,13 @@ For issues, bugs or imporvements please open an [issue](https://github.com/andre
 
 Please download zip file from [html-initial-bundle](https://github.com/andreymatin/html-initial-bundle) repository.
 
-or
+or by Git:
 
 ```
 git clone https://github.com/andreymatin/html-initial-bundle
 ```
 
-or
+or by [CLI](https://github.com/andreymatin/html-npm-cli):
 
 ```
 npm i -g html-npm-cli;
@@ -154,9 +154,9 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 
 - [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
-- https://web.dev/measure/
-- https://www.webpagetest.org/
-
+- [SSL Test](https://www.ssllabs.com/ssltest)
+- [Performance Test](https://web.dev/measure/)
+- [Performance Test](https://www.webpagetest.org/)
 
 ## SEO Tools
 

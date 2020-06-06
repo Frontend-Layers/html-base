@@ -7,8 +7,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap-grid';
 
 // Abstracts
-@import 'variables';
 @import 'reset';
+@import 'variables';
 @import 'mixins';
 
 // Base
@@ -36,7 +36,7 @@
 // @import 'pages';
 
 // Responsive Breakpoints etc.
-// @import 'responsive';
+@import 'responsive';
 
 // Animation
 // @import 'animation';

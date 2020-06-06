@@ -36,6 +36,7 @@
   // JS Modules
   const rollup = require('rollup').rollup;
   const babel = require('rollup-plugin-babel');
+  const alias = require('@rollup/plugin-alias');
 
   // Images
   const imagemin = require('gulp-imagemin');
@@ -93,7 +94,14 @@
     rollup({
       input: cfg.roll.input,
       plugins: [
-        babel()
+        babel(),
+        alias({
+          entries: [
+            {
+              find: 'App', replacement: `${__dirname}/javascript/`
+            }
+          ]
+        })
       ]
     }).then(bundle => {
       return bundle.write({

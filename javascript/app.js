@@ -1,8 +1,8 @@
 /**
  * Load methods, helpers, polyfills etc.
  */
-import method from './module';
-import ModuleClass from './module-class';
+import ModuleClass from 'App/module-class';
+import component from 'App/components/component';
 
 
 /**
@@ -13,8 +13,7 @@ import ModuleClass from './module-class';
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Test Method
-  method();
+  component();
 
   // Test Class
   const obj = new ModuleClass;

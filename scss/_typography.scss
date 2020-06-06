@@ -1,7 +1,6 @@
-/**
+/*
  * Typography
- */
-
+ * ========================================================================== */
 
 /**
  * Text Selection
@@ -61,15 +60,23 @@ a {
   color: $text-color;
   text-decoration: none;
 
+  &:visited {
+    color: $text-color;
+    text-decoration: none;
+    outline: 0;
+  }
+
   &:focus,
   &:active,
   &:hover {
-    color: $blue;
+    color: $text-color;
     text-decoration: underline;
     outline: 0;
   }
 }
 
+
+i,
 em {
   font-style: normal;
 }
@@ -80,6 +87,7 @@ input {
   }
 }
 
+b,
 strong {
   font-weight: 700;
 }

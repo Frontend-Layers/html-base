@@ -1,13 +1,6 @@
 (function () {
   'use strict';
 
-  /**
-   * Module
-   */
-  var module = function module() {
-    console.log('Module');
-  };
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -44,6 +37,23 @@
   };
 
   /**
+   * Module
+   */
+  var module = function module() {
+    console.log('Module');
+  };
+
+  /**
+   * Module
+   */
+
+  var component = function component() {
+    // Test Method
+    module();
+    console.log('Component');
+  };
+
+  /**
    * Load methods, helpers, polyfills etc.
    */
   /**
@@ -54,8 +64,7 @@
    */
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Test Method
-    module(); // Test Class
+    component(); // Test Class
 
     var obj = new ModuleClass();
     obj.method();
