@@ -18,10 +18,13 @@
   const sass = require('gulp-sass');
   const postcss = require('gulp-postcss');
   const autoprefixer = require('autoprefixer');
+  const purify = require('gulp-purifycss');
 
   // Server
   const connect = require('gulp-connect');
   const open = require('gulp-open');
+  const del = require('del');
+
 
   // Notification
   const plumber = require('gulp-plumber');
@@ -37,6 +40,14 @@
   const rollup = require('rollup').rollup;
   const babel = require('rollup-plugin-babel');
   const alias = require('@rollup/plugin-alias');
+
+  // Prettifier
+  const prettify = require('gulp-prettify');
+
+  // Compressors
+  const uglify = require('gulp-uglify');
+  const htmlmin = require('gulp-htmlmin');
+  const cssnano = require('cssnano');
 
   // Images
   const imagemin = require('gulp-imagemin');
@@ -56,33 +67,38 @@
    */
   const cfg = {
     src: {
-      scss: './scss/**/*.scss',
-      css: './styles/**/*.css',
-      js: './javascript/**/*.js',
-      jsBuild: './build/javascript/**/*.js',
-      img: './images/**/*',
-      webp: './build/images/**/*.{png,jpg,jpeg}',
-      html: './*.html',
-      fonts: './fonts/**/*'
+      scss: './src/scss/**/*.scss',
+      css: './src/styles/**/*.css',
+      js: './src/javascript/**/*.js',
+      img: './src/images/**/*',
+      webp: './dist/images/**/*.{png,jpg,jpeg}',
+      html: './src/*.html',
+      fonts: './src/fonts/**/*',
+      favicons: './src/favicons/**/*',
+      video: './src/video/**/*',
+    },
+    dest: {
+      scss: './src/styles/',
+      css: './dist/styles/',
+      js: './src/javascript/**/*.js',
+      img: './dist/images/',
+      webp: './dist/images/**/*.{png,jpg,jpeg}',
+      html: './dist/',
+      fonts: './src/fonts/**/*',
+      favicons: './src/favicons/**/*',
+      video: './src/video/**/*',
     },
     server: {
       host: '0.0.0.0',
-      root: './',
-      port: 5500,
-      src: './index.html',
-      uri: 'http://localhost:5500/'
+      root: './dist/',
+      port: 4000,
+      src: './dist/index.html',
+      uri: 'http://localhost:4000/'
     },
     roll: {
-      input: './javascript/app.js',
-      output: './build/javascript/app.js',
+      input: './src/javascript/app.js',
+      output: './dist/javascript/app.js',
       format: 'iife'
-    },
-    dest: {
-      scss: './styles/',
-      css: './build/styles/',
-      js: './build/javascript/',
-      img: './build/images/',
-      fonts: './build/fonts/'
     },
   };
 
@@ -97,7 +113,7 @@
         babel(),
         alias({
           entries: [
-            { find: 'App', replacement: `${__dirname}/javascript/` },
+            { find: 'App', replacement: `${__dirname}/src/javascript/` },
             { find: 'Vendor', replacement: `${__dirname}/node_modules/` }
           ]
         })
@@ -116,16 +132,22 @@
     src(cfg.src.js)
       .pipe(connect.reload());
 
+  // JS Minify
+  const compressJS = () =>
+    src('./dist/javascript/**/*.js')
+      .pipe(uglify())
+      .pipe(dest('./build/javascript/'));
+
+
   /**
    * Styles
    */
-  const styles = () =>
+  const scss = () =>
     src(cfg.src.scss)
       .pipe(sourcemaps.init())
       .pipe(plumber())
       .pipe(sass({
         outputStyle: 'expanded',
-        //outputStyle: 'compressed',
         errLogToConsole: false
       }))
       .on('error', notify.onError())
@@ -134,40 +156,29 @@
       .pipe(connect.reload());
 
 
+  /**
+   * Purify CSS
+   */
+  const cssPurify = () =>
+    src('./src/styles/main.css')
+      .pipe(purify(['./dist/javascript/**/*.js', './src/**/*.html']))
+      .pipe(dest('./dist/styles/'));
+
+
 
   /**
-   * PostCSS, Autoprefixer
+   * PostCSS, Autoprefixer, CSS compressor
    */
-  const css = () =>
-    src(cfg.src.css)
-      .pipe(sourcemaps.init())
+  const cssCompress = () =>
+    src('./dist/styles/**/*.css')
       .pipe(plumber())
       .pipe(postcss([
-        autoprefixer()
+        autoprefixer(),
+        cssnano()
       ]))
       .on('error', notify.onError())
-      .pipe(sourcemaps.write('./'))
-      .pipe(dest(cfg.dest.css))
+      .pipe(dest('./build/styles/'))
       .pipe(connect.reload());
-
-
-  /**
-   * Fonts
-   */
-  const fonts = () =>
-    src(cfg.src.fonts)
-      .pipe(dest(cfg.dest.fonts))
-      .pipe(connect.reload());
-
-
-
-  /**
-   * HTML
-   */
-  const html = () =>
-    src(cfg.src.html)
-      .pipe(connect.reload())
-
 
 
   /**
@@ -177,37 +188,39 @@
   // Images Minify
   const images = () =>
     src(cfg.src.img)
-      .pipe(cache(imagemin([
-        imageminPngquant({
-          speed: 1,
-          quality: [0.95, 1]
-        }),
-        imageminZopfli({
-          more: true
-        }),
-        imageminGiflossy({
-          optimizationLevel: 3,
-          optimize: 3, //keep-empty: Preserve empty transparent frames
-          lossy: 2
-        }),
-        imagemin.svgo({
-          plugins: [{
-            removeViewBox: false
-          }]
-        }),
-        imagemin.mozjpeg({
-          progressive: true
-        }),
-        imageminJpegRecompress({
-          loops: 6,
-          min: 40,
-          max: 85,
-          quality: 'low'
-        }),
-        imageminMozjpeg({
-          quality: 90
-        })
-      ])))
+      .pipe(cache
+        (imagemin([
+          imageminPngquant({
+            speed: 1,
+            quality: [0.95, 1]
+          }),
+          imageminZopfli({
+            more: true
+          }),
+          imageminGiflossy({
+            optimizationLevel: 3,
+            optimize: 3, //keep-empty: Preserve empty transparent frames
+            lossy: 2
+          }),
+          imagemin.svgo({
+            plugins: [{
+              removeViewBox: false
+            }]
+          }),
+          imagemin.mozjpeg({
+            progressive: true
+          }),
+          imageminJpegRecompress({
+            loops: 6,
+            min: 40,
+            max: 85,
+            quality: 'low'
+          }),
+          imageminMozjpeg({
+            quality: 90
+          })
+        ]))
+      )
       .pipe(dest(cfg.dest.img));
 
 
@@ -220,9 +233,64 @@
 
 
   /**
+   * HTML
+   */
+  const html = () =>
+    src(cfg.src.html)
+      .pipe(connect.reload())
+
+
+  // HTML Beautifier
+  const htmlBeautifier = () =>
+    src(cfg.src.html)
+      .pipe(prettify({
+        indent_inner_html: true,
+        indent_size: 2,
+        unformatted: ['pre', 'code']
+      }))
+      .pipe(dest('./dist/'));
+
+  // HTML Minify
+  const htmlCompress = () =>
+    src('./dist/*.html')
+      .pipe(htmlmin({
+        collapseWhitespace: true,
+        removeComments: true
+      }))
+      .pipe(dest('./build/'));
+
+
+  const copyFiles = () =>
+    src([
+      './src/_redirects',
+      './src/robots.txt',
+    ])
+      .pipe(dest('./dist/'))
+      .pipe(dest('./build/'))
+      .pipe(connect.reload());
+
+  const copyVideo = () =>
+    src('./src/video/**/*')
+      .pipe(dest('./dist/video/'))
+      .pipe(dest('./build/video/'))
+      .pipe(connect.reload());
+
+  const copyFonts = () =>
+    src('./src/fonts/**/*')
+      .pipe(dest('./dist/fonts/'))
+      .pipe(dest('./build/fonts/'))
+      .pipe(connect.reload());
+
+  const copyIcons = () =>
+    src('./src/favicons/**/*')
+      .pipe(dest('./dist/favicons/'))
+      .pipe(dest('./build/favicons/'))
+      .pipe(connect.reload());
+
+
+  /**
    * Tests
    */
-
   const validateHtml = () =>
     src(cfg.src.html)
       .pipe(plumber())
@@ -262,11 +330,13 @@
    * Watcher
    */
   const watcher = () => {
-    watch(cfg.src.fonts, fonts);
-    watch(cfg.src.scss, series(styles, css));
+    watch(cfg.src.favicons, copyIcons);
+    watch(cfg.src.fonts, copyFonts);
+    watch(cfg.src.video, copyVideo);
+    watch(cfg.src.scss, series(scss, cssPurify, cssCompress));
     watch(cfg.src.img, series(images, imgWebp));
-    watch(cfg.src.html, html);
-    watch(cfg.src.js, series(roll, scripts));
+    watch(cfg.src.html, series(html, htmlBeautifier, htmlCompress));
+    watch(cfg.src.js, series(roll, scripts, compressJS));
   };
 
   /**
@@ -279,19 +349,51 @@
 
 
   /**
+   * Clean
+   */
+  const clean = () => {
+    return del(['./build']);
+  }
+
+
+  /**
    * Tasks
    */
 
   // Development Tasks
-  exports.default = parallel(series(roll, scripts), series(styles, css), series(images, imgWebp), fonts, openServer, openBrowser, watcher);
-
-  // Images Compression
-  exports.img = series(images, imgWebp);
+  exports.default = series(
+    parallel(
+      copyFiles,
+      copyVideo,
+      copyFonts,
+      copyIcons,
+      series(roll, compressJS),
+      series(scss, cssPurify, cssCompress),
+      series(images, imgWebp),
+      series(htmlBeautifier, htmlCompress),
+      openServer,
+      openBrowser,
+      watcher
+    )
+  );
 
   // Test Tasks
   exports.test = parallel(validateHtml);
 
   // Build
-  exports.build = parallel(bumper);
+  exports.build = series(
+    clean,
+    parallel(
+      copyFiles,
+      copyVideo,
+      copyFonts,
+      copyIcons,
+      series(roll, compressJS),
+      series(scss, cssPurify, cssCompress),
+      series(images, imgWebp),
+      series(htmlBeautifier, htmlCompress),
+      bumper
+    ),
+  );
 
 })();

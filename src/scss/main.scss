@@ -4,7 +4,13 @@
 
 // Vendors
 // Twitter Bootstrap Grid System
-@import '../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+
+// Reset
+@import '../../node_modules/scss-reset/src/scss/reset';
+
+// Mixins
+@import '../../node_modules/scss-mixins-npm/src/scss/mixins';
 
 // Abstracts
 @import 'reset';

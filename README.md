@@ -22,6 +22,7 @@ Layer 2. HTML layer with JS bundler for professional templates development
 - Old browsers support ( > 1% popularity )
 - Kik-start workspace for concentrated development
 - Predefined export/import JavaScript modules
+- Semantic reference
 
 #### JavaScript
 
@@ -140,6 +141,9 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - https://cards-dev.twitter.com/validator
 - https://twitter.com/nanobop/status/1255002567131557888
 - https://developers.facebook.com/docs/sharing/webmasters/images/
+
+## FE Tools
+
 - https://html5boilerplate.com/
 - https://gulpjs.com/
 - https://rollupjs.org/guide/en/
@@ -163,6 +167,7 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [Twitter Validation Tool](https://dev.twitter.com/docs/cards/validation/validator)
 - [Facebook Debugger](https://developers.facebook.com/tools/debug)
 - [Google Structured Data Testing Tool](http://www.google.com/webmasters/tools/richsnippets)
+- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/inspect/)
 
 
 
