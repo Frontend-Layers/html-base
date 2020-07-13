@@ -82,9 +82,9 @@
     },
     server: {
       host: "0.0.0.0",
-      root: "./dist/",
+      root: "./src/",
       port: 4000,
-      src: "./dist/index.html",
+      src: "./src/index.html",
       uri: "http://localhost:4000/",
     },
     roll: {
@@ -246,7 +246,9 @@
       .pipe(dest("./build/"));
 
   const copyFiles = () =>
-    src(["./src/_redirects", "./src/robots.txt"])
+    src(["./src/_redirects", "./src/robots.txt"], {
+      allowEmpty: true
+    })
       .pipe(dest("./dist/"))
       .pipe(dest("./build/"))
       .pipe(connect.reload());
