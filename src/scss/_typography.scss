@@ -2,10 +2,6 @@
  * Typography
  * ========================================================================== */
 
-/**
- * Text Selection
- */
-
 html,
 body {
   font-family: $body-font;
@@ -92,31 +88,9 @@ strong {
   font-weight: 700;
 }
 
-.tablet {
-  display: none;
-}
 
-.mobile {
-  display: none;
-}
+/**
+ * Text Selection
+ */
 
-.fixed {
-  position: fixed !important;
-  width: 100%;
-}
-
-
-[hidden] {
-  display: none !important
-}
-
-.disabled,
-[disabled] {
-  pointer-events: none;
-  opacity: 0.8
-}
-
-[disabled] {
-  cursor: not-allowed;
-}
-
+// ::selections

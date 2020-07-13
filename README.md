@@ -153,6 +153,7 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 
 - [Fawicon Generator](https://realfavicongenerator.net/)
 - [Web Font Generator](https://transfonter.org/)
+- [videosmaller](https://www.videosmaller.com/)
 
 ## HTML Tools
 
@@ -160,7 +161,8 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 - [SSL Test](https://www.ssllabs.com/ssltest)
 - [Performance Test](https://web.dev/measure/)
-- [Performance Test](https://www.webpagetest.org/)
+- [webpagetest.org](https://www.webpagetest.org/)
+- [browserstack.com/speedlab](https://www.browserstack.com/speedlab)
 
 ## SEO Tools
 
@@ -168,6 +170,6 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [Facebook Debugger](https://developers.facebook.com/tools/debug)
 - [Google Structured Data Testing Tool](http://www.google.com/webmasters/tools/richsnippets)
 - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/inspect/)
-
+- [open-graph-generator](https://webcode.tools/open-graph-generator)
 
 

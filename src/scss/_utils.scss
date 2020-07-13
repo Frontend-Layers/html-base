@@ -1,0 +1,36 @@
+/*
+ * Utils
+ * ========================================================================== */
+
+
+.tablet {
+  display: none;
+}
+
+.mobile {
+  display: none;
+}
+
+.fixed {
+  position: fixed !important;
+  width: 100%;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+.disabled,
+[disabled] {
+  pointer-events: none;
+  opacity: 0.8
+}
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+.text-center {
+  text-align: center;
+}

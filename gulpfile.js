@@ -1,111 +1,103 @@
 (() => {
+  "use strict";
 
-  'use strict';
-
-  const {
-    src,
-    dest,
-    parallel,
-    series,
-    watch
-  } = require('gulp');
+  const { src, dest, parallel, series, watch } = require("gulp");
 
   /**
    * Modules
    */
 
   // Styles
-  const sass = require('gulp-sass');
-  const postcss = require('gulp-postcss');
-  const autoprefixer = require('autoprefixer');
-  const purify = require('gulp-purifycss');
+  const sass = require("gulp-sass");
+  const postcss = require("gulp-postcss");
+  const autoprefixer = require("autoprefixer");
+  const purify = require("gulp-purifycss");
 
   // Server
-  const connect = require('gulp-connect');
-  const open = require('gulp-open');
-  const del = require('del');
-
+  const connect = require("gulp-connect");
+  const open = require("gulp-open");
+  const del = require("del");
 
   // Notification
-  const plumber = require('gulp-plumber');
-  const notify = require('gulp-notify');
+  const plumber = require("gulp-plumber");
+  const notify = require("gulp-notify");
 
   // Source Maps
-  const sourcemaps = require('gulp-sourcemaps');
+  const sourcemaps = require("gulp-sourcemaps");
 
   // Versions
-  const bump = require('gulp-bump');
+  const bump = require("gulp-bump");
 
   // JS Modules
-  const rollup = require('rollup').rollup;
-  const babel = require('rollup-plugin-babel');
-  const alias = require('@rollup/plugin-alias');
+  const rollup = require("rollup").rollup;
+  const babel = require("rollup-plugin-babel");
+  const alias = require("@rollup/plugin-alias");
 
   // Prettifier
-  const prettify = require('gulp-prettify');
+  const prettify = require("gulp-prettify");
 
   // Compressors
-  const uglify = require('gulp-uglify');
-  const htmlmin = require('gulp-htmlmin');
-  const cssnano = require('cssnano');
+  const uglify = require("gulp-uglify");
+  const htmlmin = require("gulp-htmlmin");
+  const cssnano = require("cssnano");
 
   // Images
-  const imagemin = require('gulp-imagemin');
-  const imageminPngquant = require('imagemin-pngquant');
-  const imageminZopfli = require('imagemin-zopfli');
-  const imageminMozjpeg = require('imagemin-mozjpeg');
-  const imageminJpegRecompress = require('imagemin-jpeg-recompress');
-  const imageminGiflossy = require('imagemin-giflossy');
-  const webp = require('gulp-webp');
-  const cache = require('gulp-cache');
+  const imagemin = require("gulp-imagemin");
+  const imageminPngquant = require("imagemin-pngquant");
+  const imageminZopfli = require("imagemin-zopfli");
+  const imageminMozjpeg = require("imagemin-mozjpeg");
+  const imageminJpegRecompress = require("imagemin-jpeg-recompress");
+  const imageminGiflossy = require("imagemin-giflossy");
+  const webp = require("gulp-webp");
+  const cache = require("gulp-cache");
 
   // HTML Test
-  const htmlValidator = require('gulp-w3c-html-validator');
+  const htmlValidator = require("gulp-w3c-html-validator");
 
   /**
    * Config
    */
   const cfg = {
     src: {
-      scss: './src/scss/**/*.scss',
-      css: './src/styles/**/*.css',
-      js: './src/javascript/**/*.js',
-      img: './src/images/**/*',
-      webp: './dist/images/**/*.{png,jpg,jpeg}',
-      html: './src/*.html',
-      fonts: './src/fonts/**/*',
-      favicons: './src/favicons/**/*',
-      video: './src/video/**/*',
+      scss: "./src/scss/**/*.scss",
+      css: "./src/styles/**/*.css",
+      js: "./src/javascript/**/*.js",
+      img: "./src/images/**/*",
+      webp: "./dist/images/**/*.{png,jpg,jpeg}",
+      html: "./src/*.html",
+      fonts: "./src/fonts/**/*",
+      favicons: "./src/favicons/**/*",
+      video: "./src/video/**/*",
     },
     dest: {
-      scss: './src/styles/',
-      css: './dist/styles/',
-      js: './src/javascript/**/*.js',
-      img: './dist/images/',
-      webp: './dist/images/**/*.{png,jpg,jpeg}',
-      html: './dist/',
-      fonts: './src/fonts/**/*',
-      favicons: './src/favicons/**/*',
-      video: './src/video/**/*',
+      scss: "./src/styles/",
+      css: "./dist/styles/",
+      js: "./src/javascript/**/*.js",
+      img: "./dist/images/",
+      webp: "./dist/images/**/*.{png,jpg,jpeg}",
+      html: "./dist/",
+      fonts: "./src/fonts/**/*",
+      favicons: "./src/favicons/**/*",
+      video: "./src/video/**/*",
     },
     server: {
-      host: '0.0.0.0',
-      root: './dist/',
+      host: "0.0.0.0",
+      root: "./dist/",
       port: 4000,
-      src: './dist/index.html',
-      uri: 'http://localhost:4000/'
+      src: "./dist/index.html",
+      uri: "http://localhost:4000/",
     },
     roll: {
-      input: './src/javascript/app.js',
-      output: './dist/javascript/app.js',
-      format: 'iife'
+      input: "./src/javascript/app.js",
+      output: "./dist/javascript/app.js",
+      format: "iife",
     },
   };
 
+  /*
+   * JavaScript
+   * ============================================================= */
 
-  /**
-   * JS Bundler
-   */
   const roll = () =>
     rollup({
       input: cfg.roll.input,
@@ -113,196 +105,173 @@
         babel(),
         alias({
           entries: [
-            { find: 'App', replacement: `${__dirname}/src/javascript/` },
-            { find: 'Vendor', replacement: `${__dirname}/node_modules/` }
-          ]
-        })
-      ]
-    }).then(bundle => {
+            { find: "App", replacement: `${__dirname}/src/javascript/` },
+            { find: "Vendor", replacement: `${__dirname}/node_modules/` },
+          ],
+        }),
+      ],
+    }).then((bundle) => {
       return bundle.write({
         file: cfg.roll.output,
         format: cfg.roll.format,
-        name: 'library',
-        sourcemap: true
+        name: "library",
+        sourcemap: true,
       });
     });
 
   // Reload Browser after JS Changes
-  const scripts = () =>
-    src(cfg.src.js)
-      .pipe(connect.reload());
+  const scripts = () => src(cfg.src.js).pipe(connect.reload());
 
   // JS Minify
   const compressJS = () =>
-    src('./dist/javascript/**/*.js')
+    src("./dist/javascript/**/*.js")
       .pipe(uglify())
-      .pipe(dest('./build/javascript/'));
+      .pipe(dest("./build/javascript/"));
 
-
-  /**
+  /*
    * Styles
-   */
+   * ============================================================= */
+
   const scss = () =>
     src(cfg.src.scss)
       .pipe(sourcemaps.init())
       .pipe(plumber())
-      .pipe(sass({
-        outputStyle: 'expanded',
-        errLogToConsole: false
-      }))
-      .on('error', notify.onError())
-      .pipe(sourcemaps.write('./'))
+      .pipe(
+        sass({
+          outputStyle: "expanded",
+          errLogToConsole: false,
+        })
+      )
+      .on("error", notify.onError())
+      .pipe(sourcemaps.write("./"))
       .pipe(dest(cfg.dest.scss))
       .pipe(connect.reload());
-
 
   /**
    * Purify CSS
    */
   const cssPurify = () =>
-    src('./src/styles/main.css')
-      .pipe(purify(['./dist/javascript/**/*.js', './src/**/*.html']))
-      .pipe(dest('./dist/styles/'));
-
-
+    src("./src/styles/main.css")
+      .pipe(purify(["./dist/javascript/**/*.js", "./src/**/*.html"]))
+      .pipe(dest("./dist/styles/"));
 
   /**
    * PostCSS, Autoprefixer, CSS compressor
    */
   const cssCompress = () =>
-    src('./dist/styles/**/*.css')
+    src("./dist/styles/**/*.css")
       .pipe(plumber())
-      .pipe(postcss([
-        autoprefixer(),
-        cssnano()
-      ]))
-      .on('error', notify.onError())
-      .pipe(dest('./build/styles/'))
+      .pipe(postcss([autoprefixer(), cssnano()]))
+      .on("error", notify.onError())
+      .pipe(dest("./build/styles/"))
       .pipe(connect.reload());
 
-
-  /**
+  /*
    * Images
-   */
+   * ============================================================= */
 
   // Images Minify
   const images = () =>
     src(cfg.src.img)
-      .pipe(cache
-        (imagemin([
-          imageminPngquant({
-            speed: 1,
-            quality: [0.95, 1]
-          }),
-          imageminZopfli({
-            more: true
-          }),
-          imageminGiflossy({
-            optimizationLevel: 3,
-            optimize: 3, //keep-empty: Preserve empty transparent frames
-            lossy: 2
-          }),
-          imagemin.svgo({
-            plugins: [{
-              removeViewBox: false
-            }]
-          }),
-          imagemin.mozjpeg({
-            progressive: true
-          }),
-          imageminJpegRecompress({
-            loops: 6,
-            min: 40,
-            max: 85,
-            quality: 'low'
-          }),
-          imageminMozjpeg({
-            quality: 90
-          })
-        ]))
+      .pipe(
+        cache(
+          imagemin([
+            imageminPngquant({
+              speed: 1,
+              quality: [0.95, 1],
+            }),
+            imageminZopfli({
+              more: true,
+            }),
+            imageminGiflossy({
+              optimizationLevel: 3,
+              optimize: 3, //keep-empty: Preserve empty transparent frames
+              lossy: 2,
+            }),
+            imagemin.svgo({
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            }),
+            imagemin.mozjpeg({
+              progressive: true,
+            }),
+            imageminJpegRecompress({
+              loops: 6,
+              min: 40,
+              max: 85,
+              quality: "low",
+            }),
+            imageminMozjpeg({
+              quality: 90,
+            }),
+          ])
+        )
       )
       .pipe(dest(cfg.dest.img));
 
-
   // WEBP
   const imgWebp = () =>
-    src(cfg.src.webp)
-      .pipe(cache(webp()))
-      .pipe(dest(cfg.dest.img));
+    src(cfg.src.webp).pipe(cache(webp())).pipe(dest(cfg.dest.img));
 
-
-
-  /**
+  /*
    * HTML
-   */
-  const html = () =>
-    src(cfg.src.html)
-      .pipe(connect.reload())
+   * ============================================================= */
 
+  const html = () => src(cfg.src.html).pipe(connect.reload());
 
   // HTML Beautifier
   const htmlBeautifier = () =>
     src(cfg.src.html)
-      .pipe(prettify({
-        indent_inner_html: true,
-        indent_size: 2,
-        unformatted: ['pre', 'code']
-      }))
-      .pipe(dest('./dist/'));
+      .pipe(
+        prettify({
+          indent_inner_html: true,
+          indent_size: 2,
+          unformatted: ["pre", "code"],
+        })
+      )
+      .pipe(dest("./dist/"));
 
   // HTML Minify
   const htmlCompress = () =>
-    src('./dist/*.html')
-      .pipe(htmlmin({
-        collapseWhitespace: true,
-        removeComments: true
-      }))
-      .pipe(dest('./build/'));
-
+    src("./dist/*.html")
+      .pipe(
+        htmlmin({
+          collapseWhitespace: true,
+          removeComments: true,
+        })
+      )
+      .pipe(dest("./build/"));
 
   const copyFiles = () =>
-    src([
-      './src/_redirects',
-      './src/robots.txt',
-    ])
-      .pipe(dest('./dist/'))
-      .pipe(dest('./build/'))
+    src(["./src/_redirects", "./src/robots.txt"])
+      .pipe(dest("./dist/"))
+      .pipe(dest("./build/"))
       .pipe(connect.reload());
 
   const copyVideo = () =>
-    src('./src/video/**/*')
-      .pipe(dest('./dist/video/'))
-      .pipe(dest('./build/video/'))
+    src("./src/video/**/*")
+      .pipe(dest("./dist/video/"))
+      .pipe(dest("./build/video/"))
       .pipe(connect.reload());
 
   const copyFonts = () =>
-    src('./src/fonts/**/*')
-      .pipe(dest('./dist/fonts/'))
-      .pipe(dest('./build/fonts/'))
+    src("./src/fonts/**/*")
+      .pipe(dest("./dist/fonts/"))
+      .pipe(dest("./build/fonts/"))
       .pipe(connect.reload());
 
   const copyIcons = () =>
-    src('./src/favicons/**/*')
-      .pipe(dest('./dist/favicons/'))
-      .pipe(dest('./build/favicons/'))
+    src("./src/favicons/**/*")
+      .pipe(dest("./dist/favicons/"))
+      .pipe(dest("./build/favicons/"))
       .pipe(connect.reload());
 
-
-  /**
-   * Tests
-   */
-  const validateHtml = () =>
-    src(cfg.src.html)
-      .pipe(plumber())
-      .pipe(htmlValidator())
-      .on('error', notify.onError());
-
-
-
-  /**
+  /*
    * Server
-   */
-
+   * ============================================================= */
 
   /**
    * Create Local Web Server
@@ -312,7 +281,7 @@
       host: cfg.server.host,
       root: cfg.server.root,
       port: cfg.server.port,
-      livereload: true
+      livereload: true,
     });
   };
 
@@ -322,9 +291,11 @@
   const openBrowser = () =>
     src(cfg.server.src)
       .pipe(plumber())
-      .pipe(open({
-        uri: cfg.server.uri
-      }));
+      .pipe(
+        open({
+          uri: cfg.server.uri,
+        })
+      );
 
   /**
    * Watcher
@@ -342,25 +313,62 @@
   /**
    * Patching
    */
-  const bumper = () =>
-    src('./package.json')
-      .pipe(bump())
-      .pipe(dest('./'));
-
+  const bumper = () => src("./package.json").pipe(bump()).pipe(dest("./"));
 
   /**
    * Clean
    */
   const clean = () => {
-    return del(['./build']);
-  }
-
+    return del(["./build"]);
+  };
 
   /**
-   * Tasks
+   * Bundle Minimize
    */
+  const bundleMin = () => {
+    return del([
+      "./build",
+      "./tests",
+      "./doc",
+      "./src/favicons",
+      "./src/fonts",
+      "./src/video",
+      "./src/design.html",
+      "./src/article.html",
+      "./src/product.html",
+      "./src/robots.html",
+      "./src/_redirects",
+      "./src/images/html5-logo.svg",
+      "./src/images/test-photo.jpg",
+      "./CONTRIBUTING.md",
+      "./CODE_OF_CONDUCT.md",
+      "./LICENSE",
+      "./README.md",
+      "./dist",
+    ]);
+  };
 
-  // Development Tasks
+
+  /*
+   * Tests
+   * ============================================================= */
+
+  /**
+   * Validate HTML
+   */
+  const validateHtml = () =>
+    src(cfg.src.html)
+      .pipe(plumber())
+      .pipe(htmlValidator())
+      .on("error", notify.onError());
+
+  /*
+   * Tasks
+   * ============================================================= */
+
+  /**
+   * Default Tasks
+   */
   exports.default = series(
     parallel(
       copyFiles,
@@ -377,10 +385,14 @@
     )
   );
 
-  // Test Tasks
+  /**
+   * Test Tasks
+   */
   exports.test = parallel(validateHtml);
 
-  // Build
+  /**
+   * Build Tasks
+   */
   exports.build = series(
     clean,
     parallel(
@@ -393,7 +405,11 @@
       series(images, imgWebp),
       series(htmlBeautifier, htmlCompress),
       bumper
-    ),
+    )
   );
 
+  /**
+   * Bundle minification Tasks
+   */
+  exports.min = series(bundleMin);
 })();
