@@ -65,6 +65,7 @@
       img: "./src/images/**/*",
       webp: "./dist/images/**/*.{png,jpg,jpeg}",
       html: "./src/*.html",
+      htmlUpdates: "./dist/*.html",
       fonts: "./src/fonts/**/*",
       favicons: "./src/favicons/**/*",
       video: "./src/video/**/*",
@@ -82,9 +83,9 @@
     },
     server: {
       host: "0.0.0.0",
-      root: "./src/",
+      root: "./dist/",
       port: 4000,
-      src: "./src/index.html",
+      src: "./dist/index.html",
       uri: "http://localhost:4000/",
     },
     roll: {
@@ -220,7 +221,7 @@
    * HTML
    * ============================================================= */
 
-  const html = () => src(cfg.src.html).pipe(connect.reload());
+  const html = () => src(cfg.src.htmlUpdates).pipe(connect.reload());
 
   // HTML Beautifier
   const htmlBeautifier = () =>
@@ -336,9 +337,10 @@
       "./src/fonts",
       "./src/video",
       "./src/design.html",
+      "./src/home.html",
       "./src/article.html",
       "./src/product.html",
-      "./src/robots.html",
+      "./src/robots.text",
       "./src/_redirects",
       "./src/images/html5-logo.svg",
       "./src/images/test-photo.jpg",

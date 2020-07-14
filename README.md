@@ -142,20 +142,21 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - https://twitter.com/nanobop/status/1255002567131557888
 - https://developers.facebook.com/docs/sharing/webmasters/images/
 
-## FE Tools
+### FE Resources
 
+- [Front-End-Checklist](https://github.com/thedaviddias/Front-End-Checklist)
 - https://html5boilerplate.com/
 - https://gulpjs.com/
 - https://rollupjs.org/guide/en/
 - https://unsplash.com/
 
-## Generators
+### Generators
 
 - [Fawicon Generator](https://realfavicongenerator.net/)
 - [Web Font Generator](https://transfonter.org/)
 - [videosmaller](https://www.videosmaller.com/)
 
-## HTML Tools
+### HTML Tools
 
 - [Mobile-Friendly Test](https://search.google.com/test/mobile-friendly)
 - [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
@@ -163,8 +164,14 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [Performance Test](https://web.dev/measure/)
 - [webpagetest.org](https://www.webpagetest.org/)
 - [browserstack.com/speedlab](https://www.browserstack.com/speedlab)
+- [Screen Test](https://screenfly.org/)
 
-## SEO Tools
+### Security Test
+
+- [https://securityheaders.com/](https://securityheaders.com/)
+- [https://observatory.mozilla.org/](https://observatory.mozilla.org/)
+
+### SEO Tools
 
 - [Twitter Validation Tool](https://dev.twitter.com/docs/cards/validation/validator)
 - [Facebook Debugger](https://developers.facebook.com/tools/debug)
