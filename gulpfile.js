@@ -153,7 +153,9 @@
    */
   const cssPurify = () =>
     src("./src/styles/main.css")
+      .pipe(sourcemaps.init())
       .pipe(purify(["./dist/javascript/**/*.js", "./src/**/*.html"]))
+      .pipe(sourcemaps.write("./"))
       .pipe(dest("./dist/styles/"));
 
   /**
@@ -244,11 +246,12 @@
           removeComments: true,
         })
       )
-      .pipe(dest("./build/"));
+      .pipe(dest("./build/"))
+      .pipe(connect.reload());
 
   const copyFiles = () =>
-    src(["./src/_redirects", "./src/robots.txt"], {
-      allowEmpty: true
+    src(["./src/_redirects", "./src/robots.txt", "./src/favicon.ico"], {
+      allowEmpty: true,
     })
       .pipe(dest("./dist/"))
       .pipe(dest("./build/"))
@@ -351,7 +354,6 @@
       "./dist",
     ]);
   };
-
 
   /*
    * Tests

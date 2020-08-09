@@ -2,10 +2,10 @@
  * Main CSS
  */
 /*!
- * Bootstrap Grid v4.5.0 (https://getbootstrap.com/)
+ * Bootstrap Grid v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 html {
   box-sizing: border-box;
@@ -18,39 +18,12 @@ html {
   box-sizing: inherit;
 }
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-}
-
-.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -115,7 +88,6 @@ html {
 .col {
   flex-basis: 0;
   flex-grow: 1;
-  min-width: 0;
   max-width: 100%;
 }
 
@@ -323,7 +295,6 @@ html {
   .col-sm {
     flex-basis: 0;
     flex-grow: 1;
-    min-width: 0;
     max-width: 100%;
   }
   .row-cols-sm-1 > * {
@@ -490,7 +461,6 @@ html {
   .col-md {
     flex-basis: 0;
     flex-grow: 1;
-    min-width: 0;
     max-width: 100%;
   }
   .row-cols-md-1 > * {
@@ -657,7 +627,6 @@ html {
   .col-lg {
     flex-basis: 0;
     flex-grow: 1;
-    min-width: 0;
     max-width: 100%;
   }
   .row-cols-lg-1 > * {
@@ -824,7 +793,6 @@ html {
   .col-xl {
     flex-basis: 0;
     flex-grow: 1;
-    min-width: 0;
     max-width: 100%;
   }
   .row-cols-xl-1 > * {
@@ -4191,9 +4159,6 @@ template {
 /*
  * Typography
  * ========================================================================== */
-/**
- * Text Selection
- */
 html,
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -4268,6 +4233,12 @@ strong {
   font-weight: 700;
 }
 
+/**
+ * Text Selection
+ */
+/*
+ * Utils
+ * ========================================================================== */
 .tablet {
   display: none;
 }
@@ -4293,6 +4264,10 @@ strong {
 
 [disabled] {
   cursor: not-allowed;
+}
+
+.text-center {
+  text-align: center;
 }
 
 /*

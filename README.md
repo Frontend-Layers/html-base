@@ -165,6 +165,7 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [webpagetest.org](https://www.webpagetest.org/)
 - [browserstack.com/speedlab](https://www.browserstack.com/speedlab)
 - [Screen Test](https://screenfly.org/)
+- [Browser Default Styles](https://browserdefaultstyles.com/)
 
 ### Security Test
 
@@ -178,5 +179,45 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [Google Structured Data Testing Tool](http://www.google.com/webmasters/tools/richsnippets)
 - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/inspect/)
 - [open-graph-generator](https://webcode.tools/open-graph-generator)
+
+### Commercial
+
+- [Stripe Dupmmy Cards](https://stripe.com/docs/testing#cards)
+
+
+### Tests
+
+- [CSS Stats](https://cssstats.com/)
+
+
+### Accessability
+
+- [a11yproject checklist](https://www.a11yproject.com/checklist/)
+- https://www.w3.org/TR/wai-aria-1.1/
+
+### Images Compression
+
+- [https://shrinkme.app/](https://shrinkme.app/)
+- [https://squoosh.app/](https://squoosh.app/)
+
+### Animation
+
+- [https://cubic-bezier.com/](https://cubic-bezier.com/)
+- [https://easings.net/en](https://easings.net/en)
+
+### Typography
+
+- https://www.typewolf.com/cheatsheet
+- https://dev.w3.org/html5/html-author/charref
+- https://www.toptal.com/designers/htmlarrows/
+
+
+### Other 
+
+- [Shadow Generator](https://brumm.af/shadows)
+- [Gradient Generator](https://cssgradient.io/)
+
+
+
 
 
