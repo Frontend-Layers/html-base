@@ -2,7 +2,7 @@
  * Module
  */
 
-import method from 'App/module';
+import method from 'src/module';
 
 const component = () => {
 

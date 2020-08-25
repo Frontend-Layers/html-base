@@ -218,6 +218,6 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - [Gradient Generator](https://cssgradient.io/)
 
 
-
+### Best Practices
 
 

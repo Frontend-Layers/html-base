@@ -76,6 +76,7 @@
 
     var obj = new ModuleClass();
     obj.method();
+    console.log('ddd');
   });
 
 }());

@@ -106,8 +106,8 @@
         babel(),
         alias({
           entries: [
-            { find: "App", replacement: `${__dirname}/src/javascript/` },
-            { find: "Vendor", replacement: `${__dirname}/node_modules/` },
+            { find: "src", replacement: `${__dirname}/src/javascript/` },
+            { find: "vendor", replacement: `${__dirname}/node_modules/` },
           ],
         }),
       ],
