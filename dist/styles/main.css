@@ -442,19 +442,42 @@ html {
 
 /**
  * Reset Mixing
+ * ================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-size-adjust: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/**
+ * Disable Animation
+ */
+
+/**
+ * Disable animation depends on Browser or Operation System configuration
+ */
+
+/**
+ * Accessability. Black and White Mode
  */
 
 /**
  * Modern CSS Reset Tweaks
- */
+ * ================================================== */
 
-/* Box sizing rules */
+/* Box sizing normalization */
 
 *,::after,::before {
   box-sizing: border-box;
 }
 
-/* A elements that don't have a class get default styles */
+/* Elements that don't have a class get default styles */
 
 a:not([class]) {
   text-decoration-skip-ink: auto;
@@ -750,14 +773,6 @@ summary {
 /**
  * Meter reset
  */
-
-::-moz-meter-bar {
-  -moz-appearance: none;
-}
-
-:-moz-meter-optimum::-moz-meter-bar,:-moz-meter-sub-optimum::-moz-meter-bar,:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-  background: none;
-}
 
 /**
  * Add the correct display in IE 10+.
