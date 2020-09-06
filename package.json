@@ -51,7 +51,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "name": "html-initial-bundle",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Initial HTML template with SCSS reset, typography presets and JavaScript ES6 modules bundler",
   "main": "index.html",
   "repository": "https://github.com/andreymatin/html-initial-bundle.git",

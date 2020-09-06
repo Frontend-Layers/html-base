@@ -81,6 +81,9 @@
       favicons: "./src/favicons/**/*",
       video: "./src/video/**/*",
     },
+    build: {
+      img: "./build/images/",
+    },
     server: {
       host: "0.0.0.0",
       root: "./dist/",
@@ -214,10 +217,11 @@
         )
       )
       .pipe(dest(cfg.dest.img))
+      .pipe(dest(cfg.build.img))
 
   // WEBP
   const imgWebp = () =>
-    src(cfg.src.webp).pipe(cache(webp())).pipe(dest(cfg.dest.img))
+    src(cfg.src.webp).pipe(cache(webp())).pipe(dest(cfg.dest.img)).pipe(dest(cfg.build.img))
 
   /*
    * HTML
@@ -410,8 +414,8 @@
       series(scss, cssPurify, cssCompress),
       series(images, imgWebp),
       series(htmlBeautifier, htmlCompress),
-      bumper
-    )
+    ),
+    bumper
   )
 
   /**
