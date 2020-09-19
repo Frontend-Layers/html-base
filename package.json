@@ -40,7 +40,7 @@
     "imagemin-zopfli": "^7.0.0",
     "js-components-npm": "^1.0.0",
     "lighthouse": "^6.3.0",
-    "rollup": "^2.26.10",
+    "rollup": "^2.26.11",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",

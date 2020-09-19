@@ -388,9 +388,8 @@
       series(roll, compressJS),
       series(scss, cssPurify, cssCompress),
       series(images, imgWebp),
-      series(htmlBeautifier, htmlCompress),
+      series(htmlBeautifier, htmlCompress, openBrowser),
       openServer,
-      openBrowser,
       watcher
     )
   )
