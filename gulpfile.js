@@ -29,9 +29,11 @@
   const bump = require("gulp-bump")
 
   // JS Modules
-  const rollup = require("rollup").rollup
-  const babel = require("rollup-plugin-babel")
-  const alias = require("@rollup/plugin-alias")
+  const rollup = require('rollup')
+  const babel = require('@rollup/plugin-babel').babel
+  const alias = require('@rollup/plugin-alias')
+  const commonjs = require('@rollup/plugin-commonjs')
+  const nodeResolve = require('@rollup/plugin-node-resolve').nodeResolve
 
   // Prettifier
   const prettify = require("gulp-prettify")
@@ -103,25 +105,38 @@
    * ============================================================= */
 
   const roll = () =>
-    rollup({
-      input: cfg.roll.input,
-      plugins: [
-        babel(),
-        alias({
-          entries: [
-            {find: "src", replacement: `${__dirname}/src/javascript/`},
-            {find: "vendor", replacement: `${__dirname}/node_modules/`},
-          ],
-        }),
-      ],
-    }).then((bundle) => {
-      return bundle.write({
-        file: cfg.roll.output,
-        format: cfg.roll.format,
-        name: "library",
-        sourcemap: true,
+    rollup
+      .rollup({
+        input: cfg.roll.input,
+        plugins: [
+          babel({
+            //exclude: 'node_modules/**',
+            babelHelpers: 'bundled',
+          }),
+          alias({
+            entries: [
+              {find: 'src', replacement: `${__dirname}/src/javascript/`},
+            ],
+          }),
+          nodeResolve({
+            browser: true,
+            preferBuiltins: false,
+          }),
+          commonjs({
+            include: ['node_modules/**'],
+            exclude: [],
+            sourceMap: false,
+          }),
+        ],
       })
-    })
+      .then((bundle) => {
+        return bundle.write({
+          file: cfg.roll.output,
+          format: cfg.roll.format,
+          name: 'library',
+          sourcemap: false,
+        })
+      })
 
   // Reload Browser after JS Changes
   const scripts = () => src(cfg.src.js).pipe(connect.reload())
@@ -131,6 +146,11 @@
     src("./dist/javascript/**/*.js")
       .pipe(uglify())
       .pipe(dest("./build/javascript/"))
+
+  // JS Copy
+  const copyJS = () =>
+    src('./dist/javascript/**/*.js').pipe(dest('./build/javascript/'))
+
 
   /*
    * Styles
@@ -317,7 +337,7 @@
     watch(cfg.src.scss, series(scss, cssPurify, cssCompress))
     watch(cfg.src.img, series(images, imgWebp))
     watch(cfg.src.html, series(html, htmlBeautifier, htmlCompress))
-    watch(cfg.src.js, series(roll, scripts, compressJS))
+    watch(cfg.src.js, series(roll, scripts, copyJS))
   }
 
   /**
@@ -385,7 +405,7 @@
       copyVideo,
       copyFonts,
       copyIcons,
-      series(roll, compressJS),
+      series(roll, copyJS),
       series(scss, cssPurify, cssCompress),
       series(images, imgWebp),
       series(htmlBeautifier, htmlCompress, openBrowser),

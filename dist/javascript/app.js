@@ -47,7 +47,7 @@
   /**
    * Module
    */
-  var module = function module() {
+  var Module = function Module() {
     console.log('Module');
   };
 
@@ -55,9 +55,9 @@
    * Module
    */
 
-  var component = function component() {
+  var Component = function Component() {
     // Test Method
-    module();
+    Module();
     console.log('Component');
   };
 
@@ -72,7 +72,7 @@
    */
 
   domReady(function () {
-    component(); // Test Class
+    Component(); // Test Class
 
     var obj = new ModuleClass();
     obj.method();
@@ -80,4 +80,3 @@
   });
 
 }());
-//# sourceMappingURL=app.js.map

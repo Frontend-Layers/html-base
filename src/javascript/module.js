@@ -2,9 +2,8 @@
  * Module
  */
 
+const Module = () => {
+  console.log('Module')
+}
 
-const module = () => {
-  console.log('Module');
-};
-
-export default module;
+export default Module
