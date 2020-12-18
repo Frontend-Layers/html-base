@@ -7,10 +7,10 @@
  * Fonts
  */
 
-$font-family: Arial, Helvetica, sans-serif;
+$font-stack: ('Open Sans', Arial, Helvetica, sans-serif);
 
-$body-font: $font-family;
-$header-font: $font-family;
+$body-font: $font-stack;
+$header-font: $font-stack;
 
 $basic-font-size: 62.5%;
 
@@ -26,5 +26,5 @@ $blue: #00f;
 /**
  * Colors
  */
- 
+
 $text-color: $black;

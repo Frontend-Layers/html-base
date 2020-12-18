@@ -2,7 +2,7 @@
  * Main CSS
  */
 /*!
- * Bootstrap Grid v4.5.2 (https://getbootstrap.com/)
+ * Bootstrap Grid v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -3512,6 +3512,24 @@ html {
 /**
  * Reset Mixing
  * ================================================== */
+/**
+ * Disable Animation
+ */
+/**
+ * Disable animation depends on Browser or Operation System configuration
+ */
+/**
+ * Accessability. Black and White Mode
+ */
+/**
+ * Accessability. Inverse Mode
+ */
+/**
+ * Meter reset
+ */
+/**
+ * Modern CSS Reset Tweaks
+ * ================================================== */
 html {
   scroll-behavior: smooth;
 }
@@ -3523,18 +3541,6 @@ body {
   min-height: 100vh;
 }
 
-/**
- * Disable Animation
- */
-/**
- * Disable animation depends on Browser or Operation System configuration
- */
-/**
- * Accessability. Black and White Mode
- */
-/**
- * Modern CSS Reset Tweaks
- * ================================================== */
 /* Box sizing normalization */
 *,
 ::after,
@@ -3723,10 +3729,6 @@ input[type=search] {
   box-sizing: content-box;
 }
 
-button::-moz-focus-inner {
-  border: 0;
-}
-
 textarea {
   overflow: auto;
   vertical-align: top;
@@ -3882,6 +3884,7 @@ textarea {
   /* 1 */
   vertical-align: top;
   /* 2 */
+  resize: vertical;
 }
 
 /**
@@ -3890,16 +3893,6 @@ textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-textarea {
-  resize: vertical;
 }
 
 /**
@@ -4038,34 +4031,24 @@ button::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
+  outline: 0;
 }
 
-/**
- * Restore the focus styles unset by the previous rule.
- */
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-/**
- * 1. Correct color not being inherited in IE 6/7/8/9.
- */
-/**
- * 1. Correct the text wrapping in Edge and IE.
- * 2. Correct the color inheritance from `fieldset` elements in IE.
- * 3. Remove the padding so developers are not caught out when they zero out
- *    `fieldset` elements in all browsers.
- */
 legend {
-  border: 0;
   color: inherit;
-  display: table;
-  max-width: 100%;
-  padding: 0;
   white-space: normal;
+  display: block;
+  border: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+fieldset {
+  min-width: 0;
+}
+
+body:not(:-moz-handler-blocked) fieldset {
+  display: block;
 }
 
 /**
@@ -4125,18 +4108,10 @@ summary {
  * Misc
  * ========================================================================== */
 /**
- * Meter reset
- */
-/**
  * Add the correct display in IE 10+.
  */
 template {
   display: none;
-}
-
-.overflow-x-hidden {
-  /*   overflow-x: hidden; */
-  border: 1px solid blue;
 }
 
 /*
@@ -4162,7 +4137,7 @@ template {
  * ========================================================================== */
 html,
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -4188,7 +4163,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 button::-moz-focus-inner {
@@ -4277,6 +4252,26 @@ strong {
 /*
  * Icons
  * ========================================================================== */
+.svg-icon-boat-dims {
+  width: 44px;
+  height: 44px;
+}
+
+.svg-icon-bolt-dims {
+  width: 44px;
+  height: 44px;
+}
+
+.svg-icon-prin-dims {
+  width: 44px;
+  height: 44px;
+}
+
+.svg-icon-wallet-dims {
+  width: 44px;
+  height: 44px;
+}
+
 /*
  * Buttons
  * ========================================================================== */

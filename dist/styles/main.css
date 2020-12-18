@@ -3,7 +3,7 @@
  */
 
 /*!
- * Bootstrap Grid v4.5.2 (https://getbootstrap.com/)
+ * Bootstrap Grid v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -444,17 +444,6 @@ html {
  * Reset Mixing
  * ================================================== */
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  text-size-adjust: 100%;
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-}
-
 /**
  * Disable Animation
  */
@@ -468,8 +457,27 @@ body {
  */
 
 /**
+ * Accessability. Inverse Mode
+ */
+
+/**
+ * Meter reset
+ */
+
+/**
  * Modern CSS Reset Tweaks
  * ================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-size-adjust: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
 
 /* Box sizing normalization */
 
@@ -690,26 +698,8 @@ a {
 [type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
+  outline: 0;
 }
-
-/**
- * Restore the focus styles unset by the previous rule.
- */
-
-[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-
-/**
- * 1. Correct color not being inherited in IE 6/7/8/9.
- */
-
-/**
- * 1. Correct the text wrapping in Edge and IE.
- * 2. Correct the color inheritance from `fieldset` elements in IE.
- * 3. Remove the padding so developers are not caught out when they zero out
- *    `fieldset` elements in all browsers.
- */
 
 /**
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
@@ -771,10 +761,6 @@ summary {
  * ========================================================================== */
 
 /**
- * Meter reset
- */
-
-/**
  * Add the correct display in IE 10+.
  */
 
@@ -807,7 +793,7 @@ summary {
  * ========================================================================== */
 
 html,body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -831,7 +817,7 @@ body {
 }
 
 h1,h2,h3 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 html {

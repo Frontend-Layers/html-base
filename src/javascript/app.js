@@ -19,6 +19,4 @@ domReady(() => {
   // Test Class
   const obj = new ModuleClass()
   obj.method()
-
-  console.log('ddd')
 })

@@ -2,18 +2,14 @@
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
 
-Layer 2. HTML layer with JS bundler for professional templates development
-
-- Layer 1: Styles Reset
-- Layer 2: Development phase (modeling, improving)
-- Layer 3: Staging phase (review, testing, integration)
+HTML layer with JS bundler for professional templates development
 
 ## Why
 
 - Rapid middleware templates prototyping
 - Modern JavaScript applications modeling
 - Routine tasks automation
-- Easy Backend integration
+- Easy CMS integration as theme
 
 ## Features
 
@@ -23,6 +19,13 @@ Layer 2. HTML layer with JS bundler for professional templates development
 - Kik-start workspace for concentrated development
 - Predefined export/import JavaScript modules
 - Semantic reference
+
+## Code concepts
+
+- HTML - https://google.github.io/styleguide/htmlcssguide.html
+- CSS - BEM - https://github.com/airbnb/css
+- SCSS - https://sass-guidelin.es/
+- JavaScript - https://github.com/airbnb/javascript
 
 #### JavaScript
 
@@ -38,7 +41,6 @@ Layer 2. HTML layer with JS bundler for professional templates development
 - WEBP Convertor
 - SVG (SVGOmg compression)
 - Best practices for PNG/JPG
-
 
 ## Contributing
 
@@ -64,8 +66,7 @@ gethtml init
 
 ## Automation
 
-Development config for fast and robust templates development. Compression for Images only.
-Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 (Stage phase).
+Development config for fast and robust templates development.
 
 ### Files
 
@@ -107,6 +108,7 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - imagemin-jpeg-recompress
 - imagemin-giflossy
 - gulp-webp
+- gulp-svg-sprite
 
 ### Tests
 
@@ -130,9 +132,28 @@ Compression for JS, CSS and Compression/Beautifier for HTML will be for Layer 3 
 - home.html - main landing page
 - product.html - product page
 - article.html - article page
+- test-design.html - design system
+- test-sprite.html - svg sprite test
+
+## Folders
+
+- src - initial files
+- dest - beautified files, initial processing
+- build - compressed files
+
+
+## SVG Sprite generation
+
+- copy svg files for sprite into ```'./images/sprite/'``` folder
+- launch in the terminal ```gulp sprite```
+- generated svg sprite is there - ```./images/sprite.svg```
+
 
 ## Inspiration
 
 - Google Web Fundamentals (https://developers.google.com/web/fundamentals/performance/why-performance-matters)
+
+
+
 
 
