@@ -1,5 +1,6 @@
 {
-  "liveSassCompile.settings.formats": [{
+  "liveSassCompile.settings.formats": [
+    {
       "format": "expanded",
       //"format": "compressed",
       "extensionName": ".css",
@@ -9,5 +10,17 @@
   "emmet.preferences": {
     "filter.commentAfter": "<!-- /[#ID][.CLASS] -->"
   },
-  "workbench.panel.defaultLocation": "right"
+  "workbench.panel.defaultLocation": "right",
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/tmp": true,
+    "**/styles": true,
+  },
+  "html.format.indentInnerHtml": false,
+  "php.suggest.basic": false,
+  "editor.quickSuggestions": { "comments": true },
 }

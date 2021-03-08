@@ -1,12 +1,13 @@
 {
   "name": "html-initial-bundle",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp",
+    "build": "gulp build"
   },
   "author": "Matin Andrey",
   "license": "ISC",
@@ -38,6 +39,7 @@
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
     "gulp-cache": "^1.1.3",
+    "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-imagemin": "^7.1.0",
@@ -62,7 +64,7 @@
     "js-components-npm": "^1.0.0",
     "postcss": "^8.2.1",
     "rollup": "^2.34.2",
-    "scss-mixins-npm": "^1.0.4",
-    "scss-reset": "^1.1.10"
+    "scss-mixins-npm": "^1.0.5",
+    "scss-reset": "^1.1.11"
   }
 }

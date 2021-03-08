@@ -765,6 +765,44 @@ summary {
  */
 
 /*
+ * Elements
+ * ========================================================================== */
+
+/*
+ * Center Elements
+ * ========================================================================== */
+
+/*
+ * Content Blocks
+ * ========================================================================== */
+
+/*
+ * Structure
+ * ========================================================================== */
+
+/**
+ * Grid Centering
+ *
+ * @src: https://web.dev/one-line-layouts/
+ */
+
+/*
+ * Effects
+ * ========================================================================== */
+
+/*
+ * Media Quires
+ * ========================================================================== */
+
+/**
+ * Forms
+ */
+
+/**
+ * Floating Label
+ */
+
+/*
  * CSS Reset
  * ========================================================================== */
 
@@ -793,7 +831,7 @@ summary {
  * ========================================================================== */
 
 html,body {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 400;
 }
 
@@ -817,7 +855,7 @@ body {
 }
 
 h1,h2,h3 {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 html {
@@ -910,5 +948,4 @@ i {
  * Fonts
  * ========================================================================== */
 
-/*# sourceMappingURL=main.css.map */
 /*# sourceMappingURL=main.css.map */

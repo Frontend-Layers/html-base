@@ -1,6 +1,7 @@
 # HTML Initial Bundle
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/andreymatin/html-initial-bundle)
 
 HTML layer with JS bundler for professional templates development
 
