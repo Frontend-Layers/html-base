@@ -7,19 +7,21 @@ HTML layer with JS bundler for professional templates development
 
 ## Why
 
-- Rapid middleware templates prototyping
-- Modern JavaScript applications modeling
-- Routine tasks automation
-- Easy CMS integration as theme
+- Templates prototyping amd CMS integration
+- Modeling JavaScript applications
+- Routine web development tasks automation
 
 ## Features
 
 - Advanced CSS Reset [scss-reset](https://github.com/andreymatin/scss-reset)
 - Basic SCSS Mixins Collection [scss-mixins](https://github.com/andreymatin/scss-mixins)
-- Old browsers support ( > 1% popularity )
-- Kik-start workspace for concentrated development
-- Predefined export/import JavaScript modules
-- Semantic reference
+- (Not so) Old browsers support
+- Predefined VSC workspace
+- Initial JavaScript modules and SCSS files
+
+## Related Tools
+
+- Links with related tools [frontend-toolchain](https://github.com/andreymatin/frontend-toolchain)
 
 ## Code concepts
 
@@ -28,16 +30,23 @@ HTML layer with JS bundler for professional templates development
 - SCSS - https://sass-guidelin.es/
 - JavaScript - https://github.com/airbnb/javascript
 
-#### JavaScript
+### JavaScript
 
 - Babel
 - Rollup
 
-#### Tests
+#### JavaScript Utils
+
+- DomReady
+- Parallax
+- NoJs
+
+
+### Tests
 
 - Automated HTML5 W3C Validation
 
-#### Images Compression
+### Images Compression
 
 - WEBP Convertor
 - SVG (SVGOmg compression)
@@ -67,7 +76,7 @@ gethtml init
 
 ## Automation
 
-Development config for fast and robust templates development.
+Development bundle for fast and robust web development
 
 ### Files
 
@@ -142,13 +151,11 @@ Development config for fast and robust templates development.
 - dest - beautified files, initial processing
 - build - compressed files
 
-
 ## SVG Sprite generation
 
 - copy svg files for sprite into ```'./images/sprite/'``` folder
 - launch in the terminal ```gulp sprite```
 - generated svg sprite is there - ```./images/sprite.svg```
-
 
 ## Inspiration
 

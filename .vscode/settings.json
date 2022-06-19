@@ -23,4 +23,7 @@
   "html.format.indentInnerHtml": false,
   "php.suggest.basic": false,
   "editor.quickSuggestions": { "comments": true },
+  "editor.tokenColorCustomizations": {
+    "comments": "#00FFFF"
+  }
 }

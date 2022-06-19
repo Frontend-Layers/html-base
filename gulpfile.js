@@ -1,6 +1,5 @@
 ;(() => {
   'use strict'
-
   const {src, dest, parallel, series, watch} = require('gulp')
 
   /**
@@ -8,7 +7,7 @@
    */
 
   // Styles
-  const sass = require('gulp-sass')
+  const sass = require('gulp-sass')(require('sass'))
   const postcss = require('gulp-postcss')
   const autoprefixer = require('autoprefixer')
   const purify = require('gulp-purifycss')
@@ -61,7 +60,15 @@
   const sprite = require('gulp-svg-sprite')
 
   // HTML Test
-  const htmlValidator = require('gulp-w3c-html-validator')
+  // ref: https://github.com/validator/gulp-html
+  const htmlValidator = require('gulp-html')
+
+  /**
+   * Settings
+   */
+
+  // Enable CSS Purify
+  const enablePurify = false
 
   /**
    * Config
@@ -120,6 +127,7 @@
     src(jsVendorList.libs)
       .pipe(concat('app.js'))
       .pipe(dest('./dist/javascript/'))
+
   /**
    * Rollup.js
    */
@@ -187,16 +195,32 @@
       .on('error', notify.onError())
       .pipe(sourcemaps.write('./'))
       .pipe(dest(cfg.dest.scss))
-      .pipe(connect.reload())
+      .pipe(dest(cfg.dest.css))
+
+  const cssPostCSS = () =>
+    src('./src/styles/main.css')
+      .pipe(plumber())
+      .pipe(postcss([autoprefixer()]))
+      .on('error', notify.onError())
+      .pipe(dest('./dist/styles/'))
 
   /**
    * Purify CSS
    */
-  const cssPurify = () =>
-    src('./src/styles/main.css')
-      .pipe(purify(['./dist/javascript/**/*.js', './src/**/*.html']))
-      .pipe(dest('./dist/styles/'))
-      .pipe(connect.reload())
+  const cssPurify = () => {
+    if (enablePurify === true) {
+      return src('./dist/styles/main.css')
+        .pipe(plumber())
+        .pipe(purify(['./dist/javascript/**/*.js', './src/**/*.html']))
+        .on('error', notify.onError())
+        .pipe(dest('./dist/styles/'))
+        .pipe(connect.reload())
+    } else {
+      return src('./dist/styles/main.css')
+        .pipe(dest('./dist/styles/'))
+        .pipe(connect.reload())
+    }
+  }
 
   /**
    * PostCSS, Autoprefixer, CSS compressor
@@ -214,7 +238,7 @@
    * ============================================================= */
 
   // Images Minify
-  const images = () =>
+  const imagesCompress = () =>
     src(cfg.src.img)
       .pipe(
         cache(
@@ -262,7 +286,7 @@
    * Webp
    * @src: https://www.smashingmagazine.com/2018/07/converting-images-to-webp/
    */
-  const imgWebp = () =>
+  const webpCompress = () =>
     src(cfg.src.webp)
       .pipe(
         cache(
@@ -296,7 +320,7 @@
       )
       .pipe(dest('./src/images/'))
 
-  const imgCopy = () => src('./dist/images/**/*').pipe(dest('./build/images/'))
+  const imgCopy = () => src('./src/images/**/*').pipe(dest('./dist/images/')).pipe(dest('./build/images/'))
 
   /*
    * HTML
@@ -353,25 +377,22 @@
       }
     )
       .pipe(dest('./dist/'))
-      .pipe(dest('./build/'))
       .pipe(connect.reload())
+
+  const copyBuildFiles = () =>
+    src(['./dist/**/*'], {
+      allowEmpty: true,
+    }).pipe(dest('./build/'))
 
   const copyVideo = () =>
-    src('./src/video/**/*')
-      .pipe(dest('./dist/video/'))
-      .pipe(dest('./build/video/'))
-      .pipe(connect.reload())
+    src('./src/video/**/*').pipe(dest('./dist/video/')).pipe(connect.reload())
 
   const copyFonts = () =>
-    src('./src/fonts/**/*')
-      .pipe(dest('./dist/fonts/'))
-      .pipe(dest('./build/fonts/'))
-      .pipe(connect.reload())
+    src('./src/fonts/**/*').pipe(dest('./dist/fonts/')).pipe(connect.reload())
 
   const copyIcons = () =>
     src('./src/favicons/**/*')
       .pipe(dest('./dist/favicons/'))
-      .pipe(dest('./build/favicons/'))
       .pipe(connect.reload())
 
   /*
@@ -406,13 +427,13 @@
    * Watcher
    */
   const watcher = () => {
+    watch(cfg.src.scss, scss)
+    watch(cfg.src.html, series(htmlGenerate, cleanDist, htmlRefresh))
+    watch(cfg.src.js, series(series(roll, jsVendorLibs), scripts))
+    watch(cfg.src.img, imgCopy)
     watch(cfg.src.favicons, copyIcons)
     watch(cfg.src.fonts, copyFonts)
     watch(cfg.src.video, copyVideo)
-    watch(cfg.src.scss, series(scss, cssPurify))
-    watch(cfg.src.img, series(images, imgWebp))
-    watch(cfg.src.html, series(htmlGenerate, htmlRefresh))
-    watch(cfg.src.js, series(series(roll, jsVendorLibs), scripts, copyJS))
   }
 
   /**
@@ -425,6 +446,10 @@
    */
   const clean = () => {
     return del(['./build'])
+  }
+
+  const cleanDist = () => {
+    return del(['./dist/layouts'])
   }
 
   /**
@@ -472,7 +497,7 @@
       .pipe(plumber())
       .pipe(htmlValidator())
       .on('error', notify.onError())
-
+      .pipe(dest('./dist'))
   /*
    * Tasks
    * ============================================================= */
@@ -486,10 +511,10 @@
       copyVideo,
       copyFonts,
       copyIcons,
-      series(series(roll, jsVendorLibs), copyJS),
-      series(scss, cssPurify),
-      series(images, imgWebp),
-      series(htmlGenerate, openBrowser),
+      series(series(roll, jsVendorLibs)),
+      series(scss),
+      series(imgCopy),
+      series(htmlGenerate, cleanDist, openBrowser),
       openServer,
       watcher
     )
@@ -505,15 +530,12 @@
    */
   exports.build = series(
     clean,
+    copyBuildFiles,
     parallel(
-      copyFiles,
-      copyVideo,
-      copyFonts,
-      copyIcons,
       series(series(roll, jsVendorLibs), compressJS),
-      series(scss, cssPurify, cssCompress),
-      series(images, imgWebp, imgCopy),
-      series(htmlGenerate, htmlCompress)
+      series(scss, cssCompress, cssPurify),
+      series(imgCopy),
+      series(htmlGenerate, cleanDist, htmlCompress)
     ),
     bumper
   )
@@ -524,12 +546,17 @@
   exports.min = series(bundleMin)
 
   /**
+   * Generate Compressed Images
+   */
+  exports.images = series(imagesCompress, webpCompress)
+
+  /**
    * Generate SVG Sprite
    */
   exports.sprite = series(svgSprite)
 
   // Generate HTML
-  exports.html = series(htmlGenerate)
+  exports.html = series(htmlGenerate, cleanDist)
 
   // Clear Cache
   exports.clear = series(casheClear)

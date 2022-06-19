@@ -57,20 +57,19 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: $text-color;
-    text-decoration: none;
     outline: 0;
   }
 
   &:focus,
   &:active,
   &:hover {
-    color: $text-color;
-    text-decoration: underline;
     outline: 0;
   }
 }
 
+input:not(:focus-visible):invalid {
+  text-decoration: underline wavy red;
+}
 
 i,
 em {
@@ -94,3 +93,15 @@ strong {
  */
 
 // ::selections
+
+
+/**
+ * Responsive
+ */
+ 
+@include screen($mobile) {
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}

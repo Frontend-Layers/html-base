@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <title>Home</title>
     <!-- Meta Tags -->
@@ -12,6 +12,8 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" type="text/css" as="style" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <!-- Fonts Preloading / Caching -->
+    <link rel="preload" href="./fonts/omk1-r.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <!-- Favicons -->
     <link rel="icon" href="./favicons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
@@ -53,7 +55,7 @@
       <!-- Main Menu -->
       <ul class="menu">
         <li class="menu__item">
-          <a href="./index.html" class="menu__link"></a>
+          <a class="menu__link" href="./index.html"></a>
         </li>
       </ul>
     </nav>
@@ -62,7 +64,7 @@
       <div class="container">
         <!-- Logo -->
         <div class="logo">
-          <a class="logo__link" href="./index.html" accesskey="1"><img src="./images/" alt=""></a>
+          <a class="logo__link" href="./index.html" accesskey="1" aria-label="Logo"><img src="./images/" alt="Logo"></a>
         </div>
       </div>
     </header>
@@ -84,13 +86,21 @@
                 <source srcset="./images/test-photo.webp" type="image/webp">
                 <img src="./images/test-photo.jpg" alt="" width="400" height="285">
               </picture>
-              <!-- Picture Block Figure Test-->
-              <h3>Picture Block Test</h3>
+              <!-- Picture Block | Figure Test -->
+              <h3>Picture Block Test | Figure</h3>
               <figure>
-                <img src="./images/test-photo.jpg" alt="" width="400" height="285">
-                <source srcset="./images/test-photo.webp" type="image/webp">
+                <picture>
+                  <img src="./images/test-photo.jpg" alt="" width="400" height="285">
+                  <source srcset="./images/test-photo.webp" type="image/webp">
+                </picture>
                 <figcaption>Fig.1 - Trulli, Puglia, Italy.</figcaption>
               </figure>
+              <!-- Picture Block | Source 2x Test -->
+              <h3>Picture Block Test | 2x Source</h3>
+              <picture>
+                <source srcset="./images/test-image-3.webp 1x, ./images/test-image-3@2x.webp 2x" type="image/webp">
+                <img loading="eager" srcset="./images/test-image-3.jpg 1x, ./images/test-image-3@2x.jpg 2x" src="./images/test-image-3.jpg" alt=" | Logo" width="400" height="283">
+              </picture>
               <!-- Quotations -->
               <h3>Quotations</h3>
               <figure>
