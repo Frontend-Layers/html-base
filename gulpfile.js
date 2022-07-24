@@ -1,6 +1,6 @@
-;(() => {
+; (() => {
   'use strict'
-  const {src, dest, parallel, series, watch} = require('gulp')
+  const { src, dest, parallel, series, watch } = require('gulp')
 
   /**
    * Modules
@@ -141,7 +141,7 @@
           }),
           alias({
             entries: [
-              {find: 'src', replacement: `${__dirname}/src/javascript/`},
+              { find: 'src', replacement: `${__dirname}/src/javascript/` },
             ],
           }),
           nodeResolve({
@@ -257,12 +257,12 @@
             }),
             imagemin.svgo({
               plugins: [
-                {optimizationLevel: 3},
-                {progressive: true},
-                {interlaced: true},
-                {removeViewBox: false},
-                {removeUselessStrokeAndFill: false},
-                {cleanupIDs: false},
+                { optimizationLevel: 3 },
+                { progressive: true },
+                { interlaced: true },
+                { removeViewBox: false },
+                { removeUselessStrokeAndFill: false },
+                { cleanupIDs: false },
               ],
             }),
             imagemin.mozjpeg({
@@ -497,7 +497,10 @@
       .pipe(plumber())
       .pipe(htmlValidator())
       .on('error', notify.onError())
-      .pipe(dest('./dist'))
+
+
+
+
   /*
    * Tasks
    * ============================================================= */
