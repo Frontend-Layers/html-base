@@ -80,6 +80,7 @@ Development bundle for fast and robust web development
 
 ### Files
 
+- .gulp/*
 - ./gulpfile.js
 - ./babel.config.js
 - ./package.json

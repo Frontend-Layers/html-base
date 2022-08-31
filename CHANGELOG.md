@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.11]
+
+- gulp: updated to ES6 modules
+- gulp: added gulp-size module
+- gulp: recovered w3c validator
+
+## [1.0.10]
+
+- minor fixes
 
 ## [1.0.9]
 

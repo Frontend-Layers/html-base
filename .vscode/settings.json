@@ -21,6 +21,7 @@
     "**/styles": true,
   },
   "html.format.indentInnerHtml": false,
+  "html.format.wrapAttributes": "preserve",
   "php.suggest.basic": false,
   "editor.quickSuggestions": { "comments": true },
   "editor.tokenColorCustomizations": {

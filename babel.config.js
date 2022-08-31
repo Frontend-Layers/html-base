@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   plugins: ['@babel/plugin-proposal-class-properties'],
   presets: [
     [
@@ -9,4 +9,4 @@ module.exports = {
       }
     ]
   ]
-};
+}

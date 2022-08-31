@@ -1,6 +1,6 @@
 {
   "name": "html-initial-bundle",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
@@ -24,6 +24,7 @@
   "bugs": {
     "url": "https://github.com/andreymatin/html-initial-bundle/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/andreymatin/html-initial-bundle#readme",
   "dependencies": {
     "@babel/core": "^7.17.9",
@@ -53,6 +54,7 @@
     "gulp-prettify": "^0.5.0",
     "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^5.1.0",
+    "gulp-size": "^4.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
@@ -67,10 +69,11 @@
     "postcss": "^8.4.12",
     "rollup": "^2.70.1",
     "sass": "^1.50.0",
+    "scss-mixins-npm": "^1.0.6",
     "scss-reset": "^1.2.2"
   },
   "devDependencies": {
-    "gulp-html": "^4.0.0",
-    "gulp-notify": "^4.0.0"
+    "gulp-notify": "^4.0.0",
+    "gulp-w3c-html-validator": "^5.1.3"
   }
 }
