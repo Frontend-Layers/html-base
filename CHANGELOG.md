@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.12]
+
+- gulp: added w3c test
+- gulp: added localtunnel
+
 ## [1.0.11]
 
 - gulp: updated to ES6 modules

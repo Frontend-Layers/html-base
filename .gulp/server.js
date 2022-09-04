@@ -4,7 +4,8 @@ const { src, dest } = gulp
 /**
  * System
  */
-import del from 'del'
+import { deleteAsync } from 'del'
+import localtunnel from 'localtunnel'
 
 /**
  * Notification
@@ -23,9 +24,17 @@ import connect from 'gulp-connect'
 import open from 'gulp-open'
 
 
+
 /**
 * Config
 */
+
+/**
+ *
+ */
+// const subdomain = 'html-initial-bundle'
+const subdomain = ''
+
 const cfg = {
   server: {
     host: '0.0.0.0',
@@ -45,7 +54,7 @@ const openServer = () => {
     host: cfg.server.host,
     root: cfg.server.root,
     port: cfg.server.port,
-    livereload: true,
+    livereload: true
   })
 }
 
@@ -70,12 +79,30 @@ const bumper = () => src('./package.json').pipe(bump()).pipe(dest('./'))
  * Clean
  */
 const clean = () => {
-  return del(['./build'])
+  return deleteAsync(['./build'])
 }
 
 const cleanDist = () => {
-  return del(['./dist/layouts'])
+  return deleteAsync(['./dist/layouts'])
+}
+
+/**
+ * Proxy Tunneling (localtunnel)
+ */
+const lt = async () => {
+  const tunnel = await localtunnel({
+    port: cfg.server.port,
+    subdomain
+  });
+
+  console.log('Tunnel: ' + tunnel.url)
+
+
+  tunnel.on('close', () => {
+    // tunnels are closed
+  });
 }
 
 
-export { openServer, openBrowser, bumper, clean, cleanDist }
+
+export { openServer, openBrowser, bumper, clean, cleanDist, lt }

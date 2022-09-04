@@ -3,7 +3,7 @@
  * ================================================================================
  */
 
-import gulp from 'gulp';
+import gulp from 'gulp'
 const { src, dest } = gulp
 
 /**
@@ -11,6 +11,7 @@ const { src, dest } = gulp
  */
 import tpl from 'gulp-nunjucks-render'
 import { htmlValidator } from 'gulp-w3c-html-validator'
+import htmlTest from 'html-test'
 
 /**
  * Server
@@ -78,8 +79,16 @@ const htmlCompress = () =>
     .pipe(dest('./build/'))
     .pipe(connect.reload())
 
+
 /**
- * Validate HTML
+ * Fast Validate HTML
+ */
+
+const testHtml = () =>
+  htmlTest('./dist/**/*.html')
+
+/**
+ * Detailed Validate HTML
  */
 const validateHtml = () =>
   src('./dist/*.html')
@@ -90,4 +99,4 @@ const validateHtml = () =>
     .pipe(htmlValidator.reporter())
     .on('error', notify.onError())
 
-export { htmlGenerate, htmlRefresh, htmlCompress, validateHtml }
+export { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml }

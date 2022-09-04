@@ -30,23 +30,12 @@ import sprite from 'gulp-svg-sprite'
  */
 const cfg = {
   src: {
-    scss: './src/scss/**/*.scss',
-    js: './src/javascript/**/*.js',
     img: './src/images/**/*',
     webp: './dist/images/**/*.{png,jpg,jpeg}',
-    html: './src/**/*.html',
-    htmlUpdates: './dist/*.html',
-    fonts: './src/fonts/**/*',
-    favicons: './src/favicons/**/*',
-    video: './src/video/**/*',
   },
   dest: {
     img: './dist/images/',
     webp: './dist/images/**/*.{png,jpg,jpeg}',
-    html: './dist/',
-    fonts: './src/fonts/**/*',
-    favicons: './src/favicons/**/*',
-    video: './src/video/**/*',
   },
   build: {
     img: './build/images/',

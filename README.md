@@ -3,7 +3,11 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/andreymatin/html-initial-bundle)
 
-HTML layer with JS bundler for professional templates development
+_HTML layer with JS bundler for professional templates development_
+
+## Shell
+
+<img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/main/screenshot.png alt=screenshot width=640>
 
 ## Why
 
@@ -95,6 +99,7 @@ Development bundle for fast and robust web development
 
 - gulp-connect
 - gulp-open
+- localtunnel
 
 ### Notification
 
@@ -137,6 +142,15 @@ Development bundle for fast and robust web development
 - Emmet "commentAfter"
 - Panel at the "right" (Terminal, hints etc.)
 
+## Tunneling
+
+.gulp/server.js
+
+```javascript
+const subdomain = ''
+```
+
+
 ## HTML Files
 
 - index.html - templates list
@@ -148,6 +162,7 @@ Development bundle for fast and robust web development
 
 ## Folders
 
+- .gulp - gulp tasks
 - src - initial files
 - dest - beautified files, initial processing
 - build - compressed files

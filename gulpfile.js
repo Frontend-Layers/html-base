@@ -13,13 +13,13 @@ import { scss, cssCompress } from './.gulp/styles.js'
 import { roll, scripts, compressJS } from './.gulp/javascript.js'
 
 // HTML
-import { htmlGenerate, htmlRefresh, htmlCompress, validateHtml } from './.gulp/html.js'
+import { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml } from './.gulp/html.js'
 
 // Images
 import { imagesCompress, webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js'
 
 // Server
-import { openServer, openBrowser, bumper, clean, cleanDist } from './.gulp/server.js'
+import { openServer, openBrowser, bumper, clean, cleanDist, lt } from './.gulp/server.js'
 
 // Misc
 import { copyFiles, copyBuildFiles, copyVideo, copyFonts, copyIcons } from './.gulp/misc.js'
@@ -61,7 +61,7 @@ const jsVendorLibs = () =>
  */
 const watcher = () => {
   watch('./src/scss/**/*.scss', scss)
-  watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlRefresh))
+  watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlRefresh, testHtml))
   watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scripts))
   watch('./src/images/**/*', imgCopy)
   watch('./src/favicons/**/*', copyIcons)
@@ -84,6 +84,7 @@ export default series(
     series(imgCopy),
     series(htmlGenerate, cleanDist, openBrowser, validateHtml),
     openServer,
+    lt,
     watcher
   )
 )
