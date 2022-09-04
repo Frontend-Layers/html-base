@@ -1,13 +1,13 @@
 # HTML Initial Bundle
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/blob/master/LICENSE)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/andreymatin/html-initial-bundle)
+[![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/LICENSE)
+[![npm](https://img.shields.io/npm/v/html-initial-bundle.svg)](https://www.npmjs.com/package/html-initial-bundle)
 
 _HTML layer with JS bundler for professional templates development_
 
 ## Shell
 
-<img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/main/screenshot.png alt=screenshot width=640>
+<img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/master/screenshot.png alt=screenshot width=640>
 
 ## Why
 
