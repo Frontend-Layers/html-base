@@ -12,6 +12,7 @@ const { src, dest } = gulp
 import tpl from 'gulp-nunjucks-render'
 import { htmlValidator } from 'gulp-w3c-html-validator'
 import htmlTest from 'html-test'
+import { htmlPreview } from 'html-pages-preview'
 
 /**
  * Server
@@ -34,6 +35,18 @@ import prettify from 'gulp-prettify'
  */
 import htmlmin from 'gulp-htmlmin'
 
+
+
+const htmlPagesPreview = () => {
+  const src = [
+    './dist/home.html',
+    './dist/article.html',
+    './dist/product.html'
+  ]
+  const dest = './dist/preview-pages.html'
+
+  htmlPreview(src, dest)
+}
 
 /**
  * HTML Template Sytem + Beautifier
@@ -99,4 +112,4 @@ const validateHtml = () =>
     .pipe(htmlValidator.reporter())
     .on('error', notify.onError())
 
-export { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml }
+export { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml, htmlPagesPreview }

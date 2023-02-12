@@ -1,8 +1,17 @@
 # Changelog
 
+## [1.0.13]
+
+- added Mobile Friendly test
+- added Performance test by PageSpeed Insight
+- added CSS test
+- added html-pages-preview
+- updated ESLint and VSCode configs
+
+
 ## [1.0.12]
 
-- gulp: added w3c test
+- gulp: added w3c test validation
 - gulp: added localtunnel
 
 ## [1.0.11]

@@ -23,8 +23,19 @@
   "html.format.indentInnerHtml": false,
   "html.format.wrapAttributes": "preserve",
   "php.suggest.basic": false,
-  "editor.quickSuggestions": { "comments": true },
-  "editor.tokenColorCustomizations": {
-    "comments": "#00FFFF"
-  }
+  "editor.quickSuggestions": {
+    "comments": true
+  },
+  "editor.fontLigatures": "'ss01'",
+  "javascript.format": {
+    "semicolons": "insert",
+    "insertSpaceBeforeFunctionParenthesis": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "html.format.extraLiners": ""
 }

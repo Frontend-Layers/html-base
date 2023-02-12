@@ -3,7 +3,7 @@
  */
 
 const Module = () => {
-  console.log('Module')
-}
+  console.log('Module');
+};
 
-export default Module
+export default Module;

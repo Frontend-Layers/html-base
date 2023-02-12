@@ -2,13 +2,13 @@
  * Module
  */
 
-import Method from 'src/module'
+import Method from 'src/module';
 
 const Component = () => {
   // Test Method
-  Method()
+  Method();
 
-  console.log('Component')
-}
+  console.log('Component');
+};
 
-export default Component
+export default Component;

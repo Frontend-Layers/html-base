@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <symbol class="aicon aicon-tabler aicon-tabler-sailboat" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF5722" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-boat"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" stroke="none"/>
+    <path d="M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1M4 18l-1-3h18l-1 3M11 12h7l-7-9v9M8 7l-2 5"/>
+  </symbol>
+
+  <symbol viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF5722" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-bolt"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" stroke="none"/>
+    <path d="M13 3v7h6l-8 11v-7H5l8-11"/>
+  </symbol>
+
+  <symbol class="cicon cicon-tabler cicon-tabler-map-pin" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF5722" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-prin"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" stroke="none"/>
+    <circle cx="12" cy="11" r="3"/>
+    <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+  </symbol>
+
+  <symbol class="dicon dicon-tabler dicon-tabler-wallet" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF5722" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-wallet"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0h24v24H0z" stroke="none"/>
+    <path d="M17 8V5a1 1 0 00-1-1H6a2 2 0 000 4h12a1 1 0 011 1v3m0 4v3a1 1 0 01-1 1H6a2 2 0 01-2-2V6"/>
+    <path d="M20 12v4h-4a2 2 0 010-4h4"/>
+  </symbol>
+</svg>

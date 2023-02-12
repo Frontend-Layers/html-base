@@ -29,7 +29,7 @@ import { babel } from '@rollup/plugin-babel'
 import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-
+import standard from 'gulp-standard'
 
 /**
  * Settings
@@ -55,9 +55,6 @@ const cfg = {
 
 
 const __dirname = path.resolve(path.dirname(''));
-console.log('__dirname', __dirname)
-
-
 
 /**
  * JavaScript
@@ -114,4 +111,14 @@ const compressJS = () =>
     .pipe(size())
     .pipe(dest('./build/javascript/'))
 
-export { roll, scripts, compressJS }
+
+const standardJS = () =>
+  src(['./dist/javascript/app.js'])
+    .pipe(standard())
+    .pipe(standard.reporter('default', {
+      breakOnError: false,
+      quiet: true
+    }))
+
+
+export { roll, scripts, compressJS, standardJS }

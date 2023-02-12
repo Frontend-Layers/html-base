@@ -11,7 +11,8 @@ _HTML layer with JS bundler for professional templates development_
 
 ## Why
 
-- Templates prototyping amd CMS integration
+- Templates, themes prototyping
+- Integration with any CMS
 - Modeling JavaScript applications
 - Routine web development tasks automation
 
@@ -22,6 +23,7 @@ _HTML layer with JS bundler for professional templates development_
 - (Not so) Old browsers support
 - Predefined VSC workspace
 - Initial JavaScript modules and SCSS files
+- Automated test tasks (HTML Validation, Mobile friendly, Performance etc.)
 
 ## Related Tools
 
@@ -32,23 +34,26 @@ _HTML layer with JS bundler for professional templates development_
 - HTML - https://google.github.io/styleguide/htmlcssguide.html
 - CSS - BEM - https://github.com/airbnb/css
 - SCSS - https://sass-guidelin.es/
-- JavaScript - https://github.com/airbnb/javascript
+- JavaScript - https://standardjs.com/
 
-### JavaScript
+### JavaScript plugins
 
 - Babel
 - Rollup
 
-#### JavaScript Utils
+#### JavaScript utils
 
 - DomReady
 - Parallax
 - NoJs
 
-
 ### Tests
 
-- Automated HTML5 W3C Validation
+- Detailed (but slow) HTML5 W3C Validation
+- Fast in-development HTML5 Validation
+- CSS3 Validation
+- Google Mobile-friendly test
+- Google PageInsight Performance test
 
 ### Images Compression
 
@@ -129,6 +134,8 @@ Development bundle for fast and robust web development
 ### Tests
 
 - gulp-w3c-html-validator
+- [html-test](https://www.npmjs.com/package/html-test)
+- [mobile-friendly-test-npm](https://www.npmjs.com/package/mobile-friendly-test-npm)
 
 ## Editor
 
@@ -141,6 +148,7 @@ Development bundle for fast and robust web development
 - liveSassCompile
 - Emmet "commentAfter"
 - Panel at the "right" (Terminal, hints etc.)
+- ESLint JS Standard tweaks
 
 ## Tunneling
 
@@ -149,7 +157,6 @@ Development bundle for fast and robust web development
 ```javascript
 const subdomain = ''
 ```
-
 
 ## HTML Files
 
