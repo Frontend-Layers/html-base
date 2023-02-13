@@ -80,7 +80,6 @@
    */
 
   var Component = function Component() {
-    // Test Method
     Module();
     console.log('Component');
   };
@@ -98,7 +97,13 @@
    */
 
   domReady(function () {
-    Component(); // Test Class
+    /**
+     * Test Component
+     */
+    Component();
+    /**
+     * Test Class
+     */
 
     var obj = new ModuleClass();
     obj.method();

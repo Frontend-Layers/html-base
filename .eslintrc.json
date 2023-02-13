@@ -30,6 +30,23 @@
         "avoidEscape": true
       }
     ],
-    "space-before-function-paren": ["error", "never"]
+    "space-before-function-paren": [
+      "warn",
+      "never"
+    ],
+    "padded-blocks": [
+      "warn",
+      {
+        "classes": "always"
+      }
+    ],
+    "lines-around-comment": [
+      "warn",
+      {
+        "beforeBlockComment": true,
+        "beforeLineComment": false
+      }
+    ],
+    "no-undef": "off"
   }
 }

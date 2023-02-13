@@ -18,9 +18,16 @@ NoJs();
  * https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
  */
 domReady(() => {
+
+  /**
+   * Test Component
+   */
   Component();
 
-  // Test Class
+  /**
+   * Test Class
+   */
   const obj = new ModuleClass();
   obj.method();
+
 });

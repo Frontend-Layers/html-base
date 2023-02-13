@@ -37,5 +37,6 @@
   "eslint.validate": [
     "javascript"
   ],
-  "html.format.extraLiners": ""
+  "html.format.extraLiners": "",
+  "files.eol": "\n"
 }

@@ -1,6 +1,6 @@
 {
   "name": "html-initial-bundle",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "gulp",
     "server": "gulp",
+    "start": "gulp",
     "build": "gulp build"
   },
   "author": "Matin Andrey",
@@ -19,7 +20,9 @@
   "keywords": [
     "html",
     "gulp",
-    "template"
+    "template",
+    "frontend",
+    "boilerplate"
   ],
   "bugs": {
     "url": "https://github.com/andreymatin/html-initial-bundle/issues"

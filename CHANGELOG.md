@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.14]
+
+- decreased ESLint importunity
+
 ## [1.0.13]
 
 - added Mobile Friendly test
