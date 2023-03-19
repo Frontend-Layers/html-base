@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.15]
+
+- updated VSC search filter parameters
+
+
+
 ## [1.0.14]
 
 - decreased ESLint importunity

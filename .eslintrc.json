@@ -47,6 +47,18 @@
         "beforeLineComment": false
       }
     ],
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-multiple-empty-lines": "warn",
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "no-use-before-define": "off"
   }
 }

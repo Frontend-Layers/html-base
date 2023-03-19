@@ -1,9 +1,9 @@
-# HTML Initial Bundle
+# HTML Base
 
-[![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/andreymatin/html-initial-bundle/LICENSE)
-[![npm](https://img.shields.io/npm/v/html-initial-bundle.svg)](https://www.npmjs.com/package/html-initial-bundle)
+[![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/andreymatin/html-base/LICENSE)
+[![npm](https://img.shields.io/npm/v/html-base.svg)](https://www.npmjs.com/package/html-base)
 
-_HTML layer with JS bundler for professional templates development_
+_HTML Initial Bundle for professional templates development_
 
 ## Shell
 
@@ -63,17 +63,17 @@ _HTML layer with JS bundler for professional templates development_
 
 ## Contributing
 
-For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-initial-bundle/issues/new)
+For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-base/issues/new)
 
 
 ## Installation
 
-Please download zip file from [html-initial-bundle](https://github.com/andreymatin/html-initial-bundle) repository.
+Please download zip file from [html-initial-bundle](https://github.com/andreymatin/html-base) repository.
 
 or by Git:
 
 ```
-git clone https://github.com/andreymatin/html-initial-bundle
+git clone https://github.com/andreymatin/html-base
 ```
 
 or by [CLI](https://github.com/andreymatin/html-npm-cli):
@@ -148,7 +148,8 @@ Development bundle for fast and robust web development
 - liveSassCompile
 - Emmet "commentAfter"
 - Panel at the "right" (Terminal, hints etc.)
-- ESLint JS Standard tweaks
+- ESLint JS tweaks
+- Search exclusions
 
 ## Tunneling
 

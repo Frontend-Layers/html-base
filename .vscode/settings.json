@@ -19,6 +19,8 @@
     "**/build": true,
     "**/tmp": true,
     "**/styles": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true   
   },
   "html.format.indentInnerHtml": false,
   "html.format.wrapAttributes": "preserve",
