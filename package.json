@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
@@ -24,10 +24,14 @@
     "frontend",
     "boilerplate",
     "javascript",
+    "css",
     "scss",
     "bootstrap",
-    "rollup"
-  ],
+    "rollup",
+    "build-tool",
+    "dev-server",
+    "starter-template"
+  ], 
   "bugs": {
     "url": "https://github.com/andreymatin/html-initial-bundle/issues"
   },

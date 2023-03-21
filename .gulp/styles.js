@@ -1,38 +1,38 @@
 import gulp from 'gulp';
-const { src, dest } = gulp
+const { src, dest } = gulp;
 
 /**
  * System
  */
-import connect from 'gulp-connect'
+import connect from 'gulp-connect';
 
 
 /**
  * Notification
  */
-import plumber from 'gulp-plumber'
-import notify from 'gulp-notify'
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
 import size from 'gulp-size';
 
 /**
  * Styles
  */
-import dartSass from 'sass'
-import gulpSass from 'gulp-sass'
-const sass = gulpSass(dartSass)
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
 
-import postcss from 'gulp-postcss'
-import autoprefixer from 'autoprefixer'
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 
 /**
  * Compressor
  */
-import cssnano from 'cssnano'
+import cssnano from 'cssnano';
 
 /**
  * Source Map
  */
-import sourcemaps from 'gulp-sourcemaps'
+import sourcemaps from 'gulp-sourcemaps';
 
 
 /**
@@ -47,7 +47,7 @@ const cfg = {
     scss: './src/styles/',
     css: './dist/styles/',
   }
-}
+};
 
 /**
  * Styles
@@ -70,6 +70,13 @@ const scss = () =>
     .pipe(dest(cfg.dest.css))
 
 /**
+ * Styles Reload
+ *
+ */
+const stylesReload = () => src(cfg.dest.scss)
+  .pipe(connect.reload());
+
+/**
 * PostCSS, Autoprefixer, CSS compressor
 */
 const cssCompress = () =>
@@ -79,7 +86,7 @@ const cssCompress = () =>
     .on('error', notify.onError())
     .pipe(dest('./build/styles/'))
     .pipe(size())
-    .pipe(connect.reload())
+    .pipe(connect.reload());
 
 
-export { scss, cssCompress }
+export { scss, cssCompress, stylesReload };

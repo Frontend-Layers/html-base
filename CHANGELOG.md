@@ -1,9 +1,13 @@
 # Changelog
 
+## [1.0.16]
+
+- fixed styles reload
+- corrected namespace
+
 ## [1.0.15]
 
 - updated VSC search filter parameters
-
 
 
 ## [1.0.14]

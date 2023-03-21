@@ -72,7 +72,7 @@ const htmlGenerate = () =>
 /**
  * Refresh HTML after src update
  */
-const htmlRefresh = () => src('./dist/**/*.html').pipe(connect.reload())
+const htmlReload = () => src('./dist/**/*.html').pipe(connect.reload())
 
 /**
  * HTML Minify
@@ -112,4 +112,4 @@ const validateHtml = () =>
     .pipe(htmlValidator.reporter())
     .on('error', notify.onError())
 
-export { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml, htmlPagesPreview }
+export { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview }

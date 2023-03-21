@@ -3,7 +3,7 @@
 [![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/andreymatin/html-base/LICENSE)
 [![npm](https://img.shields.io/npm/v/html-base.svg)](https://www.npmjs.com/package/html-base)
 
-_HTML Initial Bundle for professional templates development_
+_HTML initial bundle for professional templates development_
 
 ## Shell
 

@@ -6,13 +6,13 @@
 import gulp from 'gulp';
 
 // Styles
-import { scss, cssCompress } from './.gulp/styles.js';
+import { scss, cssCompress, stylesReload } from './.gulp/styles.js';
 
 // JavaScript
-import { roll, scripts, compressJS } from './.gulp/javascript.js';
+import { roll, scriptsReload, compressJS } from './.gulp/javascript.js';
 
 // HTML
-import { htmlGenerate, htmlRefresh, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
+import { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
 
 // Images
 import { imagesCompress, webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
@@ -63,9 +63,9 @@ const jsVendorLibs = () =>
  * Watcher
  */
 const watcher = () => {
-  watch('./src/scss/**/*.scss', scss);
-  watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlRefresh, testHtml));
-  watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scripts));
+  watch('./src/scss/**/*.scss', series(scss, stylesReload));
+  watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlReload, testHtml));
+  watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scriptsReload));
   watch('./src/images/**/*', imgCopy);
   watch('./src/favicons/**/*', copyIcons);
   watch('./src/fonts/**/*', copyFonts);

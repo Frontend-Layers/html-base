@@ -98,7 +98,7 @@ const roll = () =>
     })
 
 // Reload Browser after JS Changes
-const scripts = () => src(cfg.src.js)
+const scriptsReload = () => src(cfg.src.js)
   .pipe(connect.reload())
 
 
@@ -121,4 +121,4 @@ const standardJS = () =>
     }))
 
 
-export { roll, scripts, compressJS, standardJS }
+export { roll, scriptsReload, compressJS, standardJS }
