@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreymatin/html-initial-bundle.git"
+    "url": "git+https://github.com/andreymatin/html-base.git"
   },
   "keywords": [
     "html",
@@ -31,12 +31,12 @@
     "build-tool",
     "dev-server",
     "starter-template"
-  ], 
+  ],
   "bugs": {
-    "url": "https://github.com/andreymatin/html-initial-bundle/issues"
+    "url": "https://github.com/andreymatin/html-base/issues"
   },
   "type": "module",
-  "homepage": "https://github.com/andreymatin/html-initial-bundle#readme",
+  "homepage": "https://html-base-intro.netlify.app/",
   "dependencies": {
     "@babel/core": "^7.18.13",
     "@babel/plugin-proposal-class-properties": "^7.18.6",

@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.17]
+
+- decreased noice from eslint
+- corrected package.json
+- updated documentation
+
 ## [1.0.16]
 
 - fixed styles reload
@@ -12,7 +18,7 @@
 
 ## [1.0.14]
 
-- decreased ESLint importunity
+- decreased noice from eslint
 
 ## [1.0.13]
 

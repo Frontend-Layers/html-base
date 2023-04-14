@@ -5,10 +5,6 @@
 
 _HTML initial bundle for professional templates development_
 
-## Shell
-
-<img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/master/screenshot.png alt=screenshot width=640>
-
 ## Why
 
 - Templates, themes prototyping
@@ -23,7 +19,18 @@ _HTML initial bundle for professional templates development_
 - (Not so) Old browsers support
 - Predefined VSC workspace
 - Initial JavaScript modules and SCSS files
-- Automated test tasks (HTML Validation, Mobile friendly, Performance etc.)
+- Automated test tasks on [gulp](https://gulpjs.com/) (HTML Validation, Mobile friendly, Performance etc.)
+- A lot of useful open source includes
+
+## Installation
+
+```shell
+npx get-html-base project-name
+```
+
+## Shell
+
+<img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/master/screenshot.png alt=screenshot width=640>
 
 ## Related Tools
 
@@ -60,28 +67,6 @@ _HTML initial bundle for professional templates development_
 - WEBP Convertor
 - SVG (SVGOmg compression)
 - Best practices for PNG/JPG
-
-## Contributing
-
-For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-base/issues/new)
-
-
-## Installation
-
-Please download zip file from [html-initial-bundle](https://github.com/andreymatin/html-base) repository.
-
-or by Git:
-
-```
-git clone https://github.com/andreymatin/html-base
-```
-
-or by [CLI](https://github.com/andreymatin/html-npm-cli):
-
-```
-npm i -g html-npm-cli;
-gethtml init
-```
 
 ## Automation
 
@@ -180,6 +165,10 @@ const subdomain = ''
 - copy svg files for sprite into ```'./images/sprite/'``` folder
 - launch in the terminal ```gulp sprite```
 - generated svg sprite is there - ```./images/sprite.svg```
+
+## Contributing
+
+For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-base/issues/new)
 
 ## Inspiration
 
