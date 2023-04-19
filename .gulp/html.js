@@ -98,7 +98,7 @@ const htmlCompress = () =>
  */
 
 const testHtml = () =>
-  htmlTest('./dist/**/*.html')
+  htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] })
 
 /**
  * Detailed Validate HTML

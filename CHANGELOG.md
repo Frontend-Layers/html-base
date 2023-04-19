@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.18]
+- updated html-test. added ignored HTML folders for web components
+- rollup: added JavaScript resources loader (HTML, images)
+- images: remove compression for images
+- images: fixed WEBP
+- system: disable localtunnel by defaul
+- system: corrected folders cleaning
+
 ## [1.0.17]
 
 - decreased noice from eslint

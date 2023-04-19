@@ -3,6 +3,7 @@
  */
 
 export default class ModuleClass {
+
   constructor() {
     this.methodString = 'string';
     this.methodNumber = 0;
@@ -11,6 +12,7 @@ export default class ModuleClass {
   method() {
     console.log('Class Render');
   }
+
 }
 
 /**

@@ -7,6 +7,7 @@ import domReady from 'js-components-npm/src/utils/domready';
 import NoJs from 'js-components-npm/src/utils/no-js';
 import ModuleClass from 'src/module-class';
 import Component from 'src/components/component';
+import ResourcesLoaderTest from 'src/resources-loader-test.js';
 
 // Check JS is enabled
 NoJs();
@@ -23,6 +24,11 @@ domReady(() => {
    * Test Component
    */
   Component();
+
+  /**
+   * Test Resources Loader
+   */
+  ResourcesLoaderTest();
 
   /**
    * Test Class

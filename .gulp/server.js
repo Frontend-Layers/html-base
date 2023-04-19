@@ -1,27 +1,27 @@
 import gulp from 'gulp';
-const { src, dest } = gulp
+const { src, dest } = gulp;
 
 /**
  * System
  */
-import { deleteAsync } from 'del'
-import localtunnel from 'localtunnel'
+import { deleteAsync } from 'del';
+import localtunnel from 'localtunnel';
 
 /**
  * Notification
  */
-import plumber from 'gulp-plumber'
+import plumber from 'gulp-plumber';
 
 /**
  * Versioning
  */
-import bump from 'gulp-bump'
+import bump from 'gulp-bump';
 
 /**
  * Server
  */
-import connect from 'gulp-connect'
-import open from 'gulp-open'
+import connect from 'gulp-connect';
+import open from 'gulp-open';
 
 
 
@@ -33,7 +33,7 @@ import open from 'gulp-open'
  *
  */
 // const subdomain = 'html-initial-bundle'
-const subdomain = ''
+const subdomain = '';
 
 const cfg = {
   server: {
@@ -42,8 +42,9 @@ const cfg = {
     port: 4000,
     src: './dist/index.html',
     uri: 'http://localhost:4000/',
-  }
-}
+  },
+  lt: false
+};
 
 
 /**
@@ -55,8 +56,8 @@ const openServer = () => {
     root: cfg.server.root,
     port: cfg.server.port,
     livereload: true
-  })
-}
+  });
+};
 
 /**
  * Open Default Browser
@@ -68,41 +69,48 @@ const openBrowser = () =>
       open({
         uri: cfg.server.uri,
       })
-    )
+    );
 
 /**
  * Patching
  */
-const bumper = () => src('./package.json').pipe(bump()).pipe(dest('./'))
+const bumper = () => src('./package.json').pipe(bump()).pipe(dest('./'));
 
 /**
  * Clean
  */
-const clean = () => {
-  return deleteAsync(['./build'])
-}
+const cleanBuild = () => {
+  return deleteAsync(['./build']);
+};
 
 const cleanDist = () => {
-  return deleteAsync(['./dist/layouts'])
-}
+  return deleteAsync(['./dist']);
+};
+
+const cleanHTML = () => {
+  return deleteAsync(['./dist/layouts', './build/layouts']);
+};
 
 /**
  * Proxy Tunneling (localtunnel)
  */
 const lt = async () => {
-  const tunnel = await localtunnel({
-    port: cfg.server.port,
-    subdomain
-  });
+  if (cfg.lt) {
 
-  console.log('Tunnel: ' + tunnel.url)
+    const tunnel = await localtunnel({
+      port: cfg.server.port,
+      subdomain
+    });
 
-
-  tunnel.on('close', () => {
-    // tunnels are closed
-  });
-}
+    console.log('Tunnel: ' + tunnel.url);
 
 
+    tunnel.on('close', () => {
+      // tunnels are closed
+    });
+  }
+};
 
-export { openServer, openBrowser, bumper, clean, cleanDist, lt }
+
+
+export { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, lt };

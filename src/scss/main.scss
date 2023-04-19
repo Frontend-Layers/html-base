@@ -4,21 +4,26 @@
  * Main CSS
  */
 
-// Vendors
+/**
+ * Vendors
+ */
+
 // Twitter Bootstrap Grid System
 @import 'bootstrap/scss/bootstrap-grid';
 // @import 'bootstrap-icons/font/bootstrap-icons';
 
-// Reset
+// Vendor Reset
 @import 'scss-reset/reset';
 
-// Mixins
+// Vendor Mixins
 @import 'scss-mixins-npm/mixins';
 
+/**
+ * Custom
+ */
+
 // Abstracts
-@import 'reset';
-@import 'variables';
-@import 'mixins';
+@import 'reset', 'variables', 'mixins';
 
 // Base
 @import 'typography';
