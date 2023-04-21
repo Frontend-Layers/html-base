@@ -3,50 +3,54 @@
  * ================================================================================
  */
 
-import gulp from 'gulp'
-const { src, dest } = gulp
+import gulp from 'gulp';
+const { src, dest } = gulp;
 
 /**
  * HTML
  */
-import tpl from 'gulp-nunjucks-render'
-import { htmlValidator } from 'gulp-w3c-html-validator'
-import htmlTest from 'html-test'
-import { htmlPreview } from 'html-pages-preview'
+import tpl from 'gulp-nunjucks-render';
+import { htmlValidator } from 'gulp-w3c-html-validator';
+import htmlTest from 'html-test';
+import htmlPreview from 'html-pages-preview';
 
 /**
  * Server
  */
-import connect from 'gulp-connect'
+import connect from 'gulp-connect';
 
 /**
  * Notification
  */
-import plumber from 'gulp-plumber'
-import notify from 'gulp-notify'
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
 
 /**
  * Prettifier
  */
-import prettify from 'gulp-prettify'
+import prettify from 'gulp-prettify';
 
 /**
  * Compressors
  */
-import htmlmin from 'gulp-htmlmin'
+import htmlmin from 'gulp-htmlmin';
 
 
-
-const htmlPagesPreview = () => {
+/**
+ * Pages Preview Generator
+ */
+const htmlPagesPreview = (c) => {
   const src = [
     './dist/home.html',
     './dist/article.html',
     './dist/product.html'
-  ]
-  const dest = './dist/preview-pages.html'
+  ];
+  const dest = './dist/preview-pages.html';
 
-  htmlPreview(src, dest)
-}
+  htmlPreview(src, dest);
+
+  return c();
+};
 
 /**
  * HTML Template Sytem + Beautifier
@@ -67,12 +71,12 @@ const htmlGenerate = () =>
       })
     )
     .on('error', notify.onError())
-    .pipe(dest('./dist'))
+    .pipe(dest('./dist'));
 
 /**
  * Refresh HTML after src update
  */
-const htmlReload = () => src('./dist/**/*.html').pipe(connect.reload())
+const htmlReload = () => src('./dist/**/*.html').pipe(connect.reload());
 
 /**
  * HTML Minify
@@ -90,7 +94,7 @@ const htmlCompress = () =>
     )
     .on('error', notify.onError())
     .pipe(dest('./build/'))
-    .pipe(connect.reload())
+    .pipe(connect.reload());
 
 
 /**
@@ -98,7 +102,7 @@ const htmlCompress = () =>
  */
 
 const testHtml = () =>
-  htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] })
+  htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] });
 
 /**
  * Detailed Validate HTML
@@ -110,6 +114,6 @@ const validateHtml = () =>
       ignoreLevel: "warning"
     }))
     .pipe(htmlValidator.reporter())
-    .on('error', notify.onError())
+    .on('error', notify.onError());
 
-export { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview }
+export { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview };

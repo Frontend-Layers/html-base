@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.0.19]
+- updated html pages preview
+
 ## [1.0.18]
 - updated html-test. added ignored HTML folders for web components
 - rollup: added JavaScript resources loader (HTML, images)

@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "HTML Initial Bundle",
   "directories": {
     "test": "tests"
@@ -83,7 +83,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-w3c-html-validator": "^5.2.0",
     "gulp-webp": "^4.0.1",
-    "html-pages-preview": "^1.0.0",
+    "html-pages-preview": "^1.1.1",
     "html-speed": "^1.0.3",
     "html-test": "^1.1.2",
     "imagemin-giflossy": "^5.1.10",
@@ -96,7 +96,7 @@
     "js-components-npm": "^1.0.2",
     "localtunnel": "^2.0.2",
     "mobile-friendly-test-npm": "^1.0.4",
-    "postcss": "^8.4.22",
+    "postcss": "^8.4.23",
     "rollup": "^3.20.6",
     "rollup-plugin-string": "^3.0.0",
     "sass": "^1.62.0",
