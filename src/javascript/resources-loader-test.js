@@ -12,10 +12,6 @@ const ResourcesLoaderTest = () => {
   console.log('SVG Loading test', svg);
   console.log('testTemplate', testTemplate);
 
-  // tpl.push(testTemplate, 'placeholder');
-  // tpl.init(testTemplate, 'component name');
-  // tpl.render(testTemplate, 'placeholder');
-
 };
 
 export default ResourcesLoaderTest;

@@ -32,7 +32,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from "@rollup/plugin-json";
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
-import { string } from "rollup-plugin-string";
 
 import standard from 'gulp-standard';
 
@@ -77,17 +76,10 @@ const roll = () =>
       babel({
         exclude: "node_modules/**",
         presets: ["@babel/preset-env"],
-        // plugins: ["babel-plugin-transform-html-import-to-string"],
-        // extensions: [".js", ".html"],
         babelHelpers: 'bundled',
       }),
-      url(),
-      string({
-        // Required to be specified
-        include: "**/*.html",
-
-        // Undefined by default
-        exclude: ["**/index.html"]
+      url({
+        include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
       }),
       json(),
       alias({
@@ -103,7 +95,7 @@ const roll = () =>
       commonjs({
         include: ['node_modules/**'],
         exclude: [],
-        sourceMap: false,
+        sourceMap: true
       }),
     ],
   })

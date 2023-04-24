@@ -59,6 +59,7 @@
         "functions": "never"
       }
     ],
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "no-template-curly-in-string": "off"
   }
 }
