@@ -8,9 +8,9 @@ import svg from 'root/src/javascript/res/dummy.svg';
 
 const ResourcesLoaderTest = () => {
 
-  console.log('testJsonData', testJsonData);
-  console.log('SVG Loading test', svg);
-  console.log('testTemplate', testTemplate);
+  // console.log('testJsonData', testJsonData);
+  // console.log('SVG Loading test', svg);
+  // console.log('testTemplate', testTemplate);
 
 };
 

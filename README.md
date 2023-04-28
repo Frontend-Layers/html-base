@@ -19,13 +19,15 @@ _HTML initial bundle for professional templates development_
 - (Not so) Old browsers support
 - Predefined VSC workspace
 - Initial JavaScript modules and SCSS files
-- Automated test tasks on [gulp](https://gulpjs.com/) (HTML Validation, Mobile friendly, Performance etc.)
-- A lot of useful open source includes
+- Automated test tasks
+- A lot of useful open source included
 
 ## Installation
 
 ```shell
 npx get-html-base project-name
+
+cd project-name
 ```
 
 ## Shell
@@ -36,33 +38,27 @@ npx get-html-base project-name
 
 - Links with related tools [frontend-toolchain](https://github.com/andreymatin/frontend-toolchain)
 
-## Code concepts
-
-- HTML - https://google.github.io/styleguide/htmlcssguide.html
-- CSS - BEM - https://github.com/airbnb/css
-- SCSS - https://sass-guidelin.es/
-- JavaScript - https://standardjs.com/
-
-### JavaScript plugins
+## JavaScript plugins
 
 - Babel
 - Rollup
 
-#### JavaScript utils
+## JavaScript utils
 
 - DomReady
 - Parallax
 - NoJs
+- UI Explorer
 
-### Tests
+## Tests
 
-- Detailed (but slow) HTML5 W3C Validation
-- Fast in-development HTML5 Validation
+- Deep HTML5 Validation
+- On fly HTML5 Validation
 - CSS3 Validation
 - Google Mobile-friendly test
 - Google PageInsight Performance test
 
-### Images Compression
+## Images
 
 - WEBP Convertor
 - SVG (SVGOmg compression)
@@ -70,7 +66,7 @@ npx get-html-base project-name
 
 ## Automation
 
-Development bundle for fast and robust web development
+Development bundle for fast and robust web development based on Gulp and Rollup
 
 ### Files
 
@@ -169,6 +165,13 @@ const subdomain = ''
 ## Contributing
 
 For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-base/issues/new)
+
+## Preferred Code concepts
+
+- HTML - https://google.github.io/styleguide/htmlcssguide.html
+- CSS - BEM - https://github.com/airbnb/css
+- SCSS - https://sass-guidelin.es/
+- JavaScript - https://standardjs.com/
 
 ## Inspiration
 

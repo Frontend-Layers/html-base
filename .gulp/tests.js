@@ -1,5 +1,4 @@
-// Misc
-
+// Tests
 
 import mobileFriendlyTest from 'mobile-friendly-test-npm'
 import htmlSpeed from 'html-speed'

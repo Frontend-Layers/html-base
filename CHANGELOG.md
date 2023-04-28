@@ -1,12 +1,19 @@
 # Changelog
 
-## [1.0.21]
+## [1.2.0]
 
-- page preview generator maintance
+- increased quality for Webp compression to 100
+- added AVIF images conversion
+- updated relates
+
+## [1.1.0]
+
+- added UI Exporer
 
 ## [1.0.20]
 - fixed 'import' any resources loader
 - disabled .eslintrc "no-template-curly-in-string" to avoid warnings for html template markers
+- page preview generator maintance
 
 ## [1.0.19]
 - updated html pages preview

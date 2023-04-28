@@ -9,6 +9,8 @@ import ModuleClass from 'src/module-class';
 import Component from 'src/components/component';
 import ResourcesLoaderTest from 'src/resources-loader-test.js';
 
+import 'ui-explorer';
+
 // Check JS is enabled
 NoJs();
 
@@ -35,5 +37,4 @@ domReady(() => {
    */
   const obj = new ModuleClass();
   obj.method();
-
 });

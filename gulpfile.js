@@ -15,7 +15,7 @@ import { roll, scriptsReload, compressJS } from './.gulp/javascript.js';
 import { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
 
 // Images
-import { webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
+import { webpCompress, avifCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
 
 // Server
 import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, lt } from './.gulp/server.js';
@@ -66,7 +66,7 @@ const watcher = () => {
   watch('./src/scss/**/*.scss', series(scss, stylesReload));
   watch('./src/**/*.html', series(htmlGenerate, cleanHTML, htmlReload, testHtml));
   watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scriptsReload));
-  watch('./src/images/**/*', series(webpCompress, imgCopy));
+  watch('./src/images/**/*', series(parallel(webpCompress, avifCompress), imgCopy));
   watch('./src/favicons/**/*', copyIcons);
   watch('./src/fonts/**/*', copyFonts);
   watch('./src/video/**/*', copyVideo);
@@ -85,7 +85,7 @@ export default series(
     copyIcons,
     series(series(roll, jsVendorLibs)),
     series(scss),
-    series(webpCompress, imgCopy),
+    series(parallel(webpCompress, avifCompress), imgCopy),
     series(htmlGenerate, cleanHTML, openBrowser, htmlPagesPreview, validateHtml),
     openServer,
     lt,
@@ -108,7 +108,7 @@ const build = series(
   parallel(
     series(series(roll, jsVendorLibs), compressJS),
     series(scss, cssCompress),
-    series(webpCompress, imgCopy),
+    series(parallel(webpCompress, avifCompress), imgCopy),
     series(htmlGenerate, cleanHTML, htmlCompress)
   ),
   bumper
@@ -117,7 +117,7 @@ const build = series(
 /**
  * Generate Images
  */
-const images = series(imgCopy, webpCompress);
+const images = series(parallel(webpCompress, avifCompress), imgCopy);
 
 /**
  * Generate SVG Sprite
