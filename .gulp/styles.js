@@ -67,7 +67,7 @@ const scss = () =>
     .on('error', notify.onError())
     .pipe(sourcemaps.write('./'))
     .pipe(dest(cfg.dest.scss))
-    .pipe(dest(cfg.dest.css))
+    .pipe(dest(cfg.dest.css));
 
 /**
  * Styles Reload
@@ -79,14 +79,14 @@ const stylesReload = () => src(cfg.dest.scss)
 /**
 * PostCSS, Autoprefixer, CSS compressor
 */
-const cssCompress = () =>
+const cssCompress = (done) =>
   src('./dist/styles/**/*.css')
     .pipe(plumber())
     .pipe(postcss([autoprefixer(), cssnano()]))
     .on('error', notify.onError())
     .pipe(dest('./build/styles/'))
     .pipe(size())
-    .pipe(connect.reload());
-
+    .pipe(connect.reload())
+    .on('end', done);
 
 export { scss, cssCompress, stylesReload };

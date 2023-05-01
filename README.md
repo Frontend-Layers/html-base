@@ -24,13 +24,18 @@ _HTML initial bundle for professional templates development_
 
 ## Installation
 
+by shell command
+
 ```shell
 npx get-html-base project-name
 
 cd project-name
 ```
 
-## Shell
+or [download html-base](https://github.com/andreymatin/html-base/archive/refs/heads/master.zip) zip package
+
+
+## Logscreen
 
 <img src=https://raw.githubusercontent.com/andreymatin/html-initial-bundle/master/screenshot.png alt=screenshot width=640>
 
@@ -48,7 +53,7 @@ cd project-name
 - DomReady
 - Parallax
 - NoJs
-- UI Explorer
+- [UI Explorer](https://www.npmjs.com/package/ui-explorer)
 
 ## Tests
 
@@ -60,9 +65,8 @@ cd project-name
 
 ## Images
 
-- WEBP Convertor
+- WEBP, AVIF Convertor
 - SVG (SVGOmg compression)
-- Best practices for PNG/JPG
 
 ## Automation
 
@@ -75,13 +79,14 @@ Development bundle for fast and robust web development based on Gulp and Rollup
 - ./babel.config.js
 - ./package.json
 
-### Styles Automation
+### Styles
 
-- gulp-sass
-- gulp-postcss
 - autoprefixer
+- gulp-postcss
+- gulp-sass
+- sass
 
-### Server Automation
+### Server
 
 - gulp-connect
 - gulp-open
@@ -101,17 +106,6 @@ Development bundle for fast and robust web development based on Gulp and Rollup
 - rollup
 - rollup-plugin-babel
 
-### Images
-
-- gulp-imagemin
-- imagemin-pngquant
-- imagemin-zopfli
-- imagemin-mozjpeg
-- imagemin-jpeg-recompress
-- imagemin-giflossy
-- gulp-webp
-- gulp-svg-sprite
-
 ### Tests
 
 - gulp-w3c-html-validator
@@ -120,9 +114,11 @@ Development bundle for fast and robust web development based on Gulp and Rollup
 
 ## Editor
 
-- ./.vscode/settings.json
-- ./.editorconfig
-- ./.eslintrc.json
+- .vscode/settings.json
+- .editorconfig
+- .eslintrc.json
+- .prettierrc
+- .eslintrc.json
 
 ### VSC Tweaks
 

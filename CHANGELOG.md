@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0]
+
+- added JS apps profile
+
 ## [1.2.0]
 
 - increased quality for Webp compression to 100
@@ -21,7 +25,7 @@
 ## [1.0.18]
 - updated html-test. added ignored HTML folders for web components
 - rollup: added JavaScript resources loader (HTML, images)
-- images: remove compression for images
+- images: remove compression for wimages
 - images: fixed WEBP
 - system: disable localtunnel by defaul
 - system: corrected folders cleaning
