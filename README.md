@@ -28,12 +28,41 @@ by shell command
 
 ```shell
 npx get-html-base project-name
-
 cd project-name
+npm i
 ```
 
-or [download html-base](https://github.com/andreymatin/html-base/archive/refs/heads/master.zip) zip package
+or [download html-base](https://github.com/andreymatin/html-base/archive/refs/heads/master.zip) zip package for manual installation
 
+
+### JS mode install
+
+Please add ``` -js ``` key
+
+```shell
+npx get-html-base project-name -js
+cd project-name
+npm i
+```
+
+## Under the hood
+
+<img alt="JavaScript" src="https://img.shields.io/badge/JavaScript%20-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black" />
+<img alt="HTML5" src="https://img.shields.io/badge/-HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+<img alt="CSS" src="https://img.shields.io/badge/CSS%20-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" />
+<img alt="Sass" src="https://img.shields.io/badge/-Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" />
+<img alt="Gulp" src="https://img.shields.io/badge/-Gulp-CF4647?logo=gulp&logoColor=white&style=for-the-badge" />
+<img alt="rollup.js" src="https://img.shields.io/badge/-Rollup-EC4A3F?logo=rollup.js&logoColor=white&style=for-the-badge" />
+<img alt="babel" src="https://img.shields.io/badge/-babel-F9DC3E?logo=babel&logoColor=white&style=for-the-badge" />
+<img alt="PostCSS" src="https://img.shields.io/badge/-PostCSS-DD3A0A?logo=PostCSS&logoColor=white&style=for-the-badge" />
+<img alt="Autoprefixer" src="https://img.shields.io/badge/-autoprefixer-DD3735?logo=autoprefixer&logoColor=white&style=for-the-badge" />
+<img alt="eslint" src="https://img.shields.io/badge/-eslint-4B32C3?logo=eslint&logoColor=white&style=for-the-badge" />
+<img alt="stylelint" src="https://img.shields.io/badge/-stylelint-263238?logo=stylelint&logoColor=white&style=for-the-badge" />
+<img alt="nunjucks" src="https://img.shields.io/badge/-nunjucks-1C4913?logo=stylelint&logoColor=white&style=for-the-badge" />
+<img alt="bootstrap" src="https://img.shields.io/badge/-nunjucks-7952B3?logo=bootstrap&logoColor=white&style=for-the-badge" />
+<img alt="npm" src="https://img.shields.io/badge/-npm-CB3837?logo=npm&logoColor=white&style=for-the-badge" />
+<img alt="yarn" src="https://img.shields.io/badge/-yarn-2C8EBB?logo=yarn&logoColor=white&style=for-the-badge" />
+<img alt="pnpm" src="https://img.shields.io/badge/-pnpm-F69220?logo=pnpm&logoColor=white&style=for-the-badge" />
 
 ## Logscreen
 
