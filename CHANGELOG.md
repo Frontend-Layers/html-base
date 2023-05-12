@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.9]
+
+- minor updates
+
 ## [1.3.0]
 
 - added JS apps profile
@@ -79,7 +83,7 @@
 - gulp: fixed purifyCSS and postCSS tasks
 - vsc: added custom comments color (aqua)
 - gulp: enable / disable CSS purify ```const enablePurify = true```
-- doc: added doc link with tools  [frontend-toolchain](https://github.com/andreymatin/frontend-toolchain)
+- doc: added doc link with tools  [frontend-toolchain](https://github.com/frontend-layers/frontend-toolchain)
 - sys: fixed build folder recreation after remove command at the start
 - gulp: added cache for css, js, html
 

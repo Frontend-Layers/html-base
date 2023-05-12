@@ -1,3 +1,3 @@
 ## Contributing
 
-For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/html-base/issues/new)
+For issues, bugs or imporvements please open an [issue](https://github.com/frontend-layers/html-base/issues/new)
