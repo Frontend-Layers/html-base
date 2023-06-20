@@ -23,27 +23,25 @@ import bump from 'gulp-bump';
 import connect from 'gulp-connect';
 import open from 'gulp-open';
 
+import dotenv from 'dotenv';
+dotenv.config();
 
+const port = process.env.PORT || 4000;
+const subdomain = process.env.SUBDOMAIN || '';
+const lt = process.env.LT || false;
 
 /**
 * Config
 */
-
-/**
- *
- */
-// const subdomain = 'html-initial-bundle'
-const subdomain = '';
-
 const cfg = {
   server: {
     host: '0.0.0.0',
     root: './dist/',
-    port: 4000,
+    port,
     src: './dist/index.html',
-    uri: 'http://localhost:4000/',
+    uri: `http://localhost:${port}/`,
   },
-  lt: false
+  lt
 };
 
 
@@ -94,7 +92,7 @@ const cleanHTML = () => {
 /**
  * Proxy Tunneling (localtunnel)
  */
-const lt = async () => {
+const openProxyTunnel = async () => {
   if (cfg.lt) {
 
     const tunnel = await localtunnel({
@@ -113,4 +111,4 @@ const lt = async () => {
 
 
 
-export { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, lt };
+export { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, openProxyTunnel };

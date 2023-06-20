@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0]
+
+- added dotenv config
+- removed avif config (webp is enought)
+- related updates
+
 ## [1.3.9]
 
 - minor updates

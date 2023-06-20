@@ -24,7 +24,7 @@ _HTML initial bundle for professional templates development_
 
 ## Output
 
-- Clean, beautified, optimized and/or compressed HTML/CSS/JS
+- Clean, tested, beautified, optimized and/or compressed HTML/CSS/JS
 
 ## Usage
 
@@ -128,7 +128,7 @@ npm i
 
 ## Images
 
-- WEBP, AVIF Convertor
+- WEBP Convertor
 - SVG (SVGOmg compression)
 
 ## Automation
@@ -234,7 +234,7 @@ For issues, bugs or imporvements please open an [issue](https://github.com/front
 
 ## Logscreen
 
-<img src=https://raw.githubusercontent.com/frontend-layers/html-initial-bundle/master/screenshot.png alt=screenshot width=640>
+<img src=https://raw.githubusercontent.com/frontend-layers/html-base/master/screenshot.png alt=screenshot width=640>
 
 ## Inspiration
 

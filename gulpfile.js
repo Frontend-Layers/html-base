@@ -2,7 +2,6 @@
  * Load Modules
  * ================================================================================
  */
-
 import gulp from 'gulp';
 
 // Styles
@@ -15,10 +14,10 @@ import { roll, scriptsReload, compressJS } from './.gulp/javascript.js';
 import { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
 
 // Images
-import { webpCompress, avifCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
+import { webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
 
 // Server
-import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, lt } from './.gulp/server.js';
+import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, openProxyTunnel } from './.gulp/server.js';
 
 // Misc
 import { copyFiles, copyBuildFiles, copyVideo, copyFonts, copyIcons } from './.gulp/misc.js';
@@ -38,12 +37,19 @@ import concat from 'gulp-concat';
 const { src, dest, parallel, series, watch } = gulp;
 
 /**
+ * Start
+ */
+
+// Clear shell screen
+console.clear();
+
+/**
  * Settings
  * ================================================================================
  */
 
 /**
- * JS Libraries appending
+ * JS Libraries List
  */
 const jsVendorList = {
   src: ['./dist/javascript/app.js']
@@ -66,7 +72,7 @@ const watcher = () => {
   watch('./src/scss/**/*.scss', series(scss, stylesReload));
   watch('./src/**/*.html', series(htmlGenerate, cleanHTML, htmlReload, testHtml));
   watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scriptsReload));
-  watch('./src/images/**/*', series(parallel(webpCompress, avifCompress), imgCopy));
+  watch('./src/images/**/*', series(webpCompress, imgCopy));
   watch('./src/favicons/**/*', copyIcons);
   watch('./src/fonts/**/*', copyFonts);
   watch('./src/video/**/*', copyVideo);
@@ -85,10 +91,10 @@ export default series(
     copyIcons,
     series(series(roll, jsVendorLibs)),
     series(scss),
-    series(parallel(webpCompress, avifCompress), imgCopy),
+    series(webpCompress, imgCopy),
     series(htmlGenerate, cleanHTML, openBrowser, htmlPagesPreview, validateHtml),
     openServer,
-    lt,
+    openProxyTunnel,
     watcher
   )
 );
@@ -108,7 +114,7 @@ const build = series(
   parallel(
     series(series(roll, jsVendorLibs), compressJS),
     series(scss, cssCompress),
-    series(parallel(webpCompress, avifCompress), imgCopy),
+    series(webpCompress, imgCopy),
     series(htmlGenerate, cleanHTML, htmlCompress)
   ),
   bumper
@@ -117,7 +123,7 @@ const build = series(
 /**
  * Generate Images
  */
-const images = series(parallel(webpCompress, avifCompress), imgCopy);
+const images = series(webpCompress, imgCopy);
 
 /**
  * Generate SVG Sprite

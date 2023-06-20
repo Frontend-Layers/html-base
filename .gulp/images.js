@@ -7,7 +7,6 @@ import cache from 'gulp-cache';
  * Images
  */
 import webp from 'gulp-webp';
-import avif from 'gulp-avif';
 
 /**
  * SVG
@@ -26,8 +25,7 @@ import sprite from 'gulp-svg-sprite';
 const cfg = {
   src: {
     img: './src/images/**/*',
-    webp: './src/images/**/*.{png,jpg,jpeg}',
-    avif: './src/images/**/*.{png,jpg,jpeg}',
+    webp: './src/images/**/*.{png,jpg,jpeg}'
   },
   dest: {
     img: './dist/images/',
@@ -58,19 +56,10 @@ const webpCompress = () =>
     .pipe(dest(cfg.dest.img))
     .pipe(dest(cfg.build.img));
 
-/**
- * Avif
- */
-const avifCompress = () =>
-  src(cfg.src.avif)
-    .pipe(avif({ quality: ww100 }))
-    .pipe(dest(cfg.dest.img))
-    .pipe(dest(cfg.build.img));
 
 /**
  * SVG Sprite
  */
-
 const genSvgSprite = () =>
   src('./src/images/sprite/*.svg')
     .pipe(
@@ -92,4 +81,4 @@ const genSvgSprite = () =>
 
 const imgCopy = () => src('./src/images/**/*').pipe(dest('./dist/images/')).pipe(dest('./build/images/'));
 
-export { webpCompress, avifCompress, genSvgSprite, imgCopy };
+export { webpCompress, genSvgSprite, imgCopy };

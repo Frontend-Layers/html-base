@@ -8,15 +8,15 @@
  * Vendors
  */
 
+// SCSS Reset
+@use 'scss-reset/reset';
+
+// SCSS Mixins
+@import 'scss-mixins-npm/mixins';
+
 // Twitter Bootstrap Grid System
 @import 'bootstrap/scss/bootstrap-grid';
 // @import 'bootstrap-icons/font/bootstrap-icons';
-
-// Vendor Reset
-@import 'scss-reset/reset';
-
-// Vendor Mixins
-@import 'scss-mixins-npm/mixins';
 
 /**
  * Custom
@@ -61,4 +61,3 @@
 
 // Font Files
 @import 'fonts';
-
