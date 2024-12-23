@@ -12,8 +12,8 @@ import connect from 'gulp-connect';
  * Notification
  */
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
 import size from 'gulp-size';
+import fancyLog from 'fancy-log';
 
 /**
  * Compressors
@@ -175,14 +175,24 @@ const scriptsReload = () => src(cfg.src.js)
 // JS Minify
 const compressJS = () =>
   src('./dist/javascript/**/*.js')
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: function (error) {
+        const defColor = util.inspect.styles.date;
+        util.inspect.styles.date = 'red';
+        fancyLog(error.messageFormatted || error.message);
+        util.inspect.styles.date = defColor;
+        this.emit('end');
+      }
+    }))
     .pipe(uglify())
-    // .pipe(gulpClosureCompiler())
-    .on('error', notify.onError())
     .pipe(size())
     .pipe(dest('./build/javascript/'));
 
-
+/**
+ * StandardJS
+ *
+ * @description Lint JavaScript files
+ */
 const standardJS = () =>
   src(['./dist/javascript/app.js'])
     .pipe(standard())

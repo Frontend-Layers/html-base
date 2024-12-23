@@ -20,7 +20,7 @@
     "**/tmp": true,
     "**/styles": true,
     "**/package-lock.json": true,
-    "**/yarn.lock": true   
+    "**/yarn.lock": true
   },
   "html.format.indentInnerHtml": false,
   "html.format.wrapAttributes": "preserve",
@@ -29,16 +29,24 @@
     "comments": true
   },
   "editor.fontLigatures": "'ss01'",
-  "javascript.format": {
-    "semicolons": "insert",
-    "insertSpaceBeforeFunctionParenthesis": false
-  },
+  // "javascript.format": {
+  //   "semicolons": "insert",
+  //   "insertSpaceBeforeFunctionParenthesis": false
+  // },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": [
     "javascript"
   ],
   "html.format.extraLiners": "",
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "editor.renderWhitespace": "all", // Отображение пробелов и табуляций
+  "files.associations": {
+    "Makefile": "makefile" // Настройка Makefile как языка
+  },
+  "[makefile]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  }
 }

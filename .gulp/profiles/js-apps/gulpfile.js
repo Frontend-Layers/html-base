@@ -15,7 +15,7 @@ import { roll, rollES, rollUMD, scriptsReload, compressJS } from './.gulp/javasc
 import { htmlGenerate, htmlReload, testHtml } from './.gulp/html.js';
 
 // Images
-import { imagesCompress, webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
+import { imagesCompress, webpCompress, genSvgSprite, copyImages } from './.gulp/images.js';
 
 // Server
 import { openServer, openBrowser, bumper, clean, cleanDist } from './.gulp/server.js';
@@ -82,12 +82,12 @@ export default series(
     copyVideo,
     copyFonts,
     copyIcons,
+    copyImages,
     series(
       series(htmlGenerate, cleanDist, openBrowser),
       series(scss, cssCompress),
       series(series(parallel(roll, rollES, rollUMD), jsVendorLibs), compressJS)
     ),
-    series(imgCopy),
     openServer,
     watcher
   )
@@ -104,11 +104,11 @@ const test = parallel(mobileTestRes, htmlSpeedRes, cssTestRes);
 const build = series(
   clean,
   copyBuildFiles,
+  copyImages,
   parallel(
     series(htmlGenerate, cleanDist),
     series(series(parallel(roll, rollES, rollUMD), jsVendorLibs), compressJS),
-    series(scss, cssCompress),
-    series(imgCopy)
+    series(scss, cssCompress)
   ),
   bumper
 );

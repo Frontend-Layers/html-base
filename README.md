@@ -3,7 +3,7 @@
 [![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/frontend-layers/html-base/LICENSE)
 [![npm](https://img.shields.io/npm/v/html-base.svg)](https://www.npmjs.com/package/html-base)
 
-_HTML initial bundle for professional templates development_
+_HTML initial bundle for professional frontend development_
 
 ## Why
 
@@ -22,13 +22,44 @@ _HTML initial bundle for professional templates development_
 - Automated test tasks
 - A lot of useful open source included
 
+### Structure
+
+```
+html-base/
+├── .gulp/              # Gulp tasks
+├── .vscode             # VSC custom settings
+├── src/                # Source files
+│   ├── favicons/       # Icons
+│   ├── fonts/          # Custom Fonts
+│   ├── javascript/     # Scripts and JS Resources
+│   ├── images/         # Images
+│   ├── images/sprite/  # SVG sprite
+│   ├── layouts         # HTML parts
+│   ├── scss/           # SCSS files
+│   └── video/          # For video files
+├── dest/               # Beautified Development build output
+├── build/              # Compressed Production build output
+├── test/               # Test scripts
+└── json/               # JSON files
+```
+
 ## Output
 
 - Clean, tested, beautified, optimized and/or compressed HTML/CSS/JS
 
 ## Usage
 
-by shell command
+### By Git Command
+
+Clone the repository and install dependencies manually:
+
+```shell
+git clone https://github.com/frontend-layers/html-base.git project-name
+cd project-name
+npm install
+```
+
+### By Shell Command
 
 ```shell
 npx get-html-base project-name
@@ -36,10 +67,12 @@ cd project-name
 npm i
 ```
 
-or [download html-base](https://github.com/frontend-layers/html-base/archive/refs/heads/master.zip) zip package for manual installation
+### Or [Download html-base](https://github.com/frontend-layers/html-base/archive/refs/heads/master.zip) Zip Package for Manual Installation
+
+* https://github.com/frontend-layers/html-base/archive/refs/heads/master.zip
 
 
-### JS mode install
+### JS Apps Mode Install
 
 Please add ``` -js ``` key
 
@@ -49,49 +82,62 @@ cd project-name
 npm i
 ```
 
-## Install by PMs
+## Install via Package Managers
+
+### Using npm
 
 ```shell
 npm i html-base
 ```
-or
+### Using Yarn
+
 ```shell
 yarn add html-base
 ```
-or
+### Using pnpm
+
 ```shell
 pnpm i html-base
 ```
 
-Next need to copy html-base folder from node_modules and rename by project name.
-Also need to update package.json and related files depends of new project title, description, owner, etc.
-Next please install all dependencies by
+After installation, copy the ```html-base``` folder from ```node_modules``` and rename it according to your project name.
+
+Then, update the ```package.json``` and related files based on your new project title, description, owner, etc.
+
+Finally, install all dependencies with:
+
+### Using npm
 
 ```shell
 npm i
 ```
-or
+### Using Yarn
+
 ```shell
 yarn add
 ```
-or
+
+### Using pnpm
+
 ```shell
 pnpm i
 ```
 
 ## Usage
 
-After installation please launch by the command
+After installation, launch the project using one of the following commands:
 
 ```shell
 gulp
 ```
+
 or
+
 ```shell
 npm start
 ```
 
-To update packages please use these commands
+To update packages, use the following commands:
 
 ```shell
 npm updates
@@ -114,9 +160,7 @@ npm i
 ## JavaScript utils
 
 - DomReady
-- Parallax
 - NoJs
-- [UI Explorer](https://www.npmjs.com/package/ui-explorer)
 
 ## Tests
 
@@ -158,7 +202,7 @@ Development bundle for fast and robust web development based on Gulp and Rollup
 ### Notification
 
 - gulp-plumber
-- gulp-notify
+- fancy-log
 
 ### Source Maps
 
@@ -208,22 +252,102 @@ const subdomain = ''
 - test-design.html - design system
 - test-sprite.html - svg sprite test
 
-## Folders
-
-- .gulp - gulp tasks
-- src - initial files
-- dest - beautified files, initial processing
-- build - compressed files
-
 ## SVG Sprite generation
 
 - copy svg files for sprite into ```'./images/sprite/'``` folder
 - launch in the terminal ```gulp sprite```
 - generated svg sprite is there - ```./images/sprite.svg```
 
+## Docker integration
+
+Steps to Set Up Docker Container and Run them locally
+
+### Log in to Docker Hub
+
+```shell
+docker login
+```
+
+### Pull the Docker Image
+
+Download the latest version of the ```html-base``` Docker image from Docker Hub.
+
+```shell
+docker pull andreymatin/html-base:latest
+```
+
+### Copy Files from the Docker Container
+
+Extract the application files from the Docker container to your local machine. Replace html-base with the name of the running container if it's not html-base.
+
+```shell
+docker cp html-base:/app ./
+```
+
+### Start the Application
+
+Use the make command to start the application with the up target defined in the Makefile. Ensure that the Makefile is in the same directory.
+
+```shell
+make up
+```
+
+## Docker-Related Files
+
+* Makefile
+* Dockerfile
+* docker-compose.yml
+
+### Makefile
+
+The Makefile provides an easy way to manage and automate Docker commands. It includes tasks such as:
+
+* Starting and stopping the Docker containers.
+* Automatically opening the application in a browser.
+* Following container logs.
+
+#### Key targets include:
+
+* ```up```: Builds and starts the application containers.
+* ```down```: Stops and removes the containers.
+* ```log```: Displays the application logs in real time.
+
+#### Makefile Windows Installation
+
+If you have Chocolatey installed on your Windows system,
+you can install make directly by running the following command in an elevated PowerShell (Administrator) terminal:
+
+```shell
+choco install make
+```
+
+
+### Dockerfile
+
+The ```Dockerfile``` is used to define the application’s image. It specifies:
+
+* Base image: The Node.js version (e.g., node:22).
+* Working directory: Where the application is stored in the container (e.g., /app).
+* Exposed ports: The ports used by the application, such as 4000.
+* Dependencies: Installs gulp globally and other npm dependencies.
+* Application entry point: Defines the command to start the
+* application (npm start).
+
+
+### docker-compose.yml
+
+The docker-compose.yml file orchestrates multiple services and simplifies container management. It defines:
+
+* Services: Specifies the application (app) and its dependencies.
+* Image: Uses a predefined image or builds it locally (andreymatin/html-base:latest).
+* Container name: Assigns a recognizable name to the container (html-base).
+* Ports: Maps container ports to the host machine (e.g., 4000:4000).
+* Environment variables: Configures settings like NODE_ENV and PORT.
+* Volumes: Synchronizes files between the host and container for development.
+
 ## Contributing
 
-For issues, bugs or imporvements please open an [issue](https://github.com/frontend-layers/html-base/issues/new)
+For issues, bugs or improvements please open an [issue](https://github.com/frontend-layers/html-base/issues/new)
 
 ## Preferred Code concepts
 

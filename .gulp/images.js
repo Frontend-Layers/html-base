@@ -1,7 +1,12 @@
+/**
+ * Images
+ * ================================================================================
+ */
+
 import gulp from 'gulp';
 const { src, dest } = gulp;
 
-import cache from 'gulp-cache';
+import newer from 'gulp-newer';
 
 /**
  * Images
@@ -13,11 +18,23 @@ import webp from 'gulp-webp';
  */
 import sprite from 'gulp-svg-sprite';
 
+/**
+ * Notification
+ */
+import plumber from 'gulp-plumber';
 
 /**
- * Settings
- * ================================================================================
+ * System
  */
+import dotenv from 'dotenv';
+dotenv.config();
+
+/**
+ * Custom
+ */
+import { errorHandler } from './lib/utils.js';
+
+
 
 /**
  * Config
@@ -37,24 +54,18 @@ const cfg = {
 };
 
 /**
- * Images
- * ================================================================================
- */
-
-
-/**
- * Webp
+ * WebP Convertor
  * @src: https://www.smashingmagazine.com/2018/07/converting-images-to-webp/
  */
 const webpCompress = () =>
   src(cfg.src.webp)
+    .pipe(plumber({ errorHandler }))
+    .pipe(newer(cfg.dest.img))
     .pipe(
-      cache(
-        webp({ quality: 100 })
-      )
+      webp({ quality: process.env.WEBP_QUALITY || 100 })
     )
     .pipe(dest(cfg.dest.img))
-    .pipe(dest(cfg.build.img));
+    .pipe(dest(cfg.build.img))
 
 
 /**
@@ -62,6 +73,8 @@ const webpCompress = () =>
  */
 const genSvgSprite = () =>
   src('./src/images/sprite/*.svg')
+    .pipe(plumber({ errorHandler }))
+    .pipe(newer(cfg.dest.img))
     .pipe(
       sprite({
         transform: ['svgo'],
@@ -77,8 +90,16 @@ const genSvgSprite = () =>
         },
       })
     )
-    .pipe(dest('./src/images/'));
+    .pipe(dest('./src/images/'))
 
-const imgCopy = () => src('./src/images/**/*').pipe(dest('./dist/images/')).pipe(dest('./build/images/'));
+/**
+ * Copy images
+ */
+const copyImages = () =>
+  src('./src/images/**/*')
+    .pipe(plumber({ errorHandler }))
+    .pipe(newer(cfg.dest.img))
+    .pipe(dest(cfg.dest.img))
+    .pipe(dest(cfg.build.img))
 
-export { webpCompress, genSvgSprite, imgCopy };
+export { webpCompress, genSvgSprite, copyImages };

@@ -1,0 +1,123 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-12-23T23:28:07.412Z",
+    "end": "2023-12-23T23:28:07.415Z",
+    "duration": 3,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "65b071f1-b8e7-4cbe-875d-4302be78edc3",
+      "title": "",
+      "fullFile": "W:\\home\\fel\\html-base\\test\\test.js",
+      "file": "\\test\\test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7703978d-1b16-49b6-9339-3ebd209ff055",
+          "title": "Array",
+          "fullFile": "W:\\home\\fel\\html-base\\test\\test.js",
+          "file": "\\test\\test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "9aa881b1-96c8-4c3e-9c99-8f6b13f257f1",
+              "title": "#indexOf()",
+              "fullFile": "W:\\home\\fel\\html-base\\test\\test.js",
+              "file": "\\test\\test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return -1 when the value is not present",
+                  "fullTitle": "Array #indexOf() should return -1 when the value is not present",
+                  "timedOut": false,
+                  "duration": 0,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "assert.equal([1, 2, 3].indexOf(4), -1);",
+                  "err": {},
+                  "uuid": "d786820a-4e27-4951-9e74-5fe7eb5f0026",
+                  "parentUUID": "9aa881b1-96c8-4c3e-9c99-8f6b13f257f1",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "d786820a-4e27-4951-9e74-5fe7eb5f0026"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 0,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "index.html",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "./src/test/report",
+        "reportFilename": "index.html",
+        "quiet": "true"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

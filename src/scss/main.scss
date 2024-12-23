@@ -9,7 +9,7 @@
  */
 
 // SCSS Reset
-@use 'scss-reset/reset';
+@import 'scss-reset/reset';
 
 // SCSS Mixins
 @import 'scss-mixins-npm/mixins';

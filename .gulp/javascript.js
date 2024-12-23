@@ -1,19 +1,23 @@
+/**
+ * Javascript Tasks
+ * ================================================================================
+ */
+
+
 import gulp from 'gulp';
 const { src, dest } = gulp;
-
 
 /**
  * System
  */
 import path from 'path';
 import connect from 'gulp-connect';
-
+import concat from 'gulp-concat';
 
 /**
  * Notification
  */
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
 import size from 'gulp-size';
 
 /**
@@ -36,9 +40,9 @@ import url from '@rollup/plugin-url';
 import standard from 'gulp-standard';
 
 /**
- * Settings
- * ================================================================================
+ * Custom
  */
+import { errorHandler } from './lib/utils.js';
 
 /**
  * Config
@@ -60,76 +64,105 @@ const cfg = {
 
 const __dirname = path.resolve(path.dirname(''));
 
+
 /**
- * JavaScript
- * ================================================================================
+ * Rollup.js Configuration
+ *
  */
+const rollupCfg = () => ({
+  input: cfg.roll.input,
+  plugins: [
+    babel({
+      exclude: 'node_modules/**',
+      presets: ['@babel/preset-env'],
+      babelHelpers: 'bundled',
+    }),
+    url({
+      include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
+    }),
+    json(),
+    alias({
+      entries: [
+        { find: 'src', replacement: `${__dirname}/src/javascript/` },
+        { find: 'root', replacement: `${__dirname}/` }
+      ],
+    }),
+    nodeResolve({
+      browser: true,
+      preferBuiltins: false,
+    }),
+    commonjs({
+      include: ['node_modules/**'],
+      sourceMap: true
+    }),
+  ],
+});
 
 
 /**
- * Rollup.js
+ * Rollup.js tasks
  */
-const roll = () =>
-  rollup({
-    input: cfg.roll.input,
-    plugins: [
-      babel({
-        exclude: 'node_modules/**',
-        presets: ['@babel/preset-env'],
-        babelHelpers: 'bundled',
-      }),
-      url({
-        include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
-      }),
-      json(),
-      alias({
-        entries: [
-          { find: 'src', replacement: `${__dirname}/src/javascript/` },
-          { find: 'root', replacement: `${__dirname}/` }
-        ],
-      }),
-      nodeResolve({
-        browser: true,
-        preferBuiltins: false,
-      }),
-      commonjs({
-        include: ['node_modules/**'],
-        exclude: [],
-        sourceMap: true
-      }),
-    ],
-  })
-    .then((bundle) => {
-      return bundle.write({
-        file: cfg.roll.output,
-        format: cfg.roll.format,
-        name: 'library',
-        sourcemap: true
-      });
+const roll = async function (done) {
+  try {
+    const bundle = await rollup(rollupCfg());
+
+    await bundle.write({
+      file: cfg.roll.output,
+      format: cfg.roll.format,
+      name: 'library',
+      sourcemap: true,
     });
 
-// Reload Browser after JS Changes
-const scriptsReload = () => src(cfg.src.js)
-  .pipe(connect.reload());
+    done();
+  } catch (error) {
+    errorHandler.call(this, error);
+    done(error);
+  }
+};
 
 
-// JS Minify
-const compressJS = () =>
+/**
+ * Reload Browser after JS Changes
+ */
+const scriptsReload = (done) =>
+  src(cfg.src.js)
+    .pipe(connect.reload())
+    .on('end', done);
+
+
+/**
+ * Compress JavaScript
+ */
+const compressJS = (done) =>
   src('./dist/javascript/**/*.js')
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler }))
     .pipe(uglify())
-    .on('error', notify.onError())
     .pipe(size())
-    .pipe(dest('./build/javascript/'));
+    .pipe(dest('./build/javascript/'))
+    .on('end', done);
 
 
-const standardJS = () =>
+/**
+ * Lints JavaScript files to ensure they follow coding standards.
+ */
+const standardJS = (done) =>
   src(['./dist/javascript/app.js'])
+    .pipe(plumber({ errorHandler }))
     .pipe(standard())
     .pipe(standard.reporter('default', {
       breakOnError: false,
       quiet: true
-    }));
+    }))
+    .on('end', done);
 
+/**
+ * Concat JS Libraries List
+ */
+const jsConcatVendorLibs = (jsVendorList, done) =>
+  src(jsVendorList.src)
+    .pipe(plumber({ errorHandler }))
+    .pipe(concat('app.js'))
+    .pipe(dest('./dist/javascript/'))
+    .on('end', done);
 
-export { roll, scriptsReload, compressJS, standardJS };
+export { roll, scriptsReload, compressJS, standardJS, jsConcatVendorLibs };

@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: ./
+      args:
+        - NODE_ENV=development
+    image: html-base:1.4.0
+    command: npm start
+    # restart: unless-stopped
+    restart: "no"
+    ports:
+      - '4000:4000'
+      - '35729:35729'
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - HOST=http://localhost
+      - LT=
+      - SUBDOMAIN=
+      - PROXY_URL=
+      - MFT_KEY=
+      - HST_KEY=
+      - WEBP_QUALITY=100
+    container_name: html-base
+    tty: true
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./src:/app/src
+      - ./dist:/app/dist
+      - ./build:/app/build
+

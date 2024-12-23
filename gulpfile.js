@@ -4,23 +4,27 @@
  */
 import gulp from 'gulp';
 
+/**
+ * Load Tasks
+ */
+
 // Styles
 import { scss, cssCompress, stylesReload } from './.gulp/styles.js';
 
 // JavaScript
-import { roll, scriptsReload, compressJS } from './.gulp/javascript.js';
+import { roll, scriptsReload, compressJS, jsConcatVendorLibs } from './.gulp/javascript.js';
 
 // HTML
 import { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
 
 // Images
-import { webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
+import { webpCompress, genSvgSprite, copyImages } from './.gulp/images.js';
 
 // Server
-import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, openProxyTunnel } from './.gulp/server.js';
+import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, openProxyTunnel, bs } from './.gulp/server.js';
 
 // Misc
-import { copyFiles, copyBuildFiles, copyVideo, copyFonts, copyIcons } from './.gulp/misc.js';
+import { copyTest, copyFiles, copyBuildFiles, copyVideo, copyFonts, copyIcons } from './.gulp/misc.js';
 
 // Tests
 import { mobileTestRes, htmlSpeedRes, cssTestRes } from './.gulp/tests.js';
@@ -33,12 +37,14 @@ import { mobileTestRes, htmlSpeedRes, cssTestRes } from './.gulp/tests.js';
 /**
  * System
  */
-import concat from 'gulp-concat';
-const { src, dest, parallel, series, watch } = gulp;
+const { parallel, series, watch } = gulp;
 
 /**
  * Start
  */
+
+// Disable deprecation warnings
+process.noDeprecation = true;
 
 // Clear shell screen
 console.clear();
@@ -55,10 +61,7 @@ const jsVendorList = {
   src: ['./dist/javascript/app.js']
 };
 
-const jsVendorLibs = () =>
-  src(jsVendorList.src)
-    .pipe(concat('app.js'))
-    .pipe(dest('./dist/javascript/'));
+const concatJsLibs = (done) => jsConcatVendorLibs(jsVendorList, done);
 
 /**
  * Tasks
@@ -68,14 +71,17 @@ const jsVendorLibs = () =>
 /**
  * Watcher
  */
-const watcher = () => {
-  watch('./src/scss/**/*.scss', series(scss, stylesReload));
-  watch('./src/**/*.html', series(htmlGenerate, cleanHTML, htmlReload, testHtml));
-  watch('./src/javascript/**/*.js', series(series(roll, jsVendorLibs), scriptsReload));
-  watch('./src/images/**/*', series(webpCompress, imgCopy));
-  watch('./src/favicons/**/*', copyIcons);
-  watch('./src/fonts/**/*', copyFonts);
-  watch('./src/video/**/*', copyVideo);
+const watcher = (done) => {
+  const watchOptions = { usePolling: true, interval: 500 };
+  watch('./src/scss/**/*.scss', watchOptions, series(scss, stylesReload));
+  watch('./src/**/*.html', watchOptions, series(htmlGenerate, cleanHTML, htmlReload, testHtml));
+  watch('./src/javascript/**/*.js', watchOptions, series(series(roll, concatJsLibs), scriptsReload));
+  watch('./src/images/**/*', watchOptions, series(webpCompress, copyImages));
+  watch('./src/favicons/**/*', watchOptions, series(copyIcons));
+  watch('./src/fonts/**/*', watchOptions, series(copyFonts));
+  watch('./src/video/**/*', watchOptions, series(copyVideo));
+  watch('./src/test/**/*', watchOptions, series(copyTest));
+  done();
 };
 
 /**
@@ -84,15 +90,16 @@ const watcher = () => {
 export default series(
   cleanDist,
   cleanBuild,
+  copyFiles,
+  copyVideo,
+  copyFonts,
+  copyIcons,
+  copyTest,
   parallel(
-    copyFiles,
-    copyVideo,
-    copyFonts,
-    copyIcons,
-    series(series(roll, jsVendorLibs)),
+    series(series(roll, concatJsLibs)),
     series(scss),
-    series(webpCompress, imgCopy),
-    series(htmlGenerate, cleanHTML, openBrowser, htmlPagesPreview, validateHtml),
+    series(webpCompress, copyImages),
+    series(htmlGenerate, cleanHTML, openBrowser, htmlPagesPreview),
     openServer,
     openProxyTunnel,
     watcher
@@ -102,7 +109,7 @@ export default series(
 /**
  * Test Tasks
  */
-const test = parallel(mobileTestRes, htmlSpeedRes, cssTestRes);
+const test = parallel(mobileTestRes, htmlSpeedRes, cssTestRes, validateHtml);
 
 /**
  * Build Tasks
@@ -112,9 +119,9 @@ const build = series(
   cleanBuild,
   copyBuildFiles,
   parallel(
-    series(series(roll, jsVendorLibs), compressJS),
+    series(series(roll, concatJsLibs, compressJS)),
     series(scss, cssCompress),
-    series(webpCompress, imgCopy),
+    series(webpCompress, copyImages),
     series(htmlGenerate, cleanHTML, htmlCompress)
   ),
   bumper
@@ -123,7 +130,7 @@ const build = series(
 /**
  * Generate Images
  */
-const images = series(webpCompress, imgCopy);
+const images = series(webpCompress, copyImages);
 
 /**
  * Generate SVG Sprite

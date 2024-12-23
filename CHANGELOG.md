@@ -1,9 +1,22 @@
 # Changelog
 
+## [1.5.0]
+
+- added Docker support
+- added Makefile for Docker
+- added MochaJS console tests and reporter
+- system: updated scss loading
+- system: package cleanup
+- updated relates
+- updated gulp tasks for Docker support
+- replaced ```gulp-cache``` with ```gulp-newer```
+- replaced ```gulp-open``` with ```open```
+- hid UI Explorer from scratch
+
 ## [1.4.0]
 
 - added dotenv config
-- removed avif config (webp is enought)
+- removed AVIF config (WebP is enough)
 - related updates
 
 ## [1.3.9]
@@ -16,7 +29,7 @@
 
 ## [1.2.0]
 
-- increased quality for Webp compression to 100
+- increased quality for WebP compression to 100
 - added AVIF images conversion
 - updated relates
 
@@ -36,13 +49,13 @@
 - updated html-test. added ignored HTML folders for web components
 - rollup: added JavaScript resources loader (HTML, images)
 - images: remove compression for wimages
-- images: fixed WEBP
+- images: fixed WebP
 - system: disable localtunnel by defaul
 - system: corrected folders cleaning
 
 ## [1.0.17]
 
-- decreased noice from eslint
+- decreased noise from eslint
 - corrected package.json
 - updated documentation
 
@@ -71,14 +84,14 @@
 
 ## [1.0.12]
 
-- gulp: added w3c test validation
+- gulp: added W3C test validation
 - gulp: added localtunnel
 
 ## [1.0.11]
 
 - gulp: updated to ES6 modules
 - gulp: added gulp-size module
-- gulp: recovered w3c validator
+- gulp: recovered W3C validator
 
 ## [1.0.10]
 

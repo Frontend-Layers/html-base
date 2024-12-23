@@ -23,7 +23,6 @@ import connect from 'gulp-connect';
  * Notification
  */
 import plumber from 'gulp-plumber';
-import notify from 'gulp-notify';
 
 /**
  * Prettifier
@@ -33,13 +32,17 @@ import prettify from 'gulp-prettify';
 /**
  * Compressors
  */
-import htmlmin from 'gulp-htmlmin';
-
+import htmlMin from 'gulp-htmlmin';
 
 /**
- * Pages Preview Generator
+ * Custom
  */
-const htmlPagesPreview = (c) => {
+import { errorHandler } from './lib/utils.js';
+
+/**
+ * Generate HTML preview pages
+ */
+const htmlPagesPreview = (done) => {
   const src = [
     './dist/home.html',
     './dist/article.html',
@@ -48,16 +51,15 @@ const htmlPagesPreview = (c) => {
   const dest = './dist/preview-pages.html';
 
   htmlPreview(src, dest);
-
-  return c();
+  done();
 };
 
 /**
- * HTML Template Sytem + Beautifier
+ * Generate and beautify HTML templates
  */
 const htmlGenerate = () =>
   src('./src/**/*.html')
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler }))
     .pipe(
       tpl({
         path: ['./src/'],
@@ -70,50 +72,52 @@ const htmlGenerate = () =>
         unformatted: ['pre', 'code'],
       })
     )
-    .on('error', notify.onError())
     .pipe(dest('./dist'));
 
 /**
- * Refresh HTML after src update
+ * HTML Reload
  */
-const htmlReload = () => src('./dist/**/*.html').pipe(connect.reload());
+const htmlReload = (done) =>
+  src('./dist/**/*.html')
+    .pipe(connect.reload())
+    .on('end', done);
 
 /**
  * HTML Minify
  */
-const htmlCompress = () =>
+const htmlCompress = (done) =>
   src('./dist/*.html')
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler }))
     .pipe(
-      htmlmin({
+      htmlMin({
         collapseWhitespace: true,
         removeComments: true,
         minifyJS: true,
         minifyCSS: true,
       })
     )
-    .on('error', notify.onError())
     .pipe(dest('./build/'))
-    .pipe(connect.reload());
-
+    .pipe(connect.reload())
+    .on('end', done);
 
 /**
- * Fast Validate HTML
+ * Rapid HTML Validator
  */
-
-const testHtml = () =>
+const testHtml = (done) => {
   htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] });
+  done();
+};
 
 /**
  * Detailed Validate HTML
  */
-const validateHtml = () =>
+const validateHtml = (done) =>
   src('./dist/*.html')
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler }))
     .pipe(htmlValidator.analyzer({
       ignoreLevel: "warning"
     }))
     .pipe(htmlValidator.reporter())
-    .on('error', notify.onError());
+    .on('end', done);
 
 export { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview };
