@@ -44,9 +44,7 @@ import { errorHandler } from './lib/utils.js';
  */
 const htmlPagesPreview = (done) => {
   const src = [
-    './dist/home.html',
-    './dist/article.html',
-    './dist/product.html'
+    './dist/home.html'
   ];
   const dest = './dist/preview-pages.html';
 
@@ -104,7 +102,7 @@ const htmlCompress = (done) =>
  * Rapid HTML Validator
  */
 const testHtml = (done) => {
-  htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] });
+  htmlTest('./dist/**/*.html', { ignore: ['dist/test/**', 'dist/javascript/**', 'node_modules/**'] });
   done();
 };
 

@@ -4,7 +4,7 @@ services:
       context: ./
       args:
         - NODE_ENV=development
-    image: html-base:1.4.0
+    image: html-base:1.5.0
     command: npm start
     # restart: unless-stopped
     restart: "no"

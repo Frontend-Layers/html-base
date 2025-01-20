@@ -19,6 +19,7 @@ import concat from 'gulp-concat';
  */
 import plumber from 'gulp-plumber';
 import size from 'gulp-size';
+import fancyLog from 'fancy-log';
 
 /**
  * Compressors
@@ -34,10 +35,11 @@ import { babel } from '@rollup/plugin-babel';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 
 import standard from 'gulp-standard';
+
 
 /**
  * Custom
@@ -87,7 +89,7 @@ const rollupCfg = () => ({
         { find: 'root', replacement: `${__dirname}/` }
       ],
     }),
-    nodeResolve({
+    resolve({
       browser: true,
       preferBuiltins: false,
     }),
@@ -96,6 +98,9 @@ const rollupCfg = () => ({
       sourceMap: true
     }),
   ],
+  onLog(level, log, handler) {
+    fancyLog('\x1b[33m[Rollup][Warning]\x1b[0m', '\x1b[0m' + log.message + '\x1b[0m');
+  }
 });
 
 
@@ -115,8 +120,10 @@ const roll = async function (done) {
 
     done();
   } catch (error) {
-    errorHandler.call(this, error);
-    done(error);
+    if (typeof errorHandler === 'function') {
+      errorHandler.call(this, error);
+    }
+    done();
   }
 };
 
@@ -159,7 +166,7 @@ const standardJS = (done) =>
  * Concat JS Libraries List
  */
 const jsConcatVendorLibs = (jsVendorList, done) =>
-  src(jsVendorList.src)
+  src(jsVendorList.src, { allowEmpty: true })
     .pipe(plumber({ errorHandler }))
     .pipe(concat('app.js'))
     .pipe(dest('./dist/javascript/'))

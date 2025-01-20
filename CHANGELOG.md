@@ -1,5 +1,20 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.5.1] - YYYY-MM-DD
+
+- disble VSCode ext recommendations permanently
+- added recommended extensions list for VSCode `./vscode/extensions.json`
+- added `_debug.scss` for temporary fixes, unoptimized critical classes which should be solved properly later or removed.
+- added RollUp onLog
+- added ignore parameter `'dist/test/**'` for htmlTest
+- updated `_debug.scss`
+- added VSCode `"explorer.compactFolders": false`
+
 ## [1.5.0]
 
 - added Docker support
@@ -9,8 +24,8 @@
 - system: package cleanup
 - updated relates
 - updated gulp tasks for Docker support
-- replaced ```gulp-cache``` with ```gulp-newer```
-- replaced ```gulp-open``` with ```open```
+- replaced `gulp-cache` with `gulp-newer`
+- replaced `gulp-open` with `open`
 - hid UI Explorer from scratch
 
 ## [1.4.0]
@@ -101,7 +116,7 @@
 
 - gulp: fixed purifyCSS and postCSS tasks
 - vsc: added custom comments color (aqua)
-- gulp: enable / disable CSS purify ```const enablePurify = true```
+- gulp: enable / disable CSS purify `const enablePurify = true`
 - doc: added doc link with tools  [frontend-toolchain](https://github.com/frontend-layers/frontend-toolchain)
 - sys: fixed build folder recreation after remove command at the start
 - gulp: added cache for css, js, html
