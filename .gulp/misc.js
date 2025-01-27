@@ -1,56 +1,72 @@
 import gulp from 'gulp';
 import connect from 'gulp-connect';
 import plumber from 'gulp-plumber';
+import newer from 'gulp-newer';
+import cached from 'gulp-cached';
 
-/**
- * Custom
- */
 import { errorHandler } from './lib/utils.js';
 
 const { src, dest } = gulp;
 
-const copyTest = () =>
-  src('./src/test/**/*')
-    .pipe(plumber({ errorHandler }))
-    .pipe(dest('./dist/test/'))
-    .pipe(connect.reload())
+const commonPipes = (stream) => stream
+  .pipe(cached('files'))
+  .pipe(newer('./dist/'))
+  .pipe(plumber({ errorHandler }))
+  .pipe(connect.reload());
 
+const copyTest = () =>
+  commonPipes(
+    src('./src/test/**/*')
+      .pipe(dest('./dist/test/'))
+  );
 
 const copyFiles = () =>
-  src([
-    './src/_redirects',
-    './src/_headers',
-    './src/robots.txt',
-    './src/favicon.ico',
-  ])
-    .pipe(plumber({ errorHandler }))
-    .pipe(dest('./dist/'))
-
+  commonPipes(
+    src([
+      './src/_redirects',
+      './src/_headers',
+      './src/robots.txt',
+      './src/favicon.ico',
+    ])
+      .pipe(dest('./dist/'))
+  );
 
 const copyBuildFiles = () =>
   src(['./dist/**/*'])
     .pipe(plumber({ errorHandler }))
-    .pipe(dest('./build/'))
-
+    .pipe(dest('./build/'));
 
 const copyVideo = () =>
-  src('./src/video/**/*')
-    .pipe(plumber({ errorHandler }))
-    .pipe(dest('./dist/video/'))
-    .pipe(connect.reload())
-
+  commonPipes(
+    src('./src/video/**/*')
+      .pipe(dest('./dist/video/'))
+  );
 
 const copyFonts = () =>
-  src('./src/fonts/**/*')
-    .pipe(plumber({ errorHandler }))
-    .pipe(dest('./dist/fonts/'))
-    .pipe(connect.reload())
-
+  commonPipes(
+    src('./src/fonts/**/*')
+      .pipe(dest('./dist/fonts/'))
+  );
 
 const copyIcons = () =>
-  src('./src/favicons/**/*')
-    .pipe(plumber({ errorHandler }))
-    .pipe(dest('./dist/favicons/'))
-    .pipe(connect.reload())
+  commonPipes(
+    src('./src/favicons/**/*')
+      .pipe(dest('./dist/favicons/'))
+  );
 
-export { copyTest, copyFiles, copyBuildFiles, copyVideo, copyFonts, copyIcons };
+const copyReport = () =>
+  commonPipes(
+    src('./src/report/**/*')
+      .pipe(dest('./dist/report/'))
+  );
+
+
+export {
+  copyTest,
+  copyFiles,
+  copyBuildFiles,
+  copyVideo,
+  copyFonts,
+  copyIcons,
+  copyReport
+};

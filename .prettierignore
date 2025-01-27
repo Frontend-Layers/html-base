@@ -1,0 +1,56 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build and distribution directories
+dist/
+build/
+out/
+public/
+release/
+
+# Temporary and log directories
+tmp/
+temp/
+logs/
+*.log
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.*
+
+# Generated files
+*.min.js
+*.min.css
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Compiled and binary files
+*.tsbuildinfo
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Webpack and bundler artifacts
+webpack.config.js
+.webpack/
+
+# Specific framework files
+.next/
+.nuxt/

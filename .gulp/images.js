@@ -67,7 +67,6 @@ const webpCompress = () =>
     .pipe(dest(cfg.dest.img))
     .pipe(dest(cfg.build.img))
 
-
 /**
  * SVG Sprite
  */

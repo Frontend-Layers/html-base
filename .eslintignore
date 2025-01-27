@@ -1,0 +1,58 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+
+# Build and distribution directories
+dist/
+build/
+out/
+public/
+release/
+
+# Temporary and log directories
+tmp/
+temp/
+logs/
+*.log
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Gulp specific
+gulpfile.js
+gulpfile.babel.js
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Backup files
+*.bak
+*.backup
+
+# Compiled binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Webpack and bundler artifacts
+webpack.config.js
+webpack.dev.js
+webpack.prod.js
+.webpack/
+
+# TypeScript compiled files
+*.tsbuildinfo

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.1] - YYYY-MM-DD
 
+- added `rollup-plugin-visualizer`
+- added `rollup-plugin-persist`
+- added `gulp-cached`, `gulp-changed`, `gulp-remember`
+- updated .eslintignore and .prettierignore
 - disble VSCode ext recommendations permanently
 - added recommended extensions list for VSCode `./vscode/extensions.json`
 - added `_debug.scss` for temporary fixes, unoptimized critical classes which should be solved properly later or removed.

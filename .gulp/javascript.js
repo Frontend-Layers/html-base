@@ -37,14 +37,24 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
+import { visualizer } from "rollup-plugin-visualizer";
 
 import standard from 'gulp-standard';
+
+/**
+ * Performance
+ */
+import cached from 'gulp-cached';
+import changed from 'gulp-changed';
+import remember from 'gulp-remember';
 
 
 /**
  * Custom
  */
 import { errorHandler } from './lib/utils.js';
+
+const __dirname = path.resolve(path.dirname(''));
 
 /**
  * Config
@@ -64,23 +74,22 @@ const cfg = {
 };
 
 
-const __dirname = path.resolve(path.dirname(''));
-
-
 /**
  * Rollup.js Configuration
- *
  */
 const rollupCfg = () => ({
   input: cfg.roll.input,
+  cache: true, // Enable Rollup cache
+  treeshake: true, // Enable tree-shaking
   plugins: [
     babel({
       exclude: 'node_modules/**',
       presets: ['@babel/preset-env'],
-      babelHelpers: 'bundled',
+      babelHelpers: 'bundled'
     }),
     url({
-      include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
+      include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp'],
+      // limit: 10 * 1024 // Only inline files smaller than 10kb
     }),
     json(),
     alias({
@@ -92,13 +101,20 @@ const rollupCfg = () => ({
     resolve({
       browser: true,
       preferBuiltins: false,
+      mainFields: ['browser', 'module', 'main']
     }),
     commonjs({
       include: ['node_modules/**'],
       sourceMap: true
     }),
+    visualizer({
+      filename: `${__dirname}/src/report/js-bundle-report.html`,
+      template: 'treemap',
+      gzipSize: true,
+      brotliSize: true,
+    }),
   ],
-  onLog(level, log, handler) {
+  onLog(level, log) {
     fancyLog('\x1b[33m[Rollup][Warning]\x1b[0m', '\x1b[0m' + log.message + '\x1b[0m');
   }
 });
@@ -140,27 +156,31 @@ const scriptsReload = (done) =>
 /**
  * Compress JavaScript
  */
-const compressJS = (done) =>
+const compressJS = () =>
   src('./dist/javascript/**/*.js')
     .pipe(plumber({ errorHandler }))
-    .pipe(uglify())
-    .pipe(size())
-    .pipe(dest('./build/javascript/'))
-    .on('end', done);
-
+    .pipe(changed('./build/javascript/'))
+    .pipe(uglify({
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }))
+    .pipe(size({ showFiles: true }))
+    .pipe(dest('./build/javascript/'));
 
 /**
  * Lints JavaScript files to ensure they follow coding standards.
  */
-const standardJS = (done) =>
+const standardJS = () =>
   src(['./dist/javascript/app.js'])
     .pipe(plumber({ errorHandler }))
+    .pipe(cached('lint'))
     .pipe(standard())
     .pipe(standard.reporter('default', {
       breakOnError: false,
       quiet: true
-    }))
-    .on('end', done);
+    }));
 
 /**
  * Concat JS Libraries List
@@ -168,8 +188,9 @@ const standardJS = (done) =>
 const jsConcatVendorLibs = (jsVendorList, done) =>
   src(jsVendorList.src, { allowEmpty: true })
     .pipe(plumber({ errorHandler }))
+    .pipe(cached('concat'))
+    .pipe(remember('concat'))
     .pipe(concat('app.js'))
-    .pipe(dest('./dist/javascript/'))
-    .on('end', done);
+    .pipe(dest('./dist/javascript/'));
 
 export { roll, scriptsReload, compressJS, standardJS, jsConcatVendorLibs };
