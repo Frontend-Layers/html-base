@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Frontend Toolset",
   "directories": {
     "test": "tests"
@@ -73,6 +73,7 @@
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
     "gulp-cached": "^1.1.1",
+    "gulp-changed": "^5.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
     "gulp-debug": "^5.0.1",
@@ -83,7 +84,6 @@
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^10.0.0",
     "gulp-prettify": "^0.5.0",
-    "gulp-purifycss": "^0.2.0",
     "gulp-remember": "^1.0.1",
     "gulp-sass": "^6.0.0",
     "gulp-size": "^5.0.0",
@@ -96,7 +96,6 @@
     "html-pages-preview": "^1.1.3",
     "html-speed": "^1.0.3",
     "html-test": "^1.2.1",
-    "jquery": "^3.7.1",
     "js-components-npm": "^1.0.2",
     "localtunnel": "^2.0.2",
     "mobile-friendly-test-npm": "^1.0.4",
@@ -106,14 +105,9 @@
     "postcss": "^8.5.1",
     "prettier": "^3.4.2",
     "rollup": "^4.32.1",
-    "rollup-plugin-visualizer": "^5.14.0",
     "sass": "^1.83.4",
     "scss-mixins-npm": "^1.0.6",
     "scss-reset": "^1.4.6",
     "ui-explorer": "^1.2.1"
-  },
-  "dependencies": {
-    "gulp-changed": "^5.0.2",
-    "gulp-if": "^3.0.0"
   }
 }
