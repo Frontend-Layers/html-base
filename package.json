@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Frontend Toolset",
   "directories": {
     "test": "tests"
