@@ -3,10 +3,11 @@
 [![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/frontend-layers/html-base/LICENSE)
 [![npm](https://img.shields.io/npm/v/html-base.svg)](https://www.npmjs.com/package/html-base)
 
-_HTML initial bundle for professional frontend development_
+_Professional frontend toolset_
 
 ## Why
 
+- Fullstack oriented infrastructure
 - Templates, themes prototyping
 - Integration with any CMS and frameworks
 - Modeling JavaScript applications

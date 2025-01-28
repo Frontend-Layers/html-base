@@ -9,7 +9,7 @@
  */
 
 // SCSS Reset
-@import 'scss-reset/reset';
+@use 'scss-reset';
 
 // SCSS Mixins
 @import 'scss-mixins-npm/mixins';
@@ -23,7 +23,11 @@
  */
 
 // Abstracts
-@import 'reset', 'variables', 'mixins';
+@import 'reset';
+@import 'mixins';
+
+// Settings
+@import 'variables';
 
 // Base
 @import 'typography';
@@ -46,7 +50,7 @@
 @import 'header';
 @import 'footer';
 
-// Layout/ Sections
+// Layout / Sections
 @import 'sections';
 
 // Layout/ Sections
@@ -61,3 +65,7 @@
 
 // Font Files
 @import 'fonts';
+
+// Development
+@import 'debug';
+

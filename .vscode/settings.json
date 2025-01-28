@@ -1,16 +1,22 @@
 {
+  // Configuration for Live Sass Compiler
   "liveSassCompile.settings.formats": [
     {
-      "format": "expanded",
-      //"format": "compressed",
-      "extensionName": ".css",
-      "savePath": "/styles/"
+      "format": "expanded", // Output format for the compiled CSS
+      "extensionName": ".css", // File extension for the output files
+      "savePath": "/styles/" // Directory to save the compiled files
     }
   ],
+
+  // Preferences for Emmet
   "emmet.preferences": {
-    "filter.commentAfter": "<!-- /[#ID][.CLASS] -->"
+    "filter.commentAfter": "<!-- /[#ID][.CLASS] -->" // Adds a comment after Emmet abbreviations with ID and class
   },
+
+  // Default location for the panel in the workbench
   "workbench.panel.defaultLocation": "right",
+
+  // Exclude certain files and folders from search
   "search.exclude": {
     "**/.git": true,
     "**/node_modules": true,
@@ -20,33 +26,61 @@
     "**/tmp": true,
     "**/styles": true,
     "**/package-lock.json": true,
-    "**/yarn.lock": true
+    "**/yarn.lock": true,
+    "**/docs": true,
+    "**/report": true,
+    "**/test/report": true,
   },
-  "html.format.indentInnerHtml": false,
-  "html.format.wrapAttributes": "preserve",
+
+  // Formatting options for HTML
+  "html.format.indentInnerHtml": false, // Prevent indenting inner HTML
+  "html.format.wrapAttributes": "preserve", // Preserve attribute wrapping style
+
+  // Disable basic PHP suggestions
   "php.suggest.basic": false,
+
+  // Enable quick suggestions in comments
   "editor.quickSuggestions": {
-    "comments": true
+    "comments": true // Show suggestions while typing in comments
   },
+
+  // Enable font ligatures for specific styles
   "editor.fontLigatures": "'ss01'",
-  // "javascript.format": {
-  //   "semicolons": "insert",
-  //   "insertSpaceBeforeFunctionParenthesis": false
-  // },
+
+  // Code actions to run on save
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": "explicit" // Automatically fix ESLint issues
   },
+
+  // Validate JavaScript files with ESLint
   "eslint.validate": [
     "javascript"
   ],
-  "html.format.extraLiners": "",
+
+  // Additional HTML formatting settings
+  "html.format.extraLiners": "", // Remove extra line breaks
+
+  // Set file end-of-line character to LF
   "files.eol": "\n",
-  "editor.renderWhitespace": "all", // Отображение пробелов и табуляций
+
+  // Render whitespace in the editor
+  "editor.renderWhitespace": "all",
+
+  // File associations
   "files.associations": {
-    "Makefile": "makefile" // Настройка Makefile как языка
+    "Makefile": "makefile" // Associate Makefile with makefile language mode
   },
+
+  // Settings specific to makefile language
   "[makefile]": {
-    "editor.insertSpaces": false,
-    "editor.tabSize": 4
-  }
+    "editor.insertSpaces": false, // Use tabs instead of spaces
+    "editor.tabSize": 4 // Set tab size to 4 spaces
+  },
+
+  // Extension settings
+  "extensions.showRecommendationsOnlyOnDemand": true, // Show extension recommendations only on demand
+  "extensions.ignoreRecommendations": true, // Ignore extension recommendations
+
+  // Compact folder settings in Explorer
+  "explorer.compactFolders": false // Collapse folders with a single child into one line
 }

@@ -1,0 +1,25 @@
+.debug {
+  * {
+    outline: 1px solid rgba(0, 0, 0, 0.2); /* Level 1: Highlight all elements */
+  }
+
+  // Level 2: Highlight direct children of the debug container
+  > * {
+    outline: 1px solid rgba(255, 0, 0, 0.4); /* Level 2: More visible outline */
+  }
+
+  // Level 3: Highlight direct children of the children (grandchildren)
+  > * > * {
+    outline: 1px solid rgba(0, 255, 0, 0.6); /* Level 3: Even more visible outline */
+  }
+
+  // Level 4: Highlight great-grandchildren
+  > * > * > * {
+    outline: 1px solid rgba(0, 0, 255, 0.8); /* Level 4: Almost fully visible outline */
+  }
+
+  // Level 5: Highlight deep nested elements (great-great-grandchildren)
+  > * > * > * > * {
+    outline: 2px solid rgba(255, 255, 0, 1); /* Level 5: Fully visible outline */
+  }
+}

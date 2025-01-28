@@ -1,70 +1,47 @@
-/**
- * HTML
- * ================================================================================
- */
-
 import gulp from 'gulp';
-const { src, dest } = gulp;
-
-/**
- * HTML
- */
 import tpl from 'gulp-nunjucks-render';
 import { htmlValidator } from 'gulp-w3c-html-validator';
 import htmlTest from 'html-test';
 import htmlPreview from 'html-pages-preview';
-
-/**
- * Server
- */
 import connect from 'gulp-connect';
-
-/**
- * Notification
- */
 import plumber from 'gulp-plumber';
-
-/**
- * Prettifier
- */
 import prettify from 'gulp-prettify';
-
-/**
- * Compressors
- */
 import htmlMin from 'gulp-htmlmin';
+import cached from 'gulp-cached';
+import changed from 'gulp-changed';
+import path from 'path';
+// import debug from 'gulp-debug';
 
-/**
- * Custom
- */
+import size from 'gulp-size';
+
+
 import { errorHandler } from './lib/utils.js';
 
-/**
- * Generate HTML preview pages
- */
-const htmlPagesPreview = (done) => {
-  const src = [
-    './dist/home.html',
-    './dist/article.html',
-    './dist/product.html'
-  ];
-  const dest = './dist/preview-pages.html';
+const __dirname = path.resolve(path.dirname(''));
 
-  htmlPreview(src, dest);
+const { src, dest } = gulp;
+const cfgPlumber = { errorHandler };
+
+const htmlPagesPreview = (done) => {
+  const srcFiles = [`${__dirname}/src/home.html`];
+  const destFile = `${__dirname}/src/report/preview-pages.html`;
+  htmlPreview(srcFiles, destFile);
   done();
 };
 
-/**
- * Generate and beautify HTML templates
- */
 const htmlGenerate = () =>
-  src('./src/**/*.html')
-    .pipe(plumber({ errorHandler }))
-    .pipe(
-      tpl({
-        path: ['./src/'],
-      })
-    )
+  src([
+    './src/**/*.html',
+    '!./src/report/**',
+    '!./src/test/**',
+    '!./src/javascript/**',
+    '!./src/node_modules/**',
+  ])
+    .pipe(plumber(cfgPlumber))
+    .pipe(cached('html'))
+    .pipe(changed('./dist'))
+    // .pipe(debug({ title: '[Nunjucks]' }))
+    .pipe(tpl({ path: ['./src/'] }))
     .pipe(
       prettify({
         indent_inner_html: true,
@@ -72,22 +49,15 @@ const htmlGenerate = () =>
         unformatted: ['pre', 'code'],
       })
     )
-    .pipe(dest('./dist'));
+    .pipe(dest('./dist'))
 
-/**
- * HTML Reload
- */
-const htmlReload = (done) =>
+const htmlReload = () =>
   src('./dist/**/*.html')
-    .pipe(connect.reload())
-    .on('end', done);
+    .pipe(connect.reload());
 
-/**
- * HTML Minify
- */
 const htmlCompress = (done) =>
   src('./dist/*.html')
-    .pipe(plumber({ errorHandler }))
+    .pipe(plumber(cfgPlumber))
     .pipe(
       htmlMin({
         collapseWhitespace: true,
@@ -97,27 +67,37 @@ const htmlCompress = (done) =>
       })
     )
     .pipe(dest('./build/'))
+    .pipe(size({
+      title: '[HTML]',
+      showFiles: true,
+    }))
     .pipe(connect.reload())
     .on('end', done);
 
-/**
- * Rapid HTML Validator
- */
 const testHtml = (done) => {
-  htmlTest('./dist/**/*.html', { ignore: ['dist/javascript/**', 'node_modules/**'] });
+  htmlTest('./dist/**/*.html', {
+    ignore: [
+      'dist/test/**',
+      'dist/javascript/**',
+      'node_modules/**'
+    ]
+  });
   done();
 };
 
-/**
- * Detailed Validate HTML
- */
-const validateHtml = (done) =>
+const validateHtml = () =>
   src('./dist/*.html')
-    .pipe(plumber({ errorHandler }))
+    .pipe(plumber(cfgPlumber))
     .pipe(htmlValidator.analyzer({
       ignoreLevel: "warning"
     }))
-    .pipe(htmlValidator.reporter())
-    .on('end', done);
+    .pipe(htmlValidator.reporter());
 
-export { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview };
+export {
+  htmlGenerate,
+  htmlReload,
+  htmlCompress,
+  validateHtml,
+  testHtml,
+  htmlPagesPreview
+};

@@ -11,19 +11,26 @@
 import fancyLog from 'fancy-log';
 import util from 'util';
 
+
 /**
  * errorHandler
  *
  * @description Error handler function for Gulp tasks.
  * @param {*} error
  */
-const errorHandler = function (error) {
+const errorHandler = function (error, done) {
   const defColor = util.inspect.styles.date;
   util.inspect.styles.date = 'red';
-  fancyLog(error.messageFormatted || error.message);
+
+  fancyLog(error.messageFormatted || error.message || error.stack);
+
   util.inspect.styles.date = defColor;
 
-  if (typeof this.emit === 'function') {
+  if (done) {
+    done();
+  }
+
+  if (typeof this !== 'undefined' && typeof this.emit === 'function') {
     this.emit('end');
   }
 };
