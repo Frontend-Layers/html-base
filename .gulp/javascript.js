@@ -39,9 +39,6 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
-import { visualizer } from "rollup-plugin-visualizer";
-
-
 import concat from 'gulp-concat';
 import * as babelCore from '@babel/core';
 
@@ -110,13 +107,7 @@ const rollupCfg = () => ({
     commonjs({
       include: ['node_modules/**'],
       sourceMap: true
-    }),
-    visualizer({
-      filename: `${__dirname}/src/report/js-bundle-report.html`,
-      template: 'treemap',
-      gzipSize: true,
-      brotliSize: true,
-    }),
+    })
   ],
   onLog(level, log) {
     fancyLog('\x1b[33m[Rollup][Warning]\x1b[0m', '\x1b[0m' + log.message + '\x1b[0m');
