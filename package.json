@@ -1,6 +1,6 @@
 {
   "name": "html-base",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Frontend Toolset",
   "directories": {
     "test": "tests"
@@ -42,9 +42,9 @@
   "type": "module",
   "homepage": "https://html-base-intro.netlify.app/",
   "devDependencies": {
-    "@babel/core": "^7.26.0",
+    "@babel/core": "^7.26.7",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-env": "^7.26.7",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
@@ -57,6 +57,7 @@
     "bootstrap-icons": "1.11.3",
     "browser-sync": "^3.0.3",
     "chai": "^5.1.2",
+    "concat-with-sourcemaps": "^1.1.0",
     "css-test-npm": "^1.0.1",
     "cssnano": "^7.0.6",
     "del": "^8.0.0",
@@ -71,9 +72,11 @@
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
+    "gulp-cached": "^1.1.1",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.7.0",
     "gulp-debug": "^5.0.1",
+    "gulp-file": "^0.4.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-newer": "^1.4.0",
     "gulp-nunjucks-render": "^2.2.3",
@@ -97,20 +100,19 @@
     "js-components-npm": "^1.0.2",
     "localtunnel": "^2.0.2",
     "mobile-friendly-test-npm": "^1.0.4",
-    "mocha": "^11.0.1",
+    "mocha": "^11.1.0",
     "mochawesome": "^7.1.3",
     "open": "^10.1.0",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.1",
     "prettier": "^3.4.2",
-    "rollup": "^4.28.1",
+    "rollup": "^4.32.1",
     "rollup-plugin-visualizer": "^5.14.0",
-    "sass": "^1.83.0",
+    "sass": "^1.83.4",
     "scss-mixins-npm": "^1.0.6",
     "scss-reset": "^1.4.6",
     "ui-explorer": "^1.2.1"
   },
   "dependencies": {
-    "gulp-cached": "^1.1.1",
     "gulp-changed": "^5.0.2",
     "gulp-if": "^3.0.0"
   }

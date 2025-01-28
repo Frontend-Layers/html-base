@@ -18,15 +18,18 @@
 
   // Exclude certain files and folders from search
   "search.exclude": {
-    "**/.git": true, // Exclude .git folder
-    "**/node_modules": true, // Exclude node_modules folder
-    "**/bower_components": true, // Exclude bower_components folder
-    "**/dist": true, // Exclude dist folder
-    "**/build": true, // Exclude build folder
-    "**/tmp": true, // Exclude tmp folder
-    "**/styles": true, // Exclude styles folder
-    "**/package-lock.json": true, // Exclude package-lock.json file
-    "**/yarn.lock": true // Exclude yarn.lock file
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/tmp": true,
+    "**/styles": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true,
+    "**/docs": true,
+    "**/report": true,
+    "**/test/report": true,
   },
 
   // Formatting options for HTML

@@ -15,7 +15,8 @@ import { roll, rollES, rollUMD, scriptsReload, compressJS } from './.gulp/javasc
 import { htmlGenerate, htmlReload, testHtml } from './.gulp/html.js';
 
 // Images
-import { imagesCompress, webpCompress, genSvgSprite, copyImages } from './.gulp/images.js';
+import { imagesCompress, webpCompress, copyImages } from './.gulp/images.js';
+import getSprite from './.gulp/sprite.js';
 
 // Server
 import { openServer, openBrowser, bumper, clean, cleanDist } from './.gulp/server.js';
@@ -121,6 +122,6 @@ const images = series(imagesCompress, webpCompress);
 /**
  * Generate SVG Sprite
  */
-const sprite = series(genSvgSprite);
+const sprite = series(getSprite);
 
 export { test, build, images, sprite };

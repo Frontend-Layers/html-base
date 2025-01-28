@@ -63,15 +63,17 @@ const cfg = {
  *
  * @description Compile SCSS to CSS
  */
-const scss = (done) =>
+const scss = () =>
   src(cfg.src.scss)
     .pipe(plumber({ errorHandler }))
     .pipe(sourcemaps.init())
     .pipe(
       sass({
         style: 'expanded',
+        outputStyle: 'expanded', // for support
         errLogToConsole: false,
         loadPaths: ['node_modules', 'bower_components', 'src', '.'],
+        includePaths: ['node_modules', 'src', '.'], // for support
         silenceDeprecations: ['import'],
         quietDeps: true,
       })
@@ -79,7 +81,6 @@ const scss = (done) =>
     .pipe(sourcemaps.write('./'))
     .pipe(dest(cfg.dest.scss))
     .pipe(dest(cfg.dest.css))
-    .on('end', done);
 
 /**
  * Styles Reload
@@ -97,7 +98,10 @@ const cssCompress = (done) =>
     .pipe(plumber({ errorHandler }))
     .pipe(postcss([autoprefixer(), cssnano()]))
     .pipe(dest('./build/styles/'))
-    .pipe(size())
+    .pipe(size({
+      title: '[Styles]',
+      showFiles: true,
+    }))
     .pipe(connect.reload())
     .on('end', done);
 

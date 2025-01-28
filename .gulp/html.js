@@ -12,6 +12,9 @@ import changed from 'gulp-changed';
 import path from 'path';
 // import debug from 'gulp-debug';
 
+import size from 'gulp-size';
+
+
 import { errorHandler } from './lib/utils.js';
 
 const __dirname = path.resolve(path.dirname(''));
@@ -46,13 +49,13 @@ const htmlGenerate = () =>
         unformatted: ['pre', 'code'],
       })
     )
-    .pipe(dest('./dist'));
+    .pipe(dest('./dist'))
 
 const htmlReload = () =>
   src('./dist/**/*.html')
     .pipe(connect.reload());
 
-const htmlCompress = () =>
+const htmlCompress = (done) =>
   src('./dist/*.html')
     .pipe(plumber(cfgPlumber))
     .pipe(
@@ -64,7 +67,12 @@ const htmlCompress = () =>
       })
     )
     .pipe(dest('./build/'))
-    .pipe(connect.reload());
+    .pipe(size({
+      title: '[HTML]',
+      showFiles: true,
+    }))
+    .pipe(connect.reload())
+    .on('end', done);
 
 const testHtml = (done) => {
   htmlTest('./dist/**/*.html', {

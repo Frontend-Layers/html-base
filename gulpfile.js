@@ -18,7 +18,8 @@ import { roll, scriptsReload, compressJS, jsConcatVendorLibs } from './.gulp/jav
 import { htmlGenerate, htmlReload, htmlCompress, validateHtml, testHtml, htmlPagesPreview } from './.gulp/html.js';
 
 // Images
-import { webpCompress, genSvgSprite, copyImages } from './.gulp/images.js';
+import { webpCompress, copyImages } from './.gulp/images.js';
+import getSprite from './.gulp/sprite.js';
 
 // Server
 import { openServer, openBrowser, bumper, cleanBuild, cleanDist, cleanHTML, openProxyTunnel, bs } from './.gulp/server.js';
@@ -63,7 +64,10 @@ console.clear();
  * JS Libraries List
  */
 const jsVendorList = {
-  src: ['./dist/javascript/app.js']
+  src: [
+    // './node_modules/jquery/dist/jquery.min.js',
+    './dist/javascript/app.js'
+  ]
 };
 
 const concatJsLibs = (done) => jsConcatVendorLibs(jsVendorList, done);
@@ -147,6 +151,6 @@ const images = series(webpCompress, copyImages);
 /**
  * Generate SVG Sprite
  */
-const sprite = series(genSvgSprite);
+const sprite = series(getSprite);
 
 export { test, build, images, sprite };

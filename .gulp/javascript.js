@@ -7,12 +7,14 @@
 import gulp from 'gulp';
 const { src, dest } = gulp;
 
+import standard from 'gulp-standard';
+
 /**
  * System
  */
 import path from 'path';
 import connect from 'gulp-connect';
-import concat from 'gulp-concat';
+import fs from 'fs';
 
 /**
  * Notification
@@ -39,7 +41,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import { visualizer } from "rollup-plugin-visualizer";
 
-import standard from 'gulp-standard';
+
+import concat from 'gulp-concat';
+import * as babelCore from '@babel/core';
+
 
 /**
  * Performance
@@ -80,7 +85,6 @@ const cfg = {
 const rollupCfg = () => ({
   input: cfg.roll.input,
   cache: true, // Enable Rollup cache
-  treeshake: true, // Enable tree-shaking
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -166,7 +170,10 @@ const compressJS = () =>
         drop_debugger: true
       }
     }))
-    .pipe(size({ showFiles: true }))
+    .pipe(size({
+      title: '[JavaScript]',
+      showFiles: true,
+    }))
     .pipe(dest('./build/javascript/'));
 
 /**
@@ -183,14 +190,53 @@ const standardJS = () =>
     }));
 
 /**
- * Concat JS Libraries List
+ * Concatenates a list of JavaScript vendor libraries with app.js into a single file with sourcemaps
  */
-const jsConcatVendorLibs = (jsVendorList, done) =>
-  src(jsVendorList.src, { allowEmpty: true })
-    .pipe(plumber({ errorHandler }))
-    .pipe(cached('concat'))
-    .pipe(remember('concat'))
-    .pipe(concat('app.js'))
-    .pipe(dest('./dist/javascript/'));
+const jsConcatVendorLibs = (jsVendorList, done) => {
+  const pink = '\x1b[35m';
+  const reset = '\x1b[0m';
+  const timestamp = new Date().toLocaleTimeString('en-GB', { hour12: false });
+
+  try {
+    return src(jsVendorList.src)
+      .pipe(plumber({ errorHandler }))
+      .pipe(cached('vendor-libs'))
+      .pipe(remember('vendor-libs'))
+      .on('data', function (file) {
+        const fileContent = file.contents.toString();
+        let fileMap = null;
+
+        const mapPath = `${file.path}.map`;
+        const altMapPath = `${file.path.replace('.js', '')}.map`;
+
+        if (!fs.existsSync(mapPath) && !fs.existsSync(altMapPath)) {
+          console.log(`[${pink}${timestamp}${reset}] [JavaScript] Map file not found for ${file.path}. Generating...`);
+
+          const result = babelCore.transformSync(fileContent, {
+            sourceMaps: true,
+            sourceFileName: path.basename(file.path),
+          });
+
+          fileMap = JSON.stringify(result.map, null, 2);
+        } else {
+          const existingMapPath = fs.existsSync(mapPath) ? mapPath : altMapPath;
+          fileMap = fs.readFileSync(existingMapPath, 'utf-8');
+        }
+
+        file.sourceMap = JSON.parse(fileMap);
+      })
+      .pipe(concat('app.js', { sourceMap: true }))
+      .pipe(dest('./dist/javascript/'))
+      .on('end', () => {
+        console.log(`[${pink}${timestamp}${reset}] JS libraries concatenated with sourcemaps.`);
+        done();
+      });
+  } catch (error) {
+    if (typeof errorHandler === 'function') {
+      errorHandler.call(this, error);
+    }
+    done(error);
+  }
+};
 
 export { roll, scriptsReload, compressJS, standardJS, jsConcatVendorLibs };

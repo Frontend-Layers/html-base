@@ -5,8 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.5.1] - YYYY-MM-DD
+## [1.5.1] - 2025-01-28
 
+- updated SVG Spites functionality #25
+- replaced `gulp-concat` by `concat-with-sourcemaps`
+- fixed rollup sourcemaps issues #26
 - added `rollup-plugin-visualizer`
 - added `rollup-plugin-persist`
 - added `gulp-cached`, `gulp-changed`, `gulp-remember`

@@ -1,0 +1,80 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>SVG Sprite Preview</title>
+      <meta name="robots" content="noindex, nofollow">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+        .icon-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 16px;
+          padding: 0;
+          list-style: none;
+        }
+        .icon-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 16px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          background: #f9f9f9;
+        }
+        .icon-item svg {
+          width: 48px;
+          height: 48px;
+          margin-bottom: 8px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container pt-5">
+        <header class="pb-3">
+          <h1>SVG Sprite Preview</h1>
+        </header>
+        <div class="pb-0 pt-0">
+          <p><a href="/index.html">Back to Index</a></p>
+        </div>
+        <div class="pt-4 pb-2">
+          <h2>Icons</h2>
+        </div>
+        <ul class="icon-list">
+          
+            <li class="icon-item">
+              <svg class="svg-sprite-icon__icon-boat">
+                <use xlink:href="../images/sprite.svg#icon-boat"></use>
+              </svg>
+              <span>icon-boat</span>
+            </li>
+          
+            <li class="icon-item">
+              <svg class="svg-sprite-icon__icon-bolt">
+                <use xlink:href="../images/sprite.svg#icon-bolt"></use>
+              </svg>
+              <span>icon-bolt</span>
+            </li>
+          
+            <li class="icon-item">
+              <svg class="svg-sprite-icon__icon-prin">
+                <use xlink:href="../images/sprite.svg#icon-prin"></use>
+              </svg>
+              <span>icon-prin</span>
+            </li>
+          
+            <li class="icon-item">
+              <svg class="svg-sprite-icon__icon-wallet">
+                <use xlink:href="../images/sprite.svg#icon-wallet"></use>
+              </svg>
+              <span>icon-wallet</span>
+            </li>
+          
+        </ul>
+      </div>
+    </body>
+    </html>
+  

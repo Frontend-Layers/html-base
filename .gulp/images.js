@@ -28,6 +28,7 @@ import plumber from 'gulp-plumber';
  */
 import dotenv from 'dotenv';
 dotenv.config();
+import path from 'path';
 
 /**
  * Custom
@@ -65,31 +66,7 @@ const webpCompress = () =>
       webp({ quality: process.env.WEBP_QUALITY || 100 })
     )
     .pipe(dest(cfg.dest.img))
-    .pipe(dest(cfg.build.img))
-
-/**
- * SVG Sprite
- */
-const genSvgSprite = () =>
-  src('./src/images/sprite/*.svg')
-    .pipe(plumber({ errorHandler }))
-    .pipe(newer(cfg.dest.img))
-    .pipe(
-      sprite({
-        transform: ['svgo'],
-        mode: {
-          symbol: {
-            sprite: '../sprite.svg',
-            render: {
-              scss: {
-                dest: '../../scss/_sprite.scss',
-              },
-            },
-          },
-        },
-      })
-    )
-    .pipe(dest('./src/images/'))
+    .pipe(dest(cfg.build.img));
 
 /**
  * Copy images
@@ -99,6 +76,6 @@ const copyImages = () =>
     .pipe(plumber({ errorHandler }))
     .pipe(newer(cfg.dest.img))
     .pipe(dest(cfg.dest.img))
-    .pipe(dest(cfg.build.img))
+    .pipe(dest(cfg.build.img));
 
-export { webpCompress, genSvgSprite, copyImages };
+export { webpCompress, copyImages };
